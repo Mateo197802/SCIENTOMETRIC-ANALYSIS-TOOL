@@ -6,7 +6,7 @@ The core objective of this tool is to automate systematic literature reviews and
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 The operational core and technical documentation for this tool are organized within the `PHASE 0` directory. This directory contains detailed, step-by-step guides covering deployment, configuration, and the internal algorithmic architecture of the workflow.
 
@@ -27,7 +27,7 @@ The operational core and technical documentation for this tool are organized wit
 
 ---
 
-## ⚙️ Core Capabilities
+## Core Capabilities
 
 1. **Multi-Database Integration:** Capable of querying Scopus, PubMed, OpenAlex, Semantic Scholar, and Google Scholar (via SerpAPI).
 2. **Granular "1-to-1" Author Mapping:** Automatically unrolls deeply nested authorship arrays to generate one structured row per author per paper, enabling precise entity tracking.
@@ -36,7 +36,7 @@ The operational core and technical documentation for this tool are organized wit
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 To begin using this tool, please navigate to the `PHASE 0/` directory and sequentially follow manuals `01` through `06` to stand up your environment.
 
