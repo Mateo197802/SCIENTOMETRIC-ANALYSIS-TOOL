@@ -18,7 +18,7 @@ The integration of what is internally documented within the codebase as the **"L
 2. **Positional Tracking Logic:** The algorithm that accurately tags researchers as `first`, `middle`, or `last` author based on their array index—a critical metric in assessing academic contribution weight.
 3. **Cross-Referencing Feasibility:** By isolating individual Author IDs per row, the Lukas methodology made it structurally possible to execute secondary API hits (Author Profile lookups) to extract advanced metrics like H-index and total citations downstream.
 
-I extend my sincere gratitude to Lukas for providing the conceptual baseline that elevated this data extraction pipeline from a simple scraper to a professional, analytics-ready data engineering framework.
+I extend my sincere gratitude to Lukas for providing the conceptual baseline that elevated this data extraction pipeline, analytics-ready data engineering framework.
 
 Specifically, the original Python scripts and Jupyter notebooks designed by Lukas contained within the `author-info-scraping-main` repository—which initially demonstrated how to extract and compute h-index, classify authors by seniority, and parse geolocation data using the OpenAlex and SerpAPI endpoints—served as the core inspirational blueprint for this project.
 
