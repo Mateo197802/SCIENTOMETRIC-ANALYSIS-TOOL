@@ -1,0 +1,2628 @@
+{
+  "name": "A1 SCIENTOMETRIC ANALYSIS TOOL",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        48,
+        16
+      ],
+      "id": "24466e54-4bf2-4819-a019-5db54701f49f",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "returnAll": true,
+        "filter": {
+          "folderId": {
+            "__rl": true,
+            "value": "1dD0ZN7zZ0K3J4HU_NpSC59kB6r6xtAC0",
+            "mode": "list",
+            "cachedResultName": "CSV_INPUT_PHASE",
+            "cachedResultUrl": "https://drive.google.com/drive/folders/1dD0ZN7zZ0K3J4HU_NpSC59kB6r6xtAC0"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        672,
+        0
+      ],
+      "id": "5269096a-e86d-4e96-9a12-92b8fb778fe7",
+      "name": "Search CSV folder",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "tp4opvcxFnolbSb3",
+          "name": "Google Drive account 6"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1056,
+        16
+      ],
+      "id": "9358cbbc-55e2-4bee-b50a-99aa4fc69a7b",
+      "name": "Download file",
+      "alwaysOutputData": false,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "tp4opvcxFnolbSb3",
+          "name": "Google Drive account 6"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1sfbP13-jabRXxvLwlFrocve7GCx1bDgTPTMQYWDQZN0",
+          "mode": "list",
+          "cachedResultName": "DeepSearch",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1sfbP13-jabRXxvLwlFrocve7GCx1bDgTPTMQYWDQZN0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Queries",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1sfbP13-jabRXxvLwlFrocve7GCx1bDgTPTMQYWDQZN0/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        256,
+        16
+      ],
+      "id": "3d65bc89-9dcd-4be6-b80b-880a0131d83e",
+      "name": "Extract Info Table",
+      "alwaysOutputData": false,
+      "executeOnce": true,
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "LteTlPtBO5SZHJXH",
+          "name": "Google Sheets account 3"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const config = {};\n\nfor (const item of $input.all()) {\n  const source = item.json[\"SOURCE\"] ? item.json[\"SOURCE\"].trim().toUpperCase() : \"\";\n  const apiKey = item.json[\"API KEY\"] ? item.json[\"API KEY\"].trim() : \"\";\n  const rateLimit = parseInt(item.json[\"RATE_LIMIT_MS\"]) || 1000; \n  const mail = item.json[\"PERSONAL_MAIL\"] ? item.json[\"PERSONAL_MAIL\"].trim() : \"\";\n  const isActive = item.json[\"IS_ACTIVE\"] === true || item.json[\"IS_ACTIVE\"] === \"TRUE\";\n\n  if (source === \"OPEN ALEX\") {\n    config.openAlexKey = apiKey;\n    config.openAlexDelay = rateLimit;\n    config.openAlexMail = mail;\n    config.openAlexActive = isActive;\n  } else if (source === \"PUBMED\") {\n    config.pubmedKey = apiKey;\n    config.pubmedDelay = rateLimit;\n    config.pubmedMail = mail;\n    config.pubmedActive = isActive;\n  } else if (source === \"SEMANTIC_SCHOLAR\" || source === \"SEMANTIC SCHOLAR\") {\n    config.semanticKey = apiKey;\n    config.semanticDelay = rateLimit;\n    config.semanticMail = mail;\n    config.semanticActive = isActive;\n  } else if (source === \"SCOPUS\") {\n    config.scopusKey = apiKey;\n    config.scopusDelay = rateLimit;\n    config.scopusMail = mail;\n    config.scopusActive = isActive;\n  } else if (source === \"GOOGLE_SCHOLAR\" || source === \"GOOGLE SCHOLAR\") {\n    config.scholarKey = apiKey;\n    config.scholarDelay = rateLimit;\n    config.scholarMail = mail;\n    config.scholarActive = isActive;\n  }\n}\n\nreturn [{ json: config }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        496,
+        0
+      ],
+      "id": "28960e38-4b7e-4766-a94f-063d2d966aa5",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "sendTo": "isaac.gavilanes@yachaytech.edu.ec",
+        "subject": "SYSTEM ALERT: Information Database Connection Failure",
+        "message": "=<div style=\"font-family: sans-serif; border: 1px solid #e74c3c; padding: 20px;\">\n  <h2 style=\"color: #e74c3c;\">V19 Auditor: Critical Failure</h2>\n  <p>The pipeline stopped at the <b>Configuration Stage</b>.</p>\n  <ul>\n    <li><b>Timestamp:</b> {{ $now.format('yyyy-MM-dd HH:mm:ss') }}</li>\n    <li><b>Error Type:</b> Spreadsheet Connection / API Table Missing</li>\n  </ul>\n  <p>Check if the \"DeepSearch\" sheet is shared with the service account and columns are named correctly.</p>\n</div>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        496,
+        176
+      ],
+      "id": "ee61a6b1-fbf9-4801-bcb2-4adafd04b97f",
+      "name": "Alert: Info extraction Failure",
+      "webhookId": "0ee529de-a8cc-44cf-955d-4b2a550b9c5b",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "DYCxcNcAvpCOIcZW",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "7b3d3950-62bd-480d-9ddc-8455c075285a",
+      "name": "Convert CSV to JSON",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "typeVersion": 2,
+      "position": [
+        1280,
+        16
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        816,
+        0
+      ],
+      "id": "99a55e7f-c95a-4797-a54e-148412849677",
+      "name": "Loop Over Files (External)"
+    },
+    {
+      "parameters": {
+        "name": "=AUDIT_V1_{{ $now.format('yyyy-MM-dd_HH-mm') }}_{{ $('Extract Info Table').first().json.SOURCE }}.csv",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1ayQQIjMGGYqXjgXDRAzyDp_zCqvbRHr-",
+          "mode": "list",
+          "cachedResultName": "DOIS_PROCESSED",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1ayQQIjMGGYqXjgXDRAzyDp_zCqvbRHr-"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2512,
+        -304
+      ],
+      "id": "4cc62691-0ce9-4b0c-89a1-8fb60befa01b",
+      "name": "Upload file1",
+      "retryOnFail": true,
+      "waitBetweenTries": 2000,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "tp4opvcxFnolbSb3",
+          "name": "Google Drive account 6"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# OPEN ALEX BRANCH",
+        "height": 320,
+        "width": 1520,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2400,
+        -48
+      ],
+      "typeVersion": 1,
+      "id": "f0600477-e63a-4039-819e-50c96ff02664",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const paper = $input.item.json;\nconst explodedAuthors = [];\n\nconst paperTitle = paper.title || \"No Title\";\nconst doi = paper.doi ? paper.doi.replace(\"https://doi.org/\", \"\") : \"No DOI\";\nconst year = paper.publication_year || \"n/d\";\nconst isOpenAccess = paper.open_access ? paper.open_access.is_oa : false;\n\nlet fundingOA = \"No data\";\nif (paper.grants && paper.grants.length > 0) {\n    fundingOA = paper.grants.map(g => g.funder_display_name).join(\" | \");\n}\n\nconst authorships = paper.authorships || [];\n\nif (authorships.length === 0) {\n    explodedAuthors.push({\n        json: { \n            PAPER_TITLE: paperTitle, \n            DOI: doi, \n            YEAR: year, \n            OPEN_ACCESS_OA: isOpenAccess, \n            FUNDING_OA: fundingOA, \n            AUTHOR_NAME: \"Unknown\", \n            AUTHOR_POS_OA: \"Unknown\", \n            IS_CORRESPONDING_OA: false, \n            AFFILIATION_OA: \"No data\", \n            GEO_COUNTRY_OA: \"UNKNOWN\", \n            AUTHOR_ID_OA: \"NO_ID\", \n            ORCID: \"NO_ORCID\" \n        }\n    });\n} else {\n    authorships.forEach(auth => {\n        let authorId = \"NO_ID\";\n        let orcid = \"NO_ORCID\";\n        \n        if (auth.author) {\n            if (auth.author.id) authorId = auth.author.id.split('/').pop();\n            if (auth.author.orcid) orcid = auth.author.orcid.replace(/https?:\\/\\/orcid\\.org\\//, \"\");\n        }\n\n        const affiliations = auth.institutions && auth.institutions.length > 0\n            ? auth.institutions.map(i => i.display_name).join(\" | \")\n            : \"No affiliation\";\n            \n        const countries = auth.institutions && auth.institutions.length > 0\n            ? auth.institutions.map(i => i.country_code).filter(c => c).join(\" | \")\n            : \"UNKNOWN\";\n\n        explodedAuthors.push({\n            json: {\n                PAPER_TITLE: paperTitle,\n                DOI: doi,\n                YEAR: year,\n                OPEN_ACCESS_OA: isOpenAccess,\n                FUNDING_OA: fundingOA,\n                AUTHOR_NAME: auth.author ? auth.author.display_name : \"Unknown\",\n                AUTHOR_POS_OA: auth.author_position || \"Unknown\",\n                IS_CORRESPONDING_OA: auth.is_corresponding || false,\n                AFFILIATION_OA: affiliations,\n                GEO_COUNTRY_OA: countries,\n                AUTHOR_ID_OA: authorId,\n                ORCID: orcid\n            }\n        });\n    });\n}\n\nreturn explodedAuthors;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2864,
+        0
+      ],
+      "id": "8590addc-35a0-419b-b687-ca9837df9da3",
+      "name": "Norm_Open_Alex"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "fd50a169-3b3e-4c18-beaa-d4d6592beb65",
+              "leftValue": "={{ $json.results.length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2656,
+        16
+      ],
+      "id": "86a4ab8f-19fa-4089-86c6-c435dd0780df",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        3088,
+        0
+      ],
+      "id": "b231335d-8407-417a-8874-38746cd46ef3",
+      "name": "Loop Authors OpenAlex"
+    },
+    {
+      "parameters": {
+        "jsCode": "const originalData = $('Loop Authors OpenAlex').item.json;\nconst authorProfile = items[0].json;\n\nconst hIndex = authorProfile.summary_stats ? authorProfile.summary_stats.h_index : 0;\nconst i10Index = authorProfile.summary_stats ? authorProfile.summary_stats.i10_index : 0;\nconst twoYrMean = authorProfile.summary_stats ? authorProfile.summary_stats['2yr_mean_citedness'] : 0;\nconst citations = authorProfile.cited_by_count || 0;\nconst worksCount = authorProfile.works_count || 0;\n\nlet keywords = \"No data\";\nif (authorProfile.x_concepts && authorProfile.x_concepts.length > 0) {\n    keywords = authorProfile.x_concepts.slice(0, 5).map(c => c.display_name).join(\", \");\n}\n\nreturn {\n    json: {\n        ...originalData,\n        WORKS_COUNT_OA: worksCount,\n        CITATIONS_OA: citations,\n        HINDEX_OA: hIndex,\n        I10INDEX_OA: i10Index,\n        '2YR_MEAN_OA': twoYrMean,\n        KEYWORDS_OA: keywords\n    }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3776,
+        0
+      ],
+      "id": "165a2936-f6e1-4122-9c09-6268e5897925",
+      "name": "Merge OpenAlex Metrics"
+    },
+    {
+      "parameters": {
+        "jsCode": "const originalData = $('Loop Authors OpenAlex').item.json;\n\nreturn {\n    json: {\n        ...originalData, \n        WORKS_COUNT_OA: 0,\n        CITATIONS_OA: 0,\n        HINDEX_OA: 0,\n        I10INDEX_OA: 0,\n        '2YR_MEAN_OA': 0,\n        KEYWORDS_OA: \"No data\"\n    }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3568,
+        144
+      ],
+      "id": "22c082a4-c71b-4db2-8c2d-7e62bb87c862",
+      "name": "Empty OpenAlex Metrics"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.openalex.org/authors/{{ $json.AUTHOR_ID_OA }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        3568,
+        0
+      ],
+      "id": "3a7f8985-73bf-4cd1-90fd-01c3fa6e2463",
+      "name": "AUTHOR ID REQUEST"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        2160,
+        -304
+      ],
+      "id": "e8b9e9ae-a0d7-4b98-879c-bdd0e0301498",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "url": "={{ 'https://api.openalex.org/works/https://doi.org/' + $json.DOI }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        2432,
+        16
+      ],
+      "id": "8379469e-63a6-4970-aac7-4ebc43bca717",
+      "name": "OPEN ALEX API"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1712,
+        16
+      ],
+      "id": "0f6ff6d0-8d89-47e5-928d-983224e5c827",
+      "name": "Loop Over Items (INTERNAL DOI)"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ee5eb45e-04b7-434e-9c29-33e0dc703b48",
+              "leftValue": "={{ $('Code in JavaScript').item.json.openAlexActive }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1952,
+        32
+      ],
+      "id": "514981ec-21da-4345-8ead-cc706ed58abb",
+      "name": "Check OpenAlex Active"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "f2427967-fa90-4b61-93ef-434bfbd1956a",
+              "leftValue": "={{ $json.AUTHOR_ID_OA }}",
+              "rightValue": "A",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        3344,
+        16
+      ],
+      "id": "3a3510b1-8080-43fa-a5d3-2644c6214fab",
+      "name": "If5"
+    },
+    {
+      "parameters": {
+        "content": "# PUBMED BRANCH",
+        "height": 400,
+        "width": 1728,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3344,
+        -496
+      ],
+      "typeVersion": 1,
+      "id": "371b3c26-e453-485c-822b-1257b72ed43d",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "db",
+              "value": "pubmed"
+            },
+            {
+              "name": "term",
+              "value": "={{ $json.DOI }}[LID]"
+            },
+            {
+              "name": "retmode",
+              "value": "json"
+            },
+            {
+              "name": "api_key",
+              "value": "={{ $('Code in JavaScript').item.json.pubmedKey }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        4032,
+        -432
+      ],
+      "id": "c94e4384-91ca-49b4-b72f-d1f4709ddf37",
+      "name": "PubMed Search IDs"
+    },
+    {
+      "parameters": {
+        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "db",
+              "value": "pubmed"
+            },
+            {
+              "name": "id",
+              "value": "={{ $json.esearchresult.idlist[0] }}"
+            },
+            {
+              "name": "retmode",
+              "value": "xml"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        4512,
+        -448
+      ],
+      "id": "e1cc9a02-f174-4385-a661-e9cf24d1567c",
+      "name": "PubMed Fetch XML"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "77360196-da10-47ed-bc82-75bb9e7c8c24",
+              "leftValue": "={{ $('Code in JavaScript').item.json.pubmedActive }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        3360,
+        -304
+      ],
+      "id": "fb5e92f8-f2b2-450a-986b-a888601d717b",
+      "name": "Check PubMed Active"
+    },
+    {
+      "parameters": {
+        "amount": "={{ $('Code in JavaScript').item.json.pubmedActive / 1000 }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3840,
+        -432
+      ],
+      "id": "29bfd2cd-0fe2-4e46-aef2-b39724b64b8f",
+      "name": "pubmedDelay",
+      "webhookId": "4d42c4f4-2f8c-424f-9e65-33a693ce58d2"
+    },
+    {
+      "parameters": {
+        "amount": "={{ $('Code in JavaScript').item.json.openAlexDelay / 1000 }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2176,
+        16
+      ],
+      "id": "ce0bfbee-6e60-406b-b86c-f509ed969de8",
+      "name": "openalexDelay",
+      "webhookId": "4d42c4f4-2f8c-424f-9e65-33a693ce58d2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.xml",
+      "typeVersion": 1,
+      "position": [
+        4720,
+        -448
+      ],
+      "id": "8845ddd5-8b73-43e7-97dc-35623de4f81c",
+      "name": "XML"
+    },
+    {
+      "parameters": {
+        "jsCode": "const allAuthorsOA = $('Check PubMed Active').all().map(item => item.json);\nconst pubmedData = $input.item.json.PubmedArticleSet?.PubmedArticle;\n\nlet pmid = \"N/A\";\nlet meshPM = \"No data\";\nlet fundingPM = \"No data\";\nlet authorsPM = [];\n\nif (pubmedData) {\n    const medline = pubmedData.MedlineCitation;\n    pmid = medline?.PMID?._ || medline?.PMID || \"N/A\";\n\n    if (medline?.MeshHeadingList?.MeshHeading) {\n        let meshes = medline.MeshHeadingList.MeshHeading;\n        if (!Array.isArray(meshes)) meshes = [meshes];\n        meshPM = meshes.slice(0, 5).map(m => m.DescriptorName._ || m.DescriptorName).join(\", \");\n    }\n\n    // FUNDING P_M\n    if (medline?.Article?.GrantList?.Grant) {\n        let grants = medline.Article.GrantList.Grant;\n        if (!Array.isArray(grants)) grants = [grants];\n        fundingPM = grants.map(g => g.Agency).filter(a => a).join(\" | \");\n    }\n\n    if (medline?.Article?.AuthorList?.Author) {\n        let auths = medline.Article.AuthorList.Author;\n        if (!Array.isArray(auths)) auths = [auths];\n        authorsPM = auths.map((a, idx) => ({\n            name: `${a.ForeName || ''} ${a.LastName || ''}`.trim().toLowerCase(),\n            rawName: `${a.ForeName || ''} ${a.LastName || ''}`.trim(),\n            affiliation: a.AffiliationInfo?.Affiliation || (Array.isArray(a.AffiliationInfo) ? a.AffiliationInfo[0]?.Affiliation : \"No affiliation\"),\n            pos: idx === 0 ? \"first\" : (idx === auths.length - 1 ? \"last\" : \"middle\")\n        }));\n    }\n}\n\nlet finalRows = allAuthorsOA.map(oa => {\n    const matchPM = authorsPM.find(pm => pm.name.includes(oa.AUTHOR_NAME.toLowerCase()) || oa.AUTHOR_NAME.toLowerCase().includes(pm.name));\n    \n    return {\n        json: {\n            ...oa,\n            PMID_PM: pmid,\n            MESH_PM: meshPM,\n            FUNDING_PM: fundingPM,\n            AUTHOR_NAME_PM: matchPM ? matchPM.rawName : \"NOT_FOUND_IN_PM\",\n            AFFILIATION_PM: matchPM ? matchPM.affiliation : \"N/A\"\n        }\n    };\n});\n\nauthorsPM.forEach(pm => {\n    const existsInOA = allAuthorsOA.some(oa => oa.AUTHOR_NAME.toLowerCase().includes(pm.name) || pm.name.includes(oa.AUTHOR_NAME.toLowerCase()));\n    \n    if (!existsInOA && pm.name !== \"\") {\n        const baseData = allAuthorsOA[0]; \n\n        finalRows.push({\n            json: {\n                PAPER_TITLE: baseData.PAPER_TITLE,\n                DOI: baseData.DOI,\n                YEAR: baseData.YEAR,\n                OPEN_ACCESS_OA: baseData.OPEN_ACCESS_OA,\n                FUNDING_OA: baseData.FUNDING_OA,\n                \n                AUTHOR_NAME: pm.rawName,\n                AUTHOR_POS_OA: pm.pos,\n                IS_CORRESPONDING_OA: false,\n                AUTHOR_ID_OA: \"PubMed_Fallback\",\n                ORCID: \"NO_ORCID\",\n                \n                AFFILIATION_OA: \"MISSING_IN_OA\",\n                GEO_COUNTRY_OA: \"UNKNOWN\",\n                WORKS_COUNT_OA: 0,\n                CITATIONS_OA: 0,\n                HINDEX_OA: 0,\n                I10INDEX_OA: 0,\n                '2YR_MEAN_OA': 0,\n                KEYWORDS_OA: \"No data\",\n\n                PMID_PM: pmid,\n                MESH_PM: meshPM,\n                FUNDING_PM: fundingPM,\n                AUTHOR_NAME_PM: pm.rawName,\n                AFFILIATION_PM: pm.affiliation\n            }\n        });\n    }\n});\n\nreturn finalRows;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4928,
+        -448
+      ],
+      "id": "d7f99161-556c-4bfd-864e-0d56b486bab1",
+      "name": "Merge PubMed Metrics"
+    },
+    {
+      "parameters": {
+        "jsCode": "const allAuthors = $input.all().map(item => item.json);\nreturn allAuthors.map(author => {\n    return {\n        json: {\n            ...author,\n            PMID_PM: \"N/A\",\n            MESH_PM: \"No data\",\n            FUNDING_PM: \"No data\",\n            AUTHOR_NAME_PM: \"SKIP\",\n            AFFILIATION_PM: \"N/A\"\n        }\n    };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3648,
+        -224
+      ],
+      "id": "b59d9a8c-a75b-4d8e-939b-e93ab364ce4c",
+      "name": "Bypass PubMed"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "5da51a5e-e93b-42b9-a12a-fcf9254498e4",
+              "leftValue": "={{ $json.esearchresult.idlist.length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        4256,
+        -432
+      ],
+      "id": "877d4b0d-828d-4b1f-ac94-2d9241fa6285",
+      "name": "Found in PubMed?"
+    },
+    {
+      "parameters": {
+        "content": "# SCOPUS BRANCH",
+        "height": 368,
+        "width": 1312,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        5136,
+        -304
+      ],
+      "typeVersion": 1,
+      "id": "bf107ba5-2c8b-4f94-99b4-8467834ce975",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "bd3a4d0c-12a6-4028-8841-373387681d9b",
+              "leftValue": "={{ $('Code in JavaScript').item.json.scopusActive }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        5168,
+        -208
+      ],
+      "id": "3fb7c220-5c4f-47a6-8703-ff0eaaf82b2b",
+      "name": "Check Scopus Active"
+    },
+    {
+      "parameters": {
+        "url": "https://api.elsevier.com/content/search/scopus",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "=DOI(\"{{ $json.DOI }}\")"
+            },
+            {
+              "name": "view",
+              "value": "COMPLETE"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-ELS-APIKey",
+              "value": "={{ $('Code in JavaScript').item.json.scopusKey }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        5856,
+        -224
+      ],
+      "id": "4ecf1f91-dc28-44a7-8d16-214e908591b1",
+      "name": "Scopus Search DOI"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "fa2804a3-245a-48e9-aec5-f4de695a60ac",
+              "leftValue": "={{ parseInt($json['search-results']['opensearch:totalResults']) }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        6064,
+        -224
+      ],
+      "id": "d5b10c1e-bc6b-4716-b52e-1f65f9bcb6d2",
+      "name": "Found in Scopus?"
+    },
+    {
+      "parameters": {
+        "jsCode": "const allAuthors = $('Check Scopus Active').all().map(item => item.json);\nconst scopusEntry = $input.item.json['search-results']?.entry?.[0];\n\nlet fundingSC = \"No data\";\nlet scopusAuthors = [];\n\nif (scopusEntry) {\n    fundingSC = scopusEntry['fund-sponsor'] || \"No data\";\n\n    if (scopusEntry.author) {\n        scopusAuthors = scopusEntry.author.map(a => ({\n            name: (`${a['given-name'] || ''} ${a.surname || ''}`).trim().toLowerCase(),\n            rawName: (`${a['given-name'] || ''} ${a.surname || ''}`).trim(),\n            scopusId: a.authid || \"NO_ID_SC\",\n           \n            affiliation: a.afid ? (Array.isArray(a.afid) ? a.afid[0]['$'] : a.afid['$']) : \"No affiliation\"\n        }));\n    }\n}\n\nlet finalRows = allAuthors.map(author => {\n    \n    const matchSC = scopusAuthors.find(sc => sc.name.includes(author.AUTHOR_NAME.toLowerCase()) || author.AUTHOR_NAME.toLowerCase().includes(sc.name));\n    \n    return {\n        json: {\n            ...author,\n            AUTHOR_ID_SC: matchSC ? matchSC.scopusId : \"NOT_FOUND_IN_SC\",\n            AUTHOR_NAME_SC: matchSC ? matchSC.rawName : \"SKIP\",\n            AFFILIATION_SC: matchSC ? matchSC.affiliation : \"N/A\",\n            FUNDING_SC: fundingSC\n        }\n    };\n});\n\nscopusAuthors.forEach(sc => {\n    const existsInFlow = allAuthors.some(auth => auth.AUTHOR_NAME.toLowerCase().includes(sc.name) || sc.name.includes(auth.AUTHOR_NAME.toLowerCase()));\n    \n    if (!existsInFlow && sc.name !== \"\") {\n        const baseData = allAuthors[0]; \n\n        finalRows.push({\n            json: {\n                PAPER_TITLE: baseData.PAPER_TITLE,\n                DOI: baseData.DOI,\n                YEAR: baseData.YEAR,\n                AUTHOR_NAME: sc.rawName,\n                \n                AUTHOR_POS_OA: \"Unknown\",\n                IS_CORRESPONDING_OA: false,\n                AUTHOR_ID_OA: \"Scopus_Fallback\",\n                ORCID: \"NO_ORCID\",\n                OPEN_ACCESS_OA: false,\n                FUNDING_OA: \"No data\",\n                AFFILIATION_OA: \"MISSING_IN_OA\",\n                GEO_COUNTRY_OA: \"UNKNOWN\",\n                WORKS_COUNT_OA: 0,\n                CITATIONS_OA: 0,\n                HINDEX_OA: 0,\n                I10INDEX_OA: 0,\n                '2YR_MEAN_OA': 0,\n                KEYWORDS_OA: \"No data\",\n                PMID_PM: \"N/A\",\n                MESH_PM: \"No data\",\n                FUNDING_PM: \"No data\",\n                AUTHOR_NAME_PM: \"SKIP\",\n                AFFILIATION_PM: \"N/A\",\n\n                AUTHOR_ID_SC: sc.scopusId,\n                AUTHOR_NAME_SC: sc.rawName,\n                AFFILIATION_SC: sc.affiliation,\n                FUNDING_SC: fundingSC\n            }\n        });\n    }\n});\n\nreturn finalRows;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        6288,
+        -64
+      ],
+      "id": "b90c714c-da51-4e41-a081-43031b14b66e",
+      "name": "Merge Scopus Metrics1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const allAuthors = $input.all().map(item => item.json);\nreturn allAuthors.map(author => {\n    return {\n        json: {\n            ...author,\n            AUTHOR_ID_SC: \"N/A\",\n            AUTHOR_NAME_SC: \"SKIP\",\n            AFFILIATION_SC: \"N/A\",\n            FUNDING_SC: \"No data\"\n        }\n    };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5424,
+        -64
+      ],
+      "id": "603f64c0-3d56-4f05-a993-f9a77bb8ee6d",
+      "name": "Bypass Scopus"
+    },
+    {
+      "parameters": {
+        "content": "# SEMANTIC SCHOLAR BRANCH",
+        "height": 352,
+        "width": 1296,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        6640,
+        -144
+      ],
+      "typeVersion": 1,
+      "id": "e6838054-4ae6-4eef-9ae8-3dbd8867f010",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "1c105f64-154c-4e62-a99d-3c3e596b3bdc",
+              "leftValue": "={{ $('Code in JavaScript').item.json.semanticActive }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        6672,
+        -64
+      ],
+      "id": "69c8f4b9-622d-4cc1-9213-b4ee7776bde7",
+      "name": "Check Semantic Active"
+    },
+    {
+      "parameters": {
+        "operation": "limit"
+      },
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        3648,
+        -432
+      ],
+      "id": "9d4907c0-c5c8-4cb6-852b-90e9de649b6a",
+      "name": "Limit to 1 Item PB"
+    },
+    {
+      "parameters": {
+        "operation": "limit"
+      },
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        5424,
+        -224
+      ],
+      "id": "306a816c-3d70-4724-bae5-94315f533647",
+      "name": "Limit to 1 Item SCP"
+    },
+    {
+      "parameters": {
+        "operation": "limit"
+      },
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        6928,
+        -80
+      ],
+      "id": "7b23309a-8c14-4f39-9e77-d2fd6de86474",
+      "name": "Limit to 1 Item1"
+    },
+    {
+      "parameters": {
+        "amount": "={{ $('Code in JavaScript').item.json.scopusActive / 1000 }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        5648,
+        -224
+      ],
+      "id": "b81e5cf3-d33a-492b-aae4-be1b7c00fd0b",
+      "name": "scopusDelay",
+      "webhookId": "4d42c4f4-2f8c-424f-9e65-33a693ce58d2"
+    },
+    {
+      "parameters": {
+        "amount": "={{ $('Code in JavaScript').item.json.semanticActive / 1000 }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        7120,
+        -80
+      ],
+      "id": "10ab8864-42d8-45ca-b661-83ce721c0461",
+      "name": "SemanticDelay",
+      "webhookId": "4d42c4f4-2f8c-424f-9e65-33a693ce58d2"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.semanticscholar.org/graph/v1/paper/DOI:{{ $json.DOI }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "fields",
+              "value": "title,year,authors.name,authors.authorId,authors.hIndex,authors.citationCount,influentialCitationCount,authors.externalIds"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "={{ $('Code in JavaScript').item.json.semanticKey }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        7328,
+        -80
+      ],
+      "id": "2dd52760-5084-441e-bfaf-bf9a67a9b05e",
+      "name": "Semantic Search DOI"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "8c008256-57ba-4cf8-9d4c-e5c3d7993ecc",
+              "leftValue": "={{ $json.paperId }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        7536,
+        -80
+      ],
+      "id": "8c52b35d-0fb3-4f42-93fd-aed8db929587",
+      "name": "Found in Semantic?"
+    },
+    {
+      "parameters": {
+        "jsCode": "const allAuthors = $('Check Semantic Active').all().map(item => item.json);\nconst ssPaper = $input.item.json;\n\nlet inflCitations = ssPaper.influentialCitationCount || 0;\nlet citationContexts = \"N/A\"; \n\nlet ssAuthors = ssPaper.authors || [];\n\nconst normalizeName = (name) => {\n    if (!name) return \"\";\n    return name.normalize(\"NFD\").replace(/[\\u0300-\\u036f]/g, \"\").toLowerCase().replace(/[^a-z]/g, '');\n};\n\nlet finalRows = allAuthors.map(author => {\n    const authorNameNorm = normalizeName(author.AUTHOR_NAME);\n    \n    let matchSS = null;\n    if (authorNameNorm !== \"\") {\n        matchSS = ssAuthors.find(ss => {\n            const ssNameNorm = normalizeName(ss.name);\n            if (ssNameNorm === \"\") return false;\n            // Evaluamos contención mutua para atrapar \"Rashmi K Ambasta\" vs \"Rashmi Ambasta\"\n            return ssNameNorm.includes(authorNameNorm) || authorNameNorm.includes(ssNameNorm);\n        });\n    }\n    \n    let orcidSS = \"NO_ORCID_SS\";\n    if (matchSS && matchSS.externalIds && matchSS.externalIds.ORCID) {\n        orcidSS = matchSS.externalIds.ORCID;\n    }\n    \n    return {\n        json: {\n            ...author, \n            INFLUENTIAL_CITATIONS_SS: inflCitations,\n            CITATION_CONTEXTS_SS: citationContexts,\n            AUTHOR_ID_SS: matchSS ? (matchSS.authorId || \"NO_ID_SS\") : \"NOT_FOUND_IN_SS\",\n            AUTHOR_NAME_SS: matchSS ? matchSS.name : \"NOT_FOUND_IN_SS\",\n            ORCID_SS: orcidSS,\n            HINDEX_SS: matchSS ? (matchSS.hIndex || 0) : 0,\n            CITATIONS_SS: matchSS ? (matchSS.citationCount || 0) : 0\n        }\n    };\n});\n\nssAuthors.forEach(ss => {\n    if (!ss.name || ss.name.trim() === \"\") return;\n    const ssNameNorm = normalizeName(ss.name);\n\n    const existsInFlow = allAuthors.some(auth => {\n        const authNameNorm = normalizeName(auth.AUTHOR_NAME);\n        if (authNameNorm === \"\") return false;\n        return authNameNorm.includes(ssNameNorm) || ssNameNorm.includes(authNameNorm);\n    });\n    \n    if (!existsInFlow) {\n        const baseData = allAuthors[0]; \n        \n        let orcidSS = \"NO_ORCID_SS\";\n        if (ss.externalIds && ss.externalIds.ORCID) {\n            orcidSS = ss.externalIds.ORCID;\n        }\n\n        finalRows.push({\n            json: {\n                PAPER_TITLE: baseData.PAPER_TITLE,\n                DOI: baseData.DOI,\n                YEAR: baseData.YEAR,\n                AUTHOR_NAME: ss.name,\n              \n                AUTHOR_POS_OA: \"Unknown\",\n                IS_CORRESPONDING_OA: false,\n                AUTHOR_ID_OA: \"Semantic_Fallback\",\n                ORCID: \"NO_ORCID\", \n                OPEN_ACCESS_OA: false,\n                FUNDING_OA: \"No data\",\n                AFFILIATION_OA: \"MISSING_IN_OA\",\n                GEO_COUNTRY_OA: \"UNKNOWN\",\n                WORKS_COUNT_OA: 0,\n                CITATIONS_OA: 0,\n                HINDEX_OA: 0,\n                I10INDEX_OA: 0,\n                '2YR_MEAN_OA': 0,\n                KEYWORDS_OA: \"No data\",\n                PMID_PM: \"N/A\",\n                MESH_PM: \"No data\",\n                FUNDING_PM: \"No data\",\n                AUTHOR_NAME_PM: \"SKIP\",\n                AFFILIATION_PM: \"N/A\",\n                AUTHOR_ID_SC: \"N/A\",\n                AUTHOR_NAME_SC: \"SKIP\",\n                AFFILIATION_SC: \"N/A\",\n                FUNDING_SC: \"No data\",\n                INFLUENTIAL_CITATIONS_SS: inflCitations,\n                CITATION_CONTEXTS_SS: citationContexts,\n                AUTHOR_ID_SS: ss.authorId || \"NO_ID_SS\",\n                AUTHOR_NAME_SS: ss.name,\n                ORCID_SS: orcidSS, \n                HINDEX_SS: ss.hIndex || 0,\n                CITATIONS_SS: ss.citationCount || 0\n            }\n        });\n    }\n});\n\nreturn finalRows;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        7776,
+        80
+      ],
+      "id": "64617e36-e93d-4e66-b1d5-4b5024f93312",
+      "name": "Merge Semantic Metrics"
+    },
+    {
+      "parameters": {
+        "jsCode": "const allAuthors = $input.all().map(item => item.json);\nreturn allAuthors.map(author => {\n    return {\n        json: {\n            ...author,\n            INFLUENTIAL_CITATIONS_SS: 0,\n            CITATION_CONTEXTS_SS: \"No data\",\n            AUTHOR_ID_SS: \"N/A\",\n            AUTHOR_NAME_SS: \"SKIP\",\n            HINDEX_SS: 0,\n            CITATIONS_SS: 0\n        }\n    };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        6928,
+        80
+      ],
+      "id": "51fbf754-646f-4d49-8e46-0aa87069d22f",
+      "name": "Bypass Semantic"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        8080,
+        80
+      ],
+      "id": "42d8e252-e729-4ed9-8c3b-1a9c0e22cd23",
+      "name": "Loop Scopus Deep Dive"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "a59bb4f8-ac52-477c-8bd3-6c63d83bdfea",
+              "leftValue": "={{ $json.AUTHOR_ID_SC }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "e52fb767-dc4d-43f0-b030-a5bd18bd5abc",
+              "leftValue": "={{ $json.AUTHOR_ID_SC }}",
+              "rightValue": "NOT_FOUND_IN_SC",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "fab5bfc0-360a-4e3d-81cc-d087ff7ba231",
+              "leftValue": "={{ $json.AUTHOR_ID_SC }}",
+              "rightValue": "SKIP",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "5a57b807-89fd-40b9-8dad-64a8ca365549",
+              "leftValue": "={{ $json.AUTHOR_ID_SC }}",
+              "rightValue": "N/A",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        8432,
+        96
+      ],
+      "id": "df8f2207-7c16-40dc-915b-0da6c637048f",
+      "name": "Has Scopus ID?"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.elsevier.com/content/author/author_id/{{ $json.AUTHOR_ID_SC }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "view",
+              "value": "ENHANCED"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-ELS-APIKey",
+              "value": "={{ $('Code in JavaScript').item.json.scopusKey }}"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        8928,
+        80
+      ],
+      "id": "4dbeb7a7-d9f3-4313-b163-e1eb63e16ae0",
+      "name": "Scopus Author Profile"
+    },
+    {
+      "parameters": {
+        "jsCode": "const originalData = $('Loop Scopus Deep Dive').item.json;\nlet authorProfile = {};\n\ntry {\n    const response = items[0].json['author-retrieval-response'];\n    authorProfile = Array.isArray(response) ? response[0] : response;\n} catch(e) {}\n\nlet subjectAreas = \"No data\";\nlet seniority = \"Unknown\";\nlet careerLength = 0;\nlet citationsSC = 0;\nlet hindexSC = 0;\nlet docCountSC = 0;\n\nif (authorProfile && authorProfile.coredata) {\n    const core = authorProfile.coredata;\n    citationsSC = core['citation-count'] || 0;\n    docCountSC = core['document-ent-count'] || 0;\n    \n    let hData = authorProfile['h-index'];\n    if (hData) hindexSC = typeof hData === 'object' ? (hData['$'] || hData['value']) : hData;\n\n    if (authorProfile['subject-areas'] && authorProfile['subject-areas']['subject-area']) {\n        let subjects = authorProfile['subject-areas']['subject-area'];\n        if (!Array.isArray(subjects)) subjects = [subjects];\n        \n        subjectAreas = subjects.map(s => s['$'] || s['@abbrev'] || \"\").filter(Boolean).join(\" | \");\n    }\n\n    let pubRange = authorProfile['author-profile']?.['publication-range'];\n    if (pubRange && pubRange['@first']) {\n        let firstYear = parseInt(pubRange['@first']);\n        if (!isNaN(firstYear)) {\n            careerLength = new Date().getFullYear() - firstYear;\n            if (careerLength >= 15) seniority = `Senior (${careerLength} yrs)`;\n            else if (careerLength >= 5) seniority = `Mid-level (${careerLength} yrs)`;\n            else seniority = `Early-career (${careerLength} yrs)`;\n        }\n    }\n}\n\nreturn {\n    json: {\n        ...originalData,\n        HINDEX_SC: hindexSC || 0,\n        CITATIONS_SC: citationsSC,\n        DOC_COUNT_SC: docCountSC,\n        SUBJECT_AREAS_SC: subjectAreas,\n        SENIORITY_SC: seniority         \n    }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        9136,
+        80
+      ],
+      "id": "de5bb812-7c33-4ab2-bcbe-554ef61d258f",
+      "name": "Merge Scopus Profile"
+    },
+    {
+      "parameters": {
+        "jsCode": "const originalData = $('Loop Scopus Deep Dive').item.json;\n\nreturn {\n    json: {\n        ...originalData,\n        HINDEX_SC: 0,\n        CITATIONS_SC: 0,\n        DOC_COUNT_SC: 0,\n        SUBJECT_AREAS_SC: \"No data\",\n        SENIORITY_SC: \"Unknown\"\n    }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        8720,
+        240
+      ],
+      "id": "b16ef452-6e4d-4355-af52-634590e5b01b",
+      "name": "Bypass Scopus Profile"
+    },
+    {
+      "parameters": {
+        "content": "# SCOPUS VALIDATION",
+        "height": 368,
+        "width": 1408,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        8048,
+        16
+      ],
+      "typeVersion": 1,
+      "id": "3b69fbf6-f7be-4c32-860d-a8abb166d245",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "amount": "={{ $('Code in JavaScript').item.json.scopusActive / 1000 }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        8720,
+        80
+      ],
+      "id": "b84c5de4-b314-4fdf-9d42-de4a5a521a6c",
+      "name": "scopusauthorDelay",
+      "webhookId": "4d42c4f4-2f8c-424f-9e65-33a693ce58d2"
+    },
+    {
+      "parameters": {
+        "content": "# PERSONAL INFORMATION AND DATA EXTRACTION\n",
+        "height": 432,
+        "width": 2416
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -48,
+        -80
+      ],
+      "typeVersion": 1,
+      "id": "0435a252-f3e8-4ac8-ae99-0aa4ccc7b2e0",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "# GOOGLE SCHOLAR BRANCH",
+        "height": 432,
+        "width": 1120,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        9504,
+        -32
+      ],
+      "typeVersion": 1,
+      "id": "7ca1073a-fadf-4696-96f5-8a47cbc8f8ad",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "b48b9aa0-a149-4939-8db4-06431d86abb5",
+              "leftValue": "={{ $('Code in JavaScript').item.json.scholarActive }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        9584,
+        80
+      ],
+      "id": "1d94a710-081c-4fce-814c-d9d319780acb",
+      "name": "Check Scholar Active"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        9824,
+        64
+      ],
+      "id": "a4d523c2-111a-4639-9400-0b21d8a561a6",
+      "name": "Loop Scholar Deep Dive"
+    },
+    {
+      "parameters": {
+        "amount": "={{ $('Code in JavaScript').item.json.scholarDelay / 1000 }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        10064,
+        80
+      ],
+      "id": "d11fe955-6dac-47a9-8e4b-70a3072ac20f",
+      "name": "ScholarDelay",
+      "webhookId": "430e55dc-9a7d-4ff0-972a-9a4648352c32"
+    },
+    {
+      "parameters": {
+        "jsCode": "const allAuthors = $input.all().map(item => item.json);\n\nreturn allAuthors.map(author => {\n    return {\n        json: {\n            ...author,\n            AUTHOR_ID_GS: \"N/A (Disabled)\",\n            INTERESTS_GS: \"N/A\"\n        }\n    };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        9824,
+        272
+      ],
+      "id": "a4089069-fa82-4d60-8952-0ebf59046525",
+      "name": "Bypass Scholar"
+    },
+    {
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData(\"global\");\nif (!staticData.genderCache) staticData.genderCache = {};\n\nconst author = $input.item.json;\nlet gender = \"Unknown\";\n\n// 1. Filtro Institucional (Regex)\nconst instRegex = /(group|network|study|collaborators|team|consortium|committee)/i;\nif (instRegex.test(author.AUTHOR_NAME)) {\n    return { json: { ...author, GENDER: \"N/A\", _FIRST_NAME: \"skip\" } };\n}\n\nconst firstName = author.AUTHOR_NAME.split(\" \")[0].toLowerCase().replace(/[^a-z]/g, '');\n\nif (staticData.genderCache[firstName]) {\n    gender = staticData.genderCache[firstName];\n}\n\nreturn { json: { ...author, GENDER: gender, _FIRST_NAME: firstName } };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        12016,
+        224
+      ],
+      "id": "89abb027-72c8-4633-8f2d-818bd532392f",
+      "name": "Gender Cache Router"
+    },
+    {
+      "parameters": {
+        "jsCode": "return { json: { ...$input.item.json, ORCID_EMPLOYMENT: \"No ORCID ID\" } };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        11536,
+        208
+      ],
+      "id": "8943accd-003b-4608-bc22-a146a74ac778",
+      "name": "Bypass ORCID"
+    },
+    {
+      "parameters": {
+        "jsCode": "const originalData = $('Has ORCID?').item.json;\nlet employment = \"No employment data listed in ORCID\";\n\ntry {\n    const employments = $input.item.json['employment-summary'];\n    if (employments && employments.length > 0) {\n        const latest = employments[0];\n        employment = `${latest.organization.name} (${latest['department-name'] || 'No department'})`;\n    }\n} catch(e) {}\n\nreturn { json: { ...originalData, ORCID_EMPLOYMENT: employment } };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        11744,
+        48
+      ],
+      "id": "d6571a2c-7786-47b4-bc96-97c70edc03bb",
+      "name": "Merge ORCID"
+    },
+    {
+      "parameters": {
+        "url": "=https://pub.orcid.org/v3.0/{{ $json.ORCID }}/employments",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        11536,
+        48
+      ],
+      "id": "1b931eb9-bd6e-473a-bee7-9569416d14ec",
+      "name": "ORCID API"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "63d421ef-4d23-4898-b779-bfb7f64e62b2",
+              "leftValue": "={{ $json.ORCID }}",
+              "rightValue": "NO_ORCID",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "e16d48be-daf4-4118-8a74-1bab49e3e2e7",
+              "leftValue": "={{ $json.ORCID }}",
+              "rightValue": "ORCID_SS",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        11296,
+        64
+      ],
+      "id": "df62d60d-9363-4ec4-8784-f3e582163ae4",
+      "name": "Has ORCID?"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all().map(item => item.json);\nconst mergedAuthors = [];\nconst staticData = $getWorkflowStaticData(\"global\");\n\nconst getParts = (name) => {\n    if (!name) return { clean: \"\", lastName: \"\", firstInitial: \"\" };\n    const noAccents = name.normalize(\"NFD\").replace(/[\\u0300-\\u036f]/g, \"\").toLowerCase().replace(/[^a-z\\s]/g, '').trim();\n    const parts = noAccents.split(/\\s+/);\n    return { clean: noAccents.replace(/\\s/g, ''), lastName: parts[parts.length - 1] || \"\", firstInitial: parts[0] ? parts[0][0] : \"\" };\n};\n\nitems.forEach(item => {\n    const curr = getParts(item.AUTHOR_NAME);\n    if (curr.clean === \"\") return;\n\n    let matchIndex = mergedAuthors.findIndex(existing => {\n        const ex = getParts(existing.AUTHOR_NAME);\n        if (curr.clean === ex.clean || curr.clean.includes(ex.clean) || ex.clean.includes(curr.clean)) return true;\n        if (curr.lastName !== \"\" && curr.lastName === ex.lastName && curr.firstInitial === ex.firstInitial) return true;\n        return false;\n    });\n\n    if (matchIndex === -1) {\n        mergedAuthors.push({ ...item });\n        matchIndex = mergedAuthors.length - 1;\n    } \n    \n    const existing = mergedAuthors[matchIndex];\n\n    if (item.AUTHOR_ID_SC && item.AUTHOR_ID_SC !== \"N/A\" && item.AUTHOR_ID_SC !== \"NOT_FOUND_IN_SC\") {\n        existing.AUTHOR_ID_SC = item.AUTHOR_ID_SC;\n        existing.HINDEX_SC = Math.max(existing.HINDEX_SC || 0, item.HINDEX_SC || 0);\n        existing.CITATIONS_SC = Math.max(existing.CITATIONS_SC || 0, item.CITATIONS_SC || 0);\n        if (!existing.SUBJECT_AREAS_SC || existing.SUBJECT_AREAS_SC === \"No data\") existing.SUBJECT_AREAS_SC = item.SUBJECT_AREAS_SC;\n        if (!existing.SENIORITY_SC || existing.SENIORITY_SC === \"Unknown\") existing.SENIORITY_SC = item.SENIORITY_SC;\n    }\n    if (item.AUTHOR_ID_SS && item.AUTHOR_ID_SS !== \"N/A\" && item.AUTHOR_ID_SS !== \"NOT_FOUND_IN_SS\") {\n        existing.AUTHOR_ID_SS = item.AUTHOR_ID_SS;\n        existing.HINDEX_SS = Math.max(existing.HINDEX_SS || 0, item.HINDEX_SS || 0);\n        existing.CITATIONS_SS = Math.max(existing.CITATIONS_SS || 0, item.CITATIONS_SS || 0);\n    }\n\n    const scholarMemory = staticData.scholarCache ? staticData.scholarCache[item.AUTHOR_NAME] : null;\n    if (scholarMemory && scholarMemory.authorIdGS && scholarMemory.authorIdGS !== \"NOT_FOUND\") {\n        existing.AUTHOR_ID_GS = scholarMemory.authorIdGS;\n        existing.INTERESTS_GS = scholarMemory.interestsGS;\n    }\n\n    if (existing.ORCID === \"NO_ORCID\" && item.ORCID && item.ORCID !== \"NO_ORCID\") existing.ORCID = item.ORCID;\n});\n\nreturn mergedAuthors.map(author => ({ json: author }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        10800,
+        48
+      ],
+      "id": "f8f08fa0-b8b5-4109-a9f6-03905bd0de48",
+      "name": "Id-Compressor"
+    },
+    {
+      "parameters": {
+        "jsCode": "const originalData = $('Loop Scholar Deep Dive').item.json;\nconst searchResults = ($input.item.json && $input.item.json.profiles) ? $input.item.json.profiles : [];\n\nlet interestsGS = \"NOT_INDEXED_IN_GS\";\nlet authorIdGS = \"NOT_FOUND\";\n\nif (searchResults.length > 0) {\n    const profile = searchResults[0];\n    authorIdGS = profile.author_id || \"NO_ID\";\n    if (profile.interests) interestsGS = profile.interests.map(i => i.title).join(\" | \");\n} else if ($input.item.json.organic_results && $input.item.json.organic_results.length > 0) {\n    const paper = $input.item.json.organic_results[0];\n    if (paper.publication_info && paper.publication_info.authors) {\n        const match = paper.publication_info.authors.find(a => a.name.toLowerCase().includes(originalData.AUTHOR_NAME.toLowerCase().split(\" \")[0]));\n        if (match && match.author_id) { authorIdGS = match.author_id; interestsGS = \"Extracted from papers\"; }\n    }\n}\n\nconst staticData = $getWorkflowStaticData(\"global\");\nif (!staticData.scholarCache) staticData.scholarCache = {};\nstaticData.scholarCache[originalData.AUTHOR_NAME] = { authorIdGS, interestsGS };\n\nreturn { json: originalData };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        10480,
+        272
+      ],
+      "id": "3b4239bd-94ad-4ffe-bf2b-7a46fee0fe37",
+      "name": "Merge Scholar Metrics"
+    },
+    {
+      "parameters": {
+        "url": "https://serpapi.com/search.json",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "engine",
+              "value": "google_scholar"
+            },
+            {
+              "name": "q",
+              "value": "={{ $json.AUTHOR_NAME }} {{ $json.AFFILIATION_OA.split(',')[0].substring(0, 15) }}"
+            },
+            {
+              "name": "api_key",
+              "value": "={{ $('Code in JavaScript').item.json.scholarKey }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        10272,
+        80
+      ],
+      "id": "f2e1ecf5-848d-446e-bec9-8920be636dcc",
+      "name": "Scholar Search Author"
+    },
+    {
+      "parameters": {
+        "content": "# ORCID BRANCH",
+        "height": 368,
+        "width": 1104,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        10768,
+        -16
+      ],
+      "typeVersion": 1,
+      "id": "2eb3fcd5-6bdb-40a2-99c9-b9cb138dff75",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "1136dd30-9a46-4df2-8b56-da172398ea28",
+              "leftValue": "={{ $json.GENDER }}",
+              "rightValue": "Unknown",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        12224,
+        224
+      ],
+      "id": "00aa3512-3f4d-4a3a-9f6e-27d792700d42",
+      "name": "Needs Genderize?"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.genderize.io/?name={{ $json._FIRST_NAME }}{{ $json.GEO_COUNTRY_OA && $json.GEO_COUNTRY_OA.length === 2 && $json.GEO_COUNTRY_OA !== 'NO' ? '&country_id=' + $json.GEO_COUNTRY_OA.toLowerCase() : '' }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        12464,
+        208
+      ],
+      "id": "2bddfa32-3aec-4fce-b13d-35af31004257",
+      "name": "Genderize API"
+    },
+    {
+      "parameters": {
+        "jsCode": "const authorData = $('Needs Genderize?').item.json;\nconst genderData = $input.item.json;\n\nlet finalGender = \"Unknown\";\nlet prob = genderData.probability || 0;\n\nif (genderData.gender && prob >= 0.8) {\n    finalGender = genderData.gender.charAt(0).toUpperCase() + genderData.gender.slice(1);\n    \n    const staticData = $getWorkflowStaticData(\"global\");\n    staticData.genderCache[authorData._FIRST_NAME] = finalGender;\n}\n\ndelete authorData._FIRST_NAME;\nreturn { json: { ...authorData, GENDER: finalGender } };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        12672,
+        208
+      ],
+      "id": "539d749f-7728-4d1a-b155-d6e377db710f",
+      "name": "Update Cache"
+    },
+    {
+      "parameters": {
+        "jsCode": "delete $input.item.json._FIRST_NAME; \nreturn { json: $input.item.json };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        12464,
+        368
+      ],
+      "id": "7e2512ba-d290-4f1b-a600-23908e80171b",
+      "name": "Bypass Genderize"
+    },
+    {
+      "parameters": {
+        "content": "# GENDERIZE.IO /  LLM ANALYSIS",
+        "height": 416,
+        "width": 1360
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        11968,
+        144
+      ],
+      "typeVersion": 1,
+      "id": "70740835-d3d8-4482-a960-fdfbb6065e1a",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "==You are an expert scientometric data analyst. Your strict task is to profile the INDIVIDUAL AUTHOR, not the specific paper they co-authored. \n\nANTI-HALLUCINATION PROTOCOL: If any variable below says \"No data\", \"N/A\", \"NOT_FOUND\", \"UNKNOWN\" or is empty, you must ignore it. DO NOT invent, assume, or infer affiliations, interests, or areas that are not explicitly listed in the valid data.\n\nAUTHOR LEVEL DATA (Primary Weight - Use this to define the core expertise of the author):\n- Name: {{ $json.AUTHOR_NAME }}\n- Affiliation (OpenAlex): {{ $json.AFFILIATION_OA }}\n- Affiliation (PubMed): {{ $json.AFFILIATION_PM }}\n- Affiliation (Scopus): {{ $json.AFFILIATION_SC }}\n- Department (ORCID): {{ $json.ORCID_EMPLOYMENT }}\n- Lifetime Keywords (OpenAlex): {{ $json.KEYWORDS_OA }}\n- Lifetime Subject Areas (Scopus): {{ $json.SUBJECT_AREAS_SC }}\n- Lifetime Interests (Google Scholar): {{ $json.INTERESTS_GS }}\n\nPAPER LEVEL DATA (Secondary Context only - Do not let this override their lifetime profile):\n- Current Paper MeSH: {{ $json.MESH_PM }}\n\nCurrent Gender Status: {{ $json.GENDER }}\n\nTASK 1 (BACKGROUND): Based STRICTLY on the AUTHOR LEVEL DATA, classify the author into EXACTLY ONE category from this comprehensive taxonomy:\n\n[Core Domains for the Study]\n- CLINICAL: Affiliated with hospitals/clinics. Focus on patient care, surgery, clinical trials, healthcare.\n- COMPUTER_SCIENCE: Affiliated with CS/IT faculties. Focus on algorithms, software, AI, hardware.\n- BIOINFORMATICS: Focus on genetics, molecular biology, or drug discovery heavily combined with data/coding.\n- HYBRID_MED_TECH: Cross-disciplinary. Blends clinical hospital data/records/imaging with Machine Learning/AI.\n\n[Purists & Broad Domains]\n- BASIC_LIFE_SCIENCES: Pure biology, pure biochemistry, neuroscience, zoology, botany. No explicit tech/computational focus.\n- PHYSICAL_SCIENCES: Pure chemistry, physics, astronomy, materials science.\n- ENGINEERING_MATH: Non-CS engineering (civil, mechanical, electrical, chemical), pure mathematics, statistics.\n- SOCIAL_SCIENCES_HUMANITIES: Psychology, sociology, economics, arts, food science/gastronomy, public policy, linguistics.\n- OTHER_SCIENCES: Agriculture, environmental science, earth sciences, ecology.\n- UNKNOWN: Insufficient valid data to make a confident classification.\n\nTASK 2 (GENDER): If \"Current Gender Status\" is \"Unknown\", guess the gender strictly based on the cultural origin of the First Name (Male, Female, or Unknown). If it is already Male, Female, or N/A, keep the current status exactly as it is.\n\nSTRICT OUTPUT FORMAT:\nCATEGORY | GENDER\n(Example: PHYSICAL_SCIENCES | Female)\nDo not add any other text, explanation, or intro.",
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        12864,
+        368
+      ],
+      "id": "c858ce03-e477-4a63-8e01-58bba23be95e",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o",
+        "options": {
+          "temperature": 0
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAzureOpenAi",
+      "typeVersion": 1,
+      "position": [
+        12864,
+        656
+      ],
+      "id": "6b407649-1ec9-43e1-9688-38787e76a9e2",
+      "name": "Azure OpenAI Chat Model",
+      "credentials": {
+        "azureOpenAiApi": {
+          "id": "WdUOsyA5i3r6V9dS",
+          "name": "Azure Open AI account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let originalData = {};\nif ($('Update Cache').isExecuted) {\n    try { originalData = $('Update Cache').item.json; } catch(e) { originalData = $('Update Cache').first().json; }\n} else if ($('Bypass Genderize').isExecuted) {\n    try { originalData = $('Bypass Genderize').item.json; } catch(e) { originalData = $('Bypass Genderize').first().json; }\n}\n\nconst llmClassification = $input.item.json.text || $input.item.json.output || $input.item.json.message?.content || \"UNKNOWN\";\nconst finalAuthor = { ...originalData, PROFILE_CLASSIFICATION: llmClassification.trim() };\n\nconst staticData = $getWorkflowStaticData(\"global\");\nstaticData.finalMasterTable.push(finalAuthor);\n\nreturn { json: finalAuthor };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        13200,
+        368
+      ],
+      "id": "09935c0d-c83e-4dd1-86a3-d26bff2d1f92",
+      "name": "Merge LLM Output"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        11056,
+        48
+      ],
+      "id": "516e687e-47dd-4f7c-bbb2-93a4c41414d8",
+      "name": "Loop Final Enrichment."
+    },
+    {
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData(\"global\");\nstaticData.finalMasterTable = []; \nstaticData.scholarCache = {};     \nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1488,
+        16
+      ],
+      "id": "68235ad2-4531-4575-97fe-9c65d64ac7ec",
+      "name": "Init HDD"
+    },
+    {
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData(\"global\");\nconst allData = staticData.finalMasterTable || [];\nif (allData.length === 0) return [{ json: { error: \"No data collected\" } }];\nreturn allData.map(item => ({ json: item }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1984,
+        -304
+      ],
+      "id": "195a1bce-10c0-4d4b-8f21-643cfeebee43",
+      "name": "Export Master Table"
+    },
+    {
+      "parameters": {
+        "operation": "move",
+        "fileId": {
+          "__rl": true,
+          "value": "https://drive.google.com/drive/u/2/folders/1dD0ZN7zZ0K3J4HU_NpSC59kB6r6xtAC0",
+          "mode": "url"
+        },
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "https://drive.google.com/drive/u/2/folders/1N_9_nGUNDIQ4N0SZ5-HARInjaSSXFqDf",
+          "mode": "url"
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2336,
+        -304
+      ],
+      "id": "2473d397-d6a9-44e0-8846-ac422a7e2ac5",
+      "name": "Move file",
+      "retryOnFail": true,
+      "waitBetweenTries": 2000,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "tp4opvcxFnolbSb3",
+          "name": "Google Drive account 6"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Extract Info Table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search CSV folder": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Files (External)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Convert CSV to JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Info Table": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Alert: Info extraction Failure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Search CSV folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert CSV to JSON": {
+      "main": [
+        [
+          {
+            "node": "Init HDD",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Files (External)": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Files (External)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Norm_Open_Alex": {
+      "main": [
+        [
+          {
+            "node": "Loop Authors OpenAlex",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Norm_Open_Alex",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Check PubMed Active",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Authors OpenAlex": {
+      "main": [
+        [
+          {
+            "node": "Check PubMed Active",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge OpenAlex Metrics": {
+      "main": [
+        [
+          {
+            "node": "Loop Authors OpenAlex",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Empty OpenAlex Metrics": {
+      "main": [
+        [
+          {
+            "node": "Loop Authors OpenAlex",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AUTHOR ID REQUEST": {
+      "main": [
+        [
+          {
+            "node": "Merge OpenAlex Metrics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Move file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OPEN ALEX API": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items (INTERNAL DOI)": {
+      "main": [
+        [
+          {
+            "node": "Export Master Table",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Check OpenAlex Active",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check OpenAlex Active": {
+      "main": [
+        [
+          {
+            "node": "openalexDelay",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items (INTERNAL DOI)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If5": {
+      "main": [
+        [
+          {
+            "node": "AUTHOR ID REQUEST",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Empty OpenAlex Metrics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PubMed Search IDs": {
+      "main": [
+        [
+          {
+            "node": "Found in PubMed?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PubMed Fetch XML": {
+      "main": [
+        [
+          {
+            "node": "XML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check PubMed Active": {
+      "main": [
+        [
+          {
+            "node": "Limit to 1 Item PB",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Bypass PubMed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pubmedDelay": {
+      "main": [
+        [
+          {
+            "node": "PubMed Search IDs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "openalexDelay": {
+      "main": [
+        [
+          {
+            "node": "OPEN ALEX API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "XML": {
+      "main": [
+        [
+          {
+            "node": "Merge PubMed Metrics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge PubMed Metrics": {
+      "main": [
+        [
+          {
+            "node": "Check Scopus Active",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Found in PubMed?": {
+      "main": [
+        [
+          {
+            "node": "PubMed Fetch XML",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Bypass PubMed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bypass PubMed": {
+      "main": [
+        [
+          {
+            "node": "Check Scopus Active",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Scopus Active": {
+      "main": [
+        [
+          {
+            "node": "Limit to 1 Item SCP",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Bypass Scopus",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scopus Search DOI": {
+      "main": [
+        [
+          {
+            "node": "Found in Scopus?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Found in Scopus?": {
+      "main": [
+        [
+          {
+            "node": "Merge Scopus Metrics1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Check Semantic Active",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Scopus Metrics1": {
+      "main": [
+        [
+          {
+            "node": "Check Semantic Active",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bypass Scopus": {
+      "main": [
+        [
+          {
+            "node": "Check Semantic Active",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit to 1 Item PB": {
+      "main": [
+        [
+          {
+            "node": "pubmedDelay",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit to 1 Item SCP": {
+      "main": [
+        [
+          {
+            "node": "scopusDelay",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Semantic Active": {
+      "main": [
+        [
+          {
+            "node": "Limit to 1 Item1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Bypass Semantic",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit to 1 Item1": {
+      "main": [
+        [
+          {
+            "node": "SemanticDelay",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "scopusDelay": {
+      "main": [
+        [
+          {
+            "node": "Scopus Search DOI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SemanticDelay": {
+      "main": [
+        [
+          {
+            "node": "Semantic Search DOI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Semantic Search DOI": {
+      "main": [
+        [
+          {
+            "node": "Found in Semantic?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Found in Semantic?": {
+      "main": [
+        [
+          {
+            "node": "Merge Semantic Metrics",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Scopus Deep Dive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Semantic Metrics": {
+      "main": [
+        [
+          {
+            "node": "Loop Scopus Deep Dive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Scopus Deep Dive": {
+      "main": [
+        [
+          {
+            "node": "Check Scholar Active",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Has Scopus ID?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bypass Semantic": {
+      "main": [
+        [
+          {
+            "node": "Loop Scopus Deep Dive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Scopus ID?": {
+      "main": [
+        [
+          {
+            "node": "scopusauthorDelay",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Bypass Scopus Profile",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scopus Author Profile": {
+      "main": [
+        [
+          {
+            "node": "Merge Scopus Profile",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "scopusauthorDelay": {
+      "main": [
+        [
+          {
+            "node": "Scopus Author Profile",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Scopus Profile": {
+      "main": [
+        [
+          {
+            "node": "Loop Scopus Deep Dive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bypass Scopus Profile": {
+      "main": [
+        [
+          {
+            "node": "Loop Scopus Deep Dive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Scholar Active": {
+      "main": [
+        [
+          {
+            "node": "Loop Scholar Deep Dive",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Bypass Scholar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Scholar Deep Dive": {
+      "main": [
+        [
+          {
+            "node": "Id-Compressor",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "ScholarDelay",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ScholarDelay": {
+      "main": [
+        [
+          {
+            "node": "Scholar Search Author",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bypass Scholar": {
+      "main": [
+        [
+          {
+            "node": "Merge Scholar Metrics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bypass ORCID": {
+      "main": [
+        [
+          {
+            "node": "Gender Cache Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge ORCID": {
+      "main": [
+        [
+          {
+            "node": "Gender Cache Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ORCID API": {
+      "main": [
+        [
+          {
+            "node": "Merge ORCID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has ORCID?": {
+      "main": [
+        [
+          {
+            "node": "ORCID API",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Bypass ORCID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Id-Compressor": {
+      "main": [
+        [
+          {
+            "node": "Loop Final Enrichment.",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Scholar Metrics": {
+      "main": [
+        [
+          {
+            "node": "Loop Scholar Deep Dive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scholar Search Author": {
+      "main": [
+        [
+          {
+            "node": "Merge Scholar Metrics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gender Cache Router": {
+      "main": [
+        [
+          {
+            "node": "Needs Genderize?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Needs Genderize?": {
+      "main": [
+        [
+          {
+            "node": "Genderize API",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Bypass Genderize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Genderize API": {
+      "main": [
+        [
+          {
+            "node": "Update Cache",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Cache": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Azure OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Merge LLM Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bypass Genderize": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Final Enrichment.": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items (INTERNAL DOI)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Has ORCID?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge LLM Output": {
+      "main": [
+        [
+          {
+            "node": "Loop Final Enrichment.",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Init HDD": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items (INTERNAL DOI)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Export Master Table": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Move file": {
+      "main": [
+        [
+          {
+            "node": "Upload file1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "e9423718-b51f-4267-9ed4-97e2e2f54a33",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e93f54a9316b1166cc3d1461b648e420a200f1f68856d5faadede4c2c564e6af"
+  },
+  "id": "byi3B82ZdZhXVdGNA9d-E",
+  "tags": []
+}

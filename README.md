@@ -1,43 +1,79 @@
-# Scientometric Analysis Tool
+# 🪐 Scientometric Analysis Tool
 
-Welcome to the **Scientometric Analysis Tool** repository. This project is a comprehensive, automated data engineering framework built on **n8n** to extract, normalize, and enrich bibliometric and scientometric data from major academic databases.
+![Version](https://img.shields.io/badge/Version-A1%20Production-blue.svg)
+![Python](https://img.shields.io/badge/Python-3.10%2B-green.svg)
+![n8n](https://img.shields.io/badge/n8n-Workflow-orange.svg)
 
-The core objective of this tool is to automate systematic literature reviews and large-scale academic metadata retrieval. By integrating multiple scientific APIs and Artificial Intelligence (LLMs), it standardizes nested JSON structures into analysis-ready, flat CSV formats.
+Welcome to the **Scientometric Analysis Tool**, a state-of-the-art framework crafted to extract, normalize, and enrich massive bibliometric data for high-level academic research. Designed for mass data processing, this tool automates the extraction of complex researcher profiles, calculating h-indices, seniority, citation metrics, and affiliations across five major scientific endpoints.
 
----
+## 🚀 Architecture Overview (A1 Version)
 
-## Project Structure
+The system operates by receiving a curated list of paper DOIs. It then branches out concurrently to query various academic endpoints, normalizes nested JSON outputs, and finally consolidates the records into a single flattened matrix (`MASTER_AUTHOR_TABLE.csv`).
 
-The operational core and technical documentation for this tool are organized within the `PHASE 0` directory. This directory contains detailed, step-by-step guides covering deployment, configuration, and the internal algorithmic architecture of the workflow.
-
-### Documentation Index (`PHASE 0/`)
-
-* **`01_N8N_Local_Deployment_Guide.md`**: Instructions for securely hosting and running the n8n automation engine locally via Docker.
-* **`02_Google_Cloud_APIs_Setup_Guide.md`**: Steps to configure a Google Cloud Project, enable Google Drive/Sheets APIs, and generate OAuth2 credentials for secure data handling.
-* **`03_Ollama_Local_LLM_Integration.md`**: Guide for deploying Ollama locally to utilize Large Language Models (LLMs) for semantic text extraction without relying on paid cloud endpoints.
-* **`04_Importing_JSON_Workflow_n8n.md`**: Procedural steps to successfully import the pre-built scientometric workflow (JSON format) into your n8n workspace.
-* **`05_DeepSearch_Configuration_and_APIs.md`**: Explanation of the `DeepSearch .xlsx` control matrix layout and detailed instructions for obtaining API keys for Scopus, PubMed, Semantic Scholar, and SerpAPI (Google Scholar).
-* **`06_Google_Drive_Folder_Structure_and_Nodes.md`**: Mandatory protocol for structuring the Google Drive directories to ensure scraped data is correctly routed and isolated by origin database.
-* **`07_Workflow_Architecture_and_Data_Extraction.md`**: Deep dive into the tool's internal mechanics (routing, pagination, data unrolling) and a data dictionary of the fields extracted per database.
-* **`08_Acknowledgement_Lukas.md`**: Formal recognition of the foundational Python logic and data normalization techniques ("The Lukas Technique") that inspired the architecture of this n8n implementation.
-
-### Configuration Template
-
-* **`DeepSearch .xlsx`**: The master control sheet template used to feed keywords, parameters, and API keys into the n8n scraping loop.
+The **A1 Production Release** features both a highly optimized **Python CLI** engine for mass processing and an **n8n Workflow** for event-driven orchestration. Both flavors integrate identical matrix normalization logic and Large Language Model (LLM) classification.
 
 ---
 
-## Core Capabilities
+### 🧠 System Flowchart
 
-1. **Multi-Database Integration:** Capable of querying Scopus, PubMed, OpenAlex, Semantic Scholar, and Google Scholar (via SerpAPI).
-2. **Granular "1-to-1" Author Mapping:** Automatically unrolls deeply nested authorship arrays to generate one structured row per author per paper, enabling precise entity tracking.
-3. **Advanced Bibliometric Indices:** Programmatic extraction of complex metrics such as H-index, total lifetime citations, and consecutive publishing years.
-4. **AI-Driven Geolocation:** Utilizes LLMs to parse unstructured affiliation text and output standardized ISO country codes for macro-geographical statistical modeling.
+The following diagram visualizes how a raw Document Object Identifier (DOI) cascades through our extraction nodes and emerges as an enriched researcher profile matrix.
+
+```mermaid
+graph TD
+    %% Styling definitions
+    classDef input fill:#2b2d42,stroke:#edf2f4,stroke-width:2px,color:#edf2f4;
+    classDef api fill:#8d99ae,stroke:#2b2d42,stroke-width:2px,color:#fff;
+    classDef engine fill:#ef233c,stroke:#2b2d42,stroke-width:3px,color:#fff;
+    classDef enrich fill:#d90429,stroke:#edf2f4,stroke-width:2px,color:#fff;
+    classDef output fill:#2b2d42,stroke:#ef233c,stroke-width:3px,color:#fff;
+
+    A([📥 Input: Curated DOI CSV]):::input --> B{Parallel Routing Engine}:::engine
+
+    %% Parallel API Calls
+    B --> C[OpenAlex API]:::api
+    B --> D[PubMed API / XML]:::api
+    B --> E[Scopus API]:::api
+    B --> F[Semantic Scholar API]:::api
+    B --> G[Google Scholar SerpApi]:::api
+    B --> H[ORCID API]:::api
+
+    %% Normalization Phase
+    C --> I(((Entity Normalizer & Merging))):::engine
+    D --> I
+    E --> I
+    F --> I
+    G --> I
+    H --> I
+
+    %% Deduplication Strategy
+    I --> J[Fuzzy Logic ID Compressor<br/><i>(Lukas Technique)</i>]:::engine
+
+    %% Enrichment Nodes
+    J --> K{AI Enrichment Layer}:::enrich
+    K --> L[Genderize.io Inference<br/>w/ Local Global Cache]:::enrich
+    K --> M[LLM Domain Taxonomy Classification<br/>via Azure OpenAI / Local Ollama]:::enrich
+
+    %% Final output
+    L --> Z[(📊 MASTER_AUTHOR_TABLE.csv)]:::output
+    M --> Z
+```
 
 ---
 
-##  Getting Started
+## 🛠 Features
 
-To begin using this tool, please navigate to the `PHASE 0/` directory and sequentially follow manuals `01` through `06` to stand up your environment.
+* **Multi-Database Federation:** Seamless integration natively parsing from Scopus, PubMed, OpenAlex, Semantic Scholar, Google Scholar and ORCID APIs.
+* **Deterministic Normalization:** Unrolls "1-to-N" authorships matrices, dynamically capturing strict index positioning (first, middle, last author).
+* **Metric Calculation on Runtime:** Dynamically computes derived metrics such as academic seniority and continuous publishing streaks without downstream processing.
+* **Smart Rate Limiting:** Asynchronous threading (`time.sleep` payloads) and chunking logic ensures immunity to HTTP 429 Too Many Requests errors.
+* **LLM Semantic Profiling:** Incorporates `gpt-4o-mini` (or locally hosted `llama3`) to read unstructured affiliations, interests, and keywords to deduce deterministic domains (e.g. CLINICAL vs. COMPUTER_SCIENCE) while mitigating hallucinations.
+* **Identity Compression:** Deduplicates and maps entities securely via associative arrays and string proximity metrics.
 
-**Disclaimer:** Ensure compliance with the respective Terms of Service and API usage limits of the scientific databases queried by this tool.
+## 📂 Deliverables Structure
+
+* **`/A1/PYTHON`**: Python implementation natively engineered for maximal performance and minimal footprint logic on bulk DOI parsing.
+* **`/A1/N8N`**: Complete visual n8n workflow file and Docker Compose architecture for automated, cloud-connected pipeline deployment.
+
+---
+
+> *"From chaotic Boolean strings to precise DOIs. Determinism by Design."*
