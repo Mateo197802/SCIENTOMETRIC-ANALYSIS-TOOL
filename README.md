@@ -1,4 +1,4 @@
-# 🪐 Scientometric Analysis Tool
+# Scientometric Analysis Tool
 
 ![Version](https://img.shields.io/badge/Version-A1%20Production-blue.svg)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-green.svg)
@@ -6,7 +6,7 @@
 
 Welcome to the **Scientometric Analysis Tool**, a state-of-the-art framework crafted to extract, normalize, and enrich massive bibliometric data for high-level academic research. Designed for mass data processing, this tool automates the extraction of complex researcher profiles, calculating h-indices, seniority, citation metrics, and affiliations across five major scientific endpoints.
 
-## 🚀 Architecture Overview (A1 Version)
+## Architecture Overview (A1 Version)
 
 The system operates by receiving a curated list of paper DOIs. It then branches out concurrently to query various academic endpoints, normalizes nested JSON outputs, and finally consolidates the records into a single flattened matrix (`MASTER_AUTHOR_TABLE.csv`).
 
@@ -14,7 +14,7 @@ The **A1 Production Release** features both a highly optimized **Python CLI** en
 
 ---
 
-### 🧠 System Flowchart
+### System Flowchart
 
 The following diagram visualizes how a raw Document Object Identifier (DOI) cascades through our extraction nodes and emerges as an enriched researcher profile matrix.
 
@@ -27,7 +27,7 @@ graph TD
     classDef enrich fill:#d90429,stroke:#edf2f4,stroke-width:2px,color:#fff;
     classDef output fill:#2b2d42,stroke:#ef233c,stroke-width:3px,color:#fff;
 
-    A([📥 Input: Curated DOI CSV]):::input --> B{Parallel Routing Engine}:::engine
+    A(["Input: Curated DOI CSV"]):::input --> B{Parallel Routing Engine}:::engine
 
     %% Parallel API Calls
     B --> C[OpenAlex API]:::api
@@ -38,7 +38,7 @@ graph TD
     B --> H[ORCID API]:::api
 
     %% Normalization Phase
-    C --> I(((Entity Normalizer & Merging))):::engine
+    C --> I((("Entity Normalizer & Merging"))):::engine
     D --> I
     E --> I
     F --> I
@@ -46,21 +46,21 @@ graph TD
     H --> I
 
     %% Deduplication Strategy
-    I --> J[Fuzzy Logic ID Compressor<br/><i>(Lukas Technique)</i>]:::engine
+    I --> J["Fuzzy Logic ID Compressor<br/>(Lukas Technique)"]:::engine
 
     %% Enrichment Nodes
     J --> K{AI Enrichment Layer}:::enrich
-    K --> L[Genderize.io Inference<br/>w/ Local Global Cache]:::enrich
-    K --> M[LLM Domain Taxonomy Classification<br/>via Azure OpenAI / Local Ollama]:::enrich
+    K --> L["Genderize.io Inference<br/>w/ Local Global Cache"]:::enrich
+    K --> M["LLM Domain Taxonomy Classification<br/>via Azure OpenAI / Local Ollama"]:::enrich
 
     %% Final output
-    L --> Z[(📊 MASTER_AUTHOR_TABLE.csv)]:::output
+    L --> Z[("MASTER_AUTHOR_TABLE.csv")]:::output
     M --> Z
 ```
 
 ---
 
-## 🛠 Features
+## Features
 
 * **Multi-Database Federation:** Seamless integration natively parsing from Scopus, PubMed, OpenAlex, Semantic Scholar, Google Scholar and ORCID APIs.
 * **Deterministic Normalization:** Unrolls "1-to-N" authorships matrices, dynamically capturing strict index positioning (first, middle, last author).
@@ -69,7 +69,7 @@ graph TD
 * **LLM Semantic Profiling:** Incorporates `gpt-4o-mini` (or locally hosted `llama3`) to read unstructured affiliations, interests, and keywords to deduce deterministic domains (e.g. CLINICAL vs. COMPUTER_SCIENCE) while mitigating hallucinations.
 * **Identity Compression:** Deduplicates and maps entities securely via associative arrays and string proximity metrics.
 
-## 📂 Deliverables Structure
+## Deliverables Structure
 
 * **`/A1/PYTHON`**: Python implementation natively engineered for maximal performance and minimal footprint logic on bulk DOI parsing.
 * **`/A1/N8N`**: Complete visual n8n workflow file and Docker Compose architecture for automated, cloud-connected pipeline deployment.
