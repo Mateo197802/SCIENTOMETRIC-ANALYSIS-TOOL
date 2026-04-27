@@ -1,0 +1,6 @@
+DOI,Label,Expected_Authors,Extracted_Authors,Matched_Authors,Author_Accuracy_Pct,Avg_Field_Completeness_Pct
+10.1080/0142159X.2026.2653205,Celi 1 (Med. Teacher 2026),5,5,5,100.0,87.5
+10.1371/journal.pdig.0001194,Celi 2 (PLOS Dig. Health 2026),11,11,11,100.0,84.7
+10.1038/sdata.2016.35,Celi 3 (MIMIC-III 2016),10,10,10,100.0,95.0
+10.1038/nature12160,Random 1 (Nature 2013),7,7,7,100.0,100.0
+10.1016/j.cell.2004.12.018,Random 2 (Cell 2005),6,6,6,100.0,94.8

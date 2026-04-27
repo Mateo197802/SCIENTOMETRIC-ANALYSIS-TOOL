@@ -1,0 +1,1127 @@
+{
+  "id": "https://openalex.org/W2033708181",
+  "doi": "https://doi.org/10.1038/nature12160",
+  "title": "The importance of mixed selectivity in complex cognitive tasks",
+  "display_name": "The importance of mixed selectivity in complex cognitive tasks",
+  "publication_year": 2013,
+  "publication_date": "2013-05-01",
+  "ids": {
+    "openalex": "https://openalex.org/W2033708181",
+    "doi": "https://doi.org/10.1038/nature12160",
+    "mag": "2033708181",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/23685452"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1038/nature12160",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1038/nature12160",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S137773608",
+      "display_name": "Nature",
+      "issn_l": "0028-0836",
+      "issn": [
+        "0028-0836",
+        "1476-4687"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310319908",
+      "host_organization_name": "Nature Portfolio",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310319908",
+        "https://openalex.org/P4310319965"
+      ],
+      "host_organization_lineage_names": [
+        "Nature Portfolio",
+        "Springer Nature"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Nature",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "green",
+    "oa_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/4412347",
+    "any_repository_has_fulltext": true
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5081069627",
+        "display_name": "Mattia Rigotti",
+        "orcid": "https://orcid.org/0000-0001-6466-2810"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I57206974",
+          "display_name": "New York University",
+          "ror": "https://ror.org/0190ak572",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I57206974"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I78577930",
+          "display_name": "Columbia University",
+          "ror": "https://ror.org/00hj8s172",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I78577930"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Mattia Rigotti",
+      "raw_affiliation_strings": [
+        "Center for Theoretical Neuroscience, Columbia University College of Physicians and Surgeons, New York, New York 10032, USA",
+        "Center for Neural Science, New York University, New York, 10003, New York, USA",
+        "Center for Theoretical Neuroscience, Columbia University College of Physicians and Surgeons, New York, 10032, New York, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Center for Theoretical Neuroscience, Columbia University College of Physicians and Surgeons, New York, New York 10032, USA",
+          "institution_ids": []
+        },
+        {
+          "raw_affiliation_string": "Center for Neural Science, New York University, New York, 10003, New York, USA",
+          "institution_ids": [
+            "https://openalex.org/I57206974"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Center for Theoretical Neuroscience, Columbia University College of Physicians and Surgeons, New York, 10032, New York, USA",
+          "institution_ids": [
+            "https://openalex.org/I78577930"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5031724343",
+        "display_name": "Omri Barak",
+        "orcid": "https://orcid.org/0000-0002-7894-6344"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I78577930",
+          "display_name": "Columbia University",
+          "ror": "https://ror.org/00hj8s172",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I78577930"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Omri Barak",
+      "raw_affiliation_strings": [
+        "Center for Theoretical Neuroscience, Columbia University College of Physicians and Surgeons, New York, 10032, New York, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Center for Theoretical Neuroscience, Columbia University College of Physicians and Surgeons, New York, 10032, New York, USA",
+          "institution_ids": [
+            "https://openalex.org/I78577930"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5079209663",
+        "display_name": "Melissa R. Warden",
+        "orcid": "https://orcid.org/0000-0003-2240-3997"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I97018004",
+          "display_name": "Stanford University",
+          "ror": "https://ror.org/00f54p054",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I97018004"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Melissa R. Warden",
+      "raw_affiliation_strings": [
+        "Department of Bioengineering, Stanford University, Stanford, 94305, California, USA",
+        "The Picower Institute for Learning and Memory & Department of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, 02139, Massachusetts, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Bioengineering, Stanford University, Stanford, 94305, California, USA",
+          "institution_ids": [
+            "https://openalex.org/I97018004"
+          ]
+        },
+        {
+          "raw_affiliation_string": "The Picower Institute for Learning and Memory & Department of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, 02139, Massachusetts, USA",
+          "institution_ids": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5101509100",
+        "display_name": "Xiao‐Jing Wang",
+        "orcid": "https://orcid.org/0000-0003-3124-8474"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I57206974",
+          "display_name": "New York University",
+          "ror": "https://ror.org/0190ak572",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I57206974"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I32971472",
+          "display_name": "Yale University",
+          "ror": "https://ror.org/03v76x132",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I32971472"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Xiao-Jing Wang",
+      "raw_affiliation_strings": [
+        "Center for Neural Science, New York University, New York, 10003, New York, USA",
+        "Department of Neurobiology, Kavli Institute for Neuroscience, Yale University School of Medicine, New Haven, 06525, Connecticut, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Center for Neural Science, New York University, New York, 10003, New York, USA",
+          "institution_ids": [
+            "https://openalex.org/I57206974"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Neurobiology, Kavli Institute for Neuroscience, Yale University School of Medicine, New Haven, 06525, Connecticut, USA",
+          "institution_ids": [
+            "https://openalex.org/I32971472"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5029249257",
+        "display_name": "Nathaniel D. Daw",
+        "orcid": "https://orcid.org/0000-0001-5029-1430"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I57206974",
+          "display_name": "New York University",
+          "ror": "https://ror.org/0190ak572",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I57206974"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Nathaniel D. Daw",
+      "raw_affiliation_strings": [
+        "Center for Neural Science, New York University, New York, 10003, New York, USA",
+        "Department of Psychology, New York University, New York, 10003, New York, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Center for Neural Science, New York University, New York, 10003, New York, USA",
+          "institution_ids": [
+            "https://openalex.org/I57206974"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Psychology, New York University, New York, 10003, New York, USA",
+          "institution_ids": [
+            "https://openalex.org/I57206974"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5084251670",
+        "display_name": "Earl K. Miller",
+        "orcid": "https://orcid.org/0000-0002-0582-6958"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Earl K. Miller",
+      "raw_affiliation_strings": [
+        "The Picower Institute for Learning and Memory & Department of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, 02139, Massachusetts, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "The Picower Institute for Learning and Memory & Department of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, 02139, Massachusetts, USA",
+          "institution_ids": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5071051042",
+        "display_name": "Stefano Fusi",
+        "orcid": "https://orcid.org/0000-0002-3035-6652"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I78577930",
+          "display_name": "Columbia University",
+          "ror": "https://ror.org/00hj8s172",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I78577930"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Stefano Fusi",
+      "raw_affiliation_strings": [
+        "Center for Theoretical Neuroscience, Columbia University College of Physicians and Surgeons, New York, 10032, New York, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Center for Theoretical Neuroscience, Columbia University College of Physicians and Surgeons, New York, 10032, New York, USA",
+          "institution_ids": [
+            "https://openalex.org/I78577930"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 7,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5081069627"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I57206974",
+    "https://openalex.org/I78577930"
+  ],
+  "apc_list": {
+    "value": 9750,
+    "currency": "EUR",
+    "value_usd": 11690
+  },
+  "apc_paid": null,
+  "fwci": 39.189,
+  "has_fulltext": false,
+  "cited_by_count": 1780,
+  "citation_normalized_percentile": {
+    "value": 0.99933055,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 90,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "497",
+    "issue": "7451",
+    "first_page": "585",
+    "last_page": "590"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10581",
+    "display_name": "Neural dynamics and brain function",
+    "score": 0.9998999834060669,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2805",
+      "display_name": "Cognitive Neuroscience"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/28",
+      "display_name": "Neuroscience"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/1",
+      "display_name": "Life Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10581",
+      "display_name": "Neural dynamics and brain function",
+      "score": 0.9998999834060669,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2805",
+        "display_name": "Cognitive Neuroscience"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/28",
+        "display_name": "Neuroscience"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12611",
+      "display_name": "Neural Networks and Reservoir Computing",
+      "score": 0.9991999864578247,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1702",
+        "display_name": "Artificial Intelligence"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10502",
+      "display_name": "Advanced Memory and Neural Computing",
+      "score": 0.9988999962806702,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2208",
+        "display_name": "Electrical and Electronic Engineering"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/22",
+        "display_name": "Engineering"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/prefrontal-cortex",
+      "display_name": "Prefrontal cortex",
+      "score": 0.6785054206848145
+    },
+    {
+      "id": "https://openalex.org/keywords/cognition",
+      "display_name": "Cognition",
+      "score": 0.6343305110931396
+    },
+    {
+      "id": "https://openalex.org/keywords/task",
+      "display_name": "Task (project management)",
+      "score": 0.6011518836021423
+    },
+    {
+      "id": "https://openalex.org/keywords/computer-science",
+      "display_name": "Computer science",
+      "score": 0.5635632872581482
+    },
+    {
+      "id": "https://openalex.org/keywords/neuroscience",
+      "display_name": "Neuroscience",
+      "score": 0.52826988697052
+    },
+    {
+      "id": "https://openalex.org/keywords/working-memory",
+      "display_name": "Working memory",
+      "score": 0.45225855708122253
+    },
+    {
+      "id": "https://openalex.org/keywords/artificial-intelligence",
+      "display_name": "Artificial intelligence",
+      "score": 0.3524298667907715
+    },
+    {
+      "id": "https://openalex.org/keywords/psychology",
+      "display_name": "Psychology",
+      "score": 0.28734463453292847
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C2781195155",
+      "wikidata": "https://www.wikidata.org/wiki/Q18680",
+      "display_name": "Prefrontal cortex",
+      "level": 3,
+      "score": 0.6785054206848145
+    },
+    {
+      "id": "https://openalex.org/C169900460",
+      "wikidata": "https://www.wikidata.org/wiki/Q2200417",
+      "display_name": "Cognition",
+      "level": 2,
+      "score": 0.6343305110931396
+    },
+    {
+      "id": "https://openalex.org/C2780451532",
+      "wikidata": "https://www.wikidata.org/wiki/Q759676",
+      "display_name": "Task (project management)",
+      "level": 2,
+      "score": 0.6011518836021423
+    },
+    {
+      "id": "https://openalex.org/C41008148",
+      "wikidata": "https://www.wikidata.org/wiki/Q21198",
+      "display_name": "Computer science",
+      "level": 0,
+      "score": 0.5635632872581482
+    },
+    {
+      "id": "https://openalex.org/C169760540",
+      "wikidata": "https://www.wikidata.org/wiki/Q207011",
+      "display_name": "Neuroscience",
+      "level": 1,
+      "score": 0.52826988697052
+    },
+    {
+      "id": "https://openalex.org/C21963081",
+      "wikidata": "https://www.wikidata.org/wiki/Q11337567",
+      "display_name": "Working memory",
+      "level": 3,
+      "score": 0.45225855708122253
+    },
+    {
+      "id": "https://openalex.org/C154945302",
+      "wikidata": "https://www.wikidata.org/wiki/Q11660",
+      "display_name": "Artificial intelligence",
+      "level": 1,
+      "score": 0.3524298667907715
+    },
+    {
+      "id": "https://openalex.org/C15744967",
+      "wikidata": "https://www.wikidata.org/wiki/Q9418",
+      "display_name": "Psychology",
+      "level": 0,
+      "score": 0.28734463453292847
+    },
+    {
+      "id": "https://openalex.org/C162324750",
+      "wikidata": "https://www.wikidata.org/wiki/Q8134",
+      "display_name": "Economics",
+      "level": 0,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C187736073",
+      "wikidata": "https://www.wikidata.org/wiki/Q2920921",
+      "display_name": "Management",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000882",
+      "descriptor_name": "Haplorhini",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000882",
+      "descriptor_name": "Haplorhini",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000882",
+      "descriptor_name": "Haplorhini",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000882",
+      "descriptor_name": "Haplorhini",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001522",
+      "descriptor_name": "Behavior, Animal",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001522",
+      "descriptor_name": "Behavior, Animal",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001522",
+      "descriptor_name": "Behavior, Animal",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001522",
+      "descriptor_name": "Behavior, Animal",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003071",
+      "descriptor_name": "Cognition",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003071",
+      "descriptor_name": "Cognition",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003071",
+      "descriptor_name": "Cognition",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003071",
+      "descriptor_name": "Cognition",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008568",
+      "descriptor_name": "Memory",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008568",
+      "descriptor_name": "Memory",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008568",
+      "descriptor_name": "Memory",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008568",
+      "descriptor_name": "Memory",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008959",
+      "descriptor_name": "Models, Neurological",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D008959",
+      "descriptor_name": "Models, Neurological",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D008959",
+      "descriptor_name": "Models, Neurological",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D008959",
+      "descriptor_name": "Models, Neurological",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D009474",
+      "descriptor_name": "Neurons",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009474",
+      "descriptor_name": "Neurons",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009474",
+      "descriptor_name": "Neurons",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009474",
+      "descriptor_name": "Neurons",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017397",
+      "descriptor_name": "Prefrontal Cortex",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017397",
+      "descriptor_name": "Prefrontal Cortex",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017397",
+      "descriptor_name": "Prefrontal Cortex",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017397",
+      "descriptor_name": "Prefrontal Cortex",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017397",
+      "descriptor_name": "Prefrontal Cortex",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017397",
+      "descriptor_name": "Prefrontal Cortex",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017397",
+      "descriptor_name": "Prefrontal Cortex",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017397",
+      "descriptor_name": "Prefrontal Cortex",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D059010",
+      "descriptor_name": "Single-Cell Analysis",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D059010",
+      "descriptor_name": "Single-Cell Analysis",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D059010",
+      "descriptor_name": "Single-Cell Analysis",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D059010",
+      "descriptor_name": "Single-Cell Analysis",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    }
+  ],
+  "locations_count": 3,
+  "locations": [
+    {
+      "id": "doi:10.1038/nature12160",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1038/nature12160",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S137773608",
+        "display_name": "Nature",
+        "issn_l": "0028-0836",
+        "issn": [
+          "0028-0836",
+          "1476-4687"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310319908",
+        "host_organization_name": "Nature Portfolio",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310319908",
+          "https://openalex.org/P4310319965"
+        ],
+        "host_organization_lineage_names": [
+          "Nature Portfolio",
+          "Springer Nature"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Nature",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:23685452",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/23685452",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Nature",
+      "raw_type": null
+    },
+    {
+      "id": "pmh:oai:pubmedcentral.nih.gov:4412347",
+      "is_oa": true,
+      "landing_page_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/4412347",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S2764455111",
+        "display_name": "PubMed Central",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": true,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "Nature",
+      "raw_type": "Text"
+    }
+  ],
+  "best_oa_location": {
+    "id": "pmh:oai:pubmedcentral.nih.gov:4412347",
+    "is_oa": true,
+    "landing_page_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/4412347",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S2764455111",
+      "display_name": "PubMed Central",
+      "issn_l": null,
+      "issn": null,
+      "is_oa": true,
+      "is_in_doaj": false,
+      "is_core": false,
+      "host_organization": "https://openalex.org/I1299303238",
+      "host_organization_name": "National Institutes of Health",
+      "host_organization_lineage": [
+        "https://openalex.org/I1299303238"
+      ],
+      "host_organization_lineage_names": [],
+      "type": "repository"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "submittedVersion",
+    "is_accepted": false,
+    "is_published": false,
+    "raw_source_name": "Nature",
+    "raw_type": "Text"
+  },
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "grobid_xml": false,
+    "pdf": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 24,
+  "referenced_works": [
+    "https://openalex.org/W1603661052",
+    "https://openalex.org/W1970903379",
+    "https://openalex.org/W1986268014",
+    "https://openalex.org/W1993129834",
+    "https://openalex.org/W2024529445",
+    "https://openalex.org/W2025054170",
+    "https://openalex.org/W2040499723",
+    "https://openalex.org/W2046900303",
+    "https://openalex.org/W2060618570",
+    "https://openalex.org/W2070796169",
+    "https://openalex.org/W2084642506",
+    "https://openalex.org/W2093356195",
+    "https://openalex.org/W2094681793",
+    "https://openalex.org/W2099231026",
+    "https://openalex.org/W2103179919",
+    "https://openalex.org/W2118706537",
+    "https://openalex.org/W2119821739",
+    "https://openalex.org/W2135955567",
+    "https://openalex.org/W2141342796",
+    "https://openalex.org/W2149158842",
+    "https://openalex.org/W2153094827",
+    "https://openalex.org/W2153719229",
+    "https://openalex.org/W2162950292",
+    "https://openalex.org/W2322002063"
+  ],
+  "related_works": [
+    "https://openalex.org/W1980342602",
+    "https://openalex.org/W3213345547",
+    "https://openalex.org/W2348012590",
+    "https://openalex.org/W430449491",
+    "https://openalex.org/W2514944117",
+    "https://openalex.org/W2610186267",
+    "https://openalex.org/W2020741738",
+    "https://openalex.org/W2405220830",
+    "https://openalex.org/W1995248718",
+    "https://openalex.org/W2762558726"
+  ],
+  "abstract_inverted_index": null,
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 50
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 192
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 250
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 187
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 170
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 172
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 131
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 130
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 121
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 122
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 106
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 66
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 66
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 14
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 1
+    }
+  ],
+  "updated_date": "2026-04-25T08:17:42.794288",
+  "created_date": "2025-10-10T00:00:00"
+}
