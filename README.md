@@ -1,79 +1,71 @@
 # Scientometric Analysis Tool
 
-![Version](https://img.shields.io/badge/Version-A1%20Production-blue.svg)
-![Python](https://img.shields.io/badge/Python-3.10%2B-green.svg)
-![n8n](https://img.shields.io/badge/n8n-Workflow-orange.svg)
+An automated, multi-source scientometric data pipeline using LLMs and API orchestration to extract, disambiguate, and classify global research data. 
 
-Welcome to the **Scientometric Analysis Tool**, a state-of-the-art framework crafted to extract, normalize, and enrich massive bibliometric data for high-level academic research. Designed for mass data processing, this tool automates the extraction of complex researcher profiles, calculating h-indices, seniority, citation metrics, and affiliations across five major scientific endpoints.
+This tool eliminates the problem of author name collisions and fragmented profiles by utilizing an interconnected, multi-source approach: reading raw metadata from OpenAlex and PubMed, resolving missing identifiers using Scopus and Semantic Scholar, searching for public Google Scholar profiles, and using an LLM to accurately infer demographics and scientific expertise.
 
-## Architecture Overview (A1 Version)
+## 🚀 Architecture Overview
 
-The system operates by receiving a curated list of paper DOIs. It then branches out concurrently to query various academic endpoints, normalizes nested JSON outputs, and finally consolidates the records into a single flattened matrix (`MASTER_AUTHOR_TABLE.csv`).
+The pipeline strictly takes a curated CSV list of DOIs to prevent false positives and processes each paper through a sequence of extraction nodes:
 
-The **A1 Production Release** features both a highly optimized **Python CLI** engine for mass processing and an **n8n Workflow** for event-driven orchestration. Both flavors integrate identical matrix normalization logic and Large Language Model (LLM) classification.
+1. **OpenAlex Node**: Acts as the foundation. Extracts paper metadata, open access status, author lists, raw affiliations, and lifetime topics.
+2. **PubMed Node**: Validates medical papers, extracts strict MeSH terms, and searches for "ghost authors" missing from OpenAlex.
+3. **Scopus Node**: Uses the institutional IP/API to extract deep metrics: Official H-Index, lifetime citations, document count, and Seniority (years active).
+4. **Semantic Scholar Node**: Extracts influential citations and provides a fallback ID and H-Index to contrast with Scopus.
+5. **Google Scholar Node**: Extracts the author's public interests/topics using SerpApi. Features a fallback mechanism that injects OpenAlex Concepts if the author has no public profile.
+6. **ORCID Node**: Queries the ORCID API using extracted IDs to capture precise, granular department and current employment data.
+7. **Enrichment Node**: 
+   - Uses `genderize.io` to automatically infer the author's gender.
+   - Uses **Azure OpenAI (GPT-4o)** with `temperature=0.0` to process the entire profile and deterministically classify the author's primary role (e.g., `CLINICAL`, `COMPUTER_SCIENCE`, `HYBRID_MED_TECH`).
 
----
+## 📁 Repository Structure
 
-### System Flowchart
-
-The following diagram visualizes how a raw Document Object Identifier (DOI) cascades through our extraction nodes and emerges as an enriched researcher profile matrix.
-
-```mermaid
-graph TD
-    %% Styling definitions
-    classDef input fill:#2b2d42,stroke:#edf2f4,stroke-width:2px,color:#edf2f4;
-    classDef api fill:#8d99ae,stroke:#2b2d42,stroke-width:2px,color:#fff;
-    classDef engine fill:#ef233c,stroke:#2b2d42,stroke-width:3px,color:#fff;
-    classDef enrich fill:#d90429,stroke:#edf2f4,stroke-width:2px,color:#fff;
-    classDef output fill:#2b2d42,stroke:#ef233c,stroke-width:3px,color:#fff;
-
-    A(["Input: Curated DOI CSV"]):::input --> B{Parallel Routing Engine}:::engine
-
-    %% Parallel API Calls
-    B --> C[OpenAlex API]:::api
-    B --> D[PubMed API / XML]:::api
-    B --> E[Scopus API]:::api
-    B --> F[Semantic Scholar API]:::api
-    B --> G[Google Scholar SerpApi]:::api
-    B --> H[ORCID API]:::api
-
-    %% Normalization Phase
-    C --> I((("Entity Normalizer & Merging"))):::engine
-    D --> I
-    E --> I
-    F --> I
-    G --> I
-    H --> I
-
-    %% Deduplication Strategy
-    I --> J["Fuzzy Logic ID Compressor<br/>(Lukas Technique)"]:::engine
-
-    %% Enrichment Nodes
-    J --> K{AI Enrichment Layer}:::enrich
-    K --> L["Genderize.io Inference<br/>w/ Local Global Cache"]:::enrich
-    K --> M["LLM Domain Taxonomy Classification<br/>via Azure OpenAI / Local Ollama"]:::enrich
-
-    %% Final output
-    L --> Z[("MASTER_AUTHOR_TABLE.csv")]:::output
-    M --> Z
+```text
+SCIENTOMETRIC-ANALYSIS-TOOL/
+├── src/                      # Source code
+│   ├── main.py               # Main orchestration script
+│   ├── config.py             # Configuration and keys loader
+│   ├── enrichment.py         # LLM logic and gender classification
+│   └── modules/              # Individual API extractors
+├── scripts/                  
+│   └── evaluator.py          # Script to generate evaluation graphs and metrics
+├── data/
+│   ├── input/                # Place your input_dois.csv here
+│   └── output/               # Generates MASTER_AUTHOR_TABLE.csv
+├── assets/
+│   └── figures/              # Heatmaps, Radars, and Output Graphs
+├── .gitignore
+├── requirements.txt
+└── README.md
 ```
 
----
+## 🛠️ Usage
 
-## Features
+1. **Install Dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-* **Multi-Database Federation:** Seamless integration natively parsing from Scopus, PubMed, OpenAlex, Semantic Scholar, Google Scholar and ORCID APIs.
-* **Deterministic Normalization:** Unrolls "1-to-N" authorships matrices, dynamically capturing strict index positioning (first, middle, last author).
-* **Metric Calculation on Runtime:** Dynamically computes derived metrics such as academic seniority and continuous publishing streaks without downstream processing.
-* **Smart Rate Limiting:** Asynchronous threading (`time.sleep` payloads) and chunking logic ensures immunity to HTTP 429 Too Many Requests errors.
-* **LLM Semantic Profiling:** Incorporates `gpt-4o-mini` (or locally hosted `llama3`) to read unstructured affiliations, interests, and keywords to deduce deterministic domains (e.g. CLINICAL vs. COMPUTER_SCIENCE) while mitigating hallucinations.
-* **Identity Compression:** Deduplicates and maps entities securely via associative arrays and string proximity metrics.
+2. **Configure API Keys:**
+   Create a `.env` file inside `src/` (use `.env_sample` as a template) and add your keys for Azure OpenAI, SerpApi, PubMed, and Scopus.
 
-## Deliverables Structure
+3. **Run the Extraction:**
+   Place your DOIs in `data/input/input_dois.csv` containing at least a `DOI` column.
+   ```bash
+   python src/main.py
+   ```
+   The final dense dataset will be saved to `data/output/MASTER_AUTHOR_TABLE.csv`.
 
-* **`/A1/PYTHON`**: Python implementation natively engineered for maximal performance and minimal footprint logic on bulk DOI parsing.
-* **`/A1/N8N`**: Complete visual n8n workflow file and Docker Compose architecture for automated, cloud-connected pipeline deployment.
+4. **Generate Evaluation Reports:**
+   To benchmark the extraction fidelity against raw OpenAlex data and generate data completeness heatmaps:
+   ```bash
+   python scripts/evaluator.py
+   ```
+   Graphs will be saved to `assets/figures/`.
 
----
-
-> *"From chaotic Boolean strings to precise DOIs. Determinism by Design."*
+## 📊 Final Output Columns
+The `MASTER_AUTHOR_TABLE.csv` provides a complete radiography of each researcher:
+- `AUTHOR_NAME`, `ORCID`, `HINDEX_SC`, `CITATIONS_SC`, `SENIORITY_SC`
+- `AFFILIATION_OA`, `GEO_COUNTRY_OA`, `ORCID_EMPLOYMENT`
+- `KEYWORDS_OA`, `MESH_PM`, `INTERESTS_GS`, `SUBJECT_AREAS_SC`
+- `GENDER`, `PROFILE_CLASSIFICATION` (LLM Output)

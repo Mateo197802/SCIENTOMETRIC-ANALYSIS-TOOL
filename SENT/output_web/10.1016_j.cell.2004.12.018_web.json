@@ -1,0 +1,1451 @@
+{
+  "id": "https://openalex.org/W2042082129",
+  "doi": "https://doi.org/10.1016/j.cell.2004.12.018",
+  "title": "PAR1 Is a Matrix Metalloprotease-1 Receptor that Promotes Invasion and Tumorigenesis of Breast Cancer Cells",
+  "display_name": "PAR1 Is a Matrix Metalloprotease-1 Receptor that Promotes Invasion and Tumorigenesis of Breast Cancer Cells",
+  "publication_year": 2005,
+  "publication_date": "2005-02-01",
+  "ids": {
+    "openalex": "https://openalex.org/W2042082129",
+    "doi": "https://doi.org/10.1016/j.cell.2004.12.018",
+    "mag": "2042082129",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/15707890"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1016/j.cell.2004.12.018",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1016/j.cell.2004.12.018",
+    "pdf_url": "http://www.cell.com/article/S0092867404012103/pdf",
+    "source": {
+      "id": "https://openalex.org/S110447773",
+      "display_name": "Cell",
+      "issn_l": "0092-8674",
+      "issn": [
+        "0092-8674",
+        "1097-4172"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310315673",
+      "host_organization_name": "Cell Press",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310315673",
+        "https://openalex.org/P4310320990"
+      ],
+      "host_organization_lineage_names": [
+        "Cell Press",
+        "Elsevier BV"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Cell",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "bronze",
+    "oa_url": "http://www.cell.com/article/S0092867404012103/pdf",
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5051077715",
+        "display_name": "Adrienne Boire",
+        "orcid": "https://orcid.org/0000-0002-9029-1248"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210150208",
+          "display_name": "Molecular Oncology (United States)",
+          "ror": "https://ror.org/04rtkc841",
+          "country_code": "US",
+          "type": "company",
+          "lineage": [
+            "https://openalex.org/I4210150208"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I1290900354",
+          "display_name": "Tufts Medical Center",
+          "ror": "https://ror.org/002hsbm82",
+          "country_code": "US",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I1290900354"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I121934306",
+          "display_name": "Tufts University",
+          "ror": "https://ror.org/05wvpxv85",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I121934306"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Adrienne Boire",
+      "raw_affiliation_strings": [
+        "Molecular Oncology Research Institute, Tufts-New England Medical Center, Boston, Massachusetts 02111, USA",
+        "Department of Biochemistry, Tufts University Medical School, Boston, Massachusetts 02111",
+        "Molecular Oncology Research Institute, Tufts-New England Medical Center, Boston, Massachusetts 02111"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Molecular Oncology Research Institute, Tufts-New England Medical Center, Boston, Massachusetts 02111, USA",
+          "institution_ids": []
+        },
+        {
+          "raw_affiliation_string": "Department of Biochemistry, Tufts University Medical School, Boston, Massachusetts 02111",
+          "institution_ids": [
+            "https://openalex.org/I121934306"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Molecular Oncology Research Institute, Tufts-New England Medical Center, Boston, Massachusetts 02111",
+          "institution_ids": [
+            "https://openalex.org/I1290900354",
+            "https://openalex.org/I4210150208"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5077617262",
+        "display_name": "Lidija Covic",
+        "orcid": "https://orcid.org/0000-0003-3661-8921"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1290900354",
+          "display_name": "Tufts Medical Center",
+          "ror": "https://ror.org/002hsbm82",
+          "country_code": "US",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I1290900354"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210150208",
+          "display_name": "Molecular Oncology (United States)",
+          "ror": "https://ror.org/04rtkc841",
+          "country_code": "US",
+          "type": "company",
+          "lineage": [
+            "https://openalex.org/I4210150208"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Lidija Covic",
+      "raw_affiliation_strings": [
+        "Molecular Oncology Research Institute, Tufts-New England Medical Center, Boston, Massachusetts 02111",
+        "Division of Hematology-Oncology, Tufts-New England Medical Center, Boston, Massachusetts 02111"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Molecular Oncology Research Institute, Tufts-New England Medical Center, Boston, Massachusetts 02111",
+          "institution_ids": [
+            "https://openalex.org/I1290900354",
+            "https://openalex.org/I4210150208"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Division of Hematology-Oncology, Tufts-New England Medical Center, Boston, Massachusetts 02111",
+          "institution_ids": [
+            "https://openalex.org/I1290900354"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5103138715",
+        "display_name": "Anika Agarwal",
+        "orcid": "https://orcid.org/0000-0002-8820-7297"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210150208",
+          "display_name": "Molecular Oncology (United States)",
+          "ror": "https://ror.org/04rtkc841",
+          "country_code": "US",
+          "type": "company",
+          "lineage": [
+            "https://openalex.org/I4210150208"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I1290900354",
+          "display_name": "Tufts Medical Center",
+          "ror": "https://ror.org/002hsbm82",
+          "country_code": "US",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I1290900354"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Anika Agarwal",
+      "raw_affiliation_strings": [
+        "Molecular Oncology Research Institute, Tufts-New England Medical Center, Boston, Massachusetts 02111"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Molecular Oncology Research Institute, Tufts-New England Medical Center, Boston, Massachusetts 02111",
+          "institution_ids": [
+            "https://openalex.org/I1290900354",
+            "https://openalex.org/I4210150208"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5112470529",
+        "display_name": "Suzanne L. Jacques",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210150208",
+          "display_name": "Molecular Oncology (United States)",
+          "ror": "https://ror.org/04rtkc841",
+          "country_code": "US",
+          "type": "company",
+          "lineage": [
+            "https://openalex.org/I4210150208"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I1290900354",
+          "display_name": "Tufts Medical Center",
+          "ror": "https://ror.org/002hsbm82",
+          "country_code": "US",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I1290900354"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Suzanne Jacques",
+      "raw_affiliation_strings": [
+        "Molecular Oncology Research Institute, Tufts-New England Medical Center, Boston, Massachusetts 02111"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Molecular Oncology Research Institute, Tufts-New England Medical Center, Boston, Massachusetts 02111",
+          "institution_ids": [
+            "https://openalex.org/I1290900354",
+            "https://openalex.org/I4210150208"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5082715818",
+        "display_name": "Sheida Sherifi",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1297058315",
+          "display_name": "Mount Auburn Hospital",
+          "ror": "https://ror.org/00nhpk003",
+          "country_code": "US",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I1297058315"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Sheida Sherifi",
+      "raw_affiliation_strings": [
+        "Department of Pathology, Mount Auburn Hospital, Cambridge, Massachusetts 02138"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Pathology, Mount Auburn Hospital, Cambridge, Massachusetts 02138",
+          "institution_ids": [
+            "https://openalex.org/I1297058315"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5006545278",
+        "display_name": "Athan Kuliopulos",
+        "orcid": "https://orcid.org/0000-0002-9677-8540"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I121934306",
+          "display_name": "Tufts University",
+          "ror": "https://ror.org/05wvpxv85",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I121934306"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I1290900354",
+          "display_name": "Tufts Medical Center",
+          "ror": "https://ror.org/002hsbm82",
+          "country_code": "US",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I1290900354"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210150208",
+          "display_name": "Molecular Oncology (United States)",
+          "ror": "https://ror.org/04rtkc841",
+          "country_code": "US",
+          "type": "company",
+          "lineage": [
+            "https://openalex.org/I4210150208"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Athan Kuliopulos",
+      "raw_affiliation_strings": [
+        "Division of Hematology-Oncology, Tufts-New England Medical Center, Boston, Massachusetts 02111",
+        "Molecular Oncology Research Institute, Tufts-New England Medical Center, Boston, Massachusetts 02111",
+        "Department of Biochemistry, Tufts University Medical School, Boston, Massachusetts 02111"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Division of Hematology-Oncology, Tufts-New England Medical Center, Boston, Massachusetts 02111",
+          "institution_ids": [
+            "https://openalex.org/I1290900354"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Molecular Oncology Research Institute, Tufts-New England Medical Center, Boston, Massachusetts 02111",
+          "institution_ids": [
+            "https://openalex.org/I1290900354",
+            "https://openalex.org/I4210150208"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Biochemistry, Tufts University Medical School, Boston, Massachusetts 02111",
+          "institution_ids": [
+            "https://openalex.org/I121934306"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 6,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5006545278"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I121934306",
+    "https://openalex.org/I1290900354",
+    "https://openalex.org/I4210150208"
+  ],
+  "apc_list": {
+    "value": 10100,
+    "currency": "USD",
+    "value_usd": 10100
+  },
+  "apc_paid": null,
+  "fwci": 23.209,
+  "has_fulltext": false,
+  "cited_by_count": 839,
+  "citation_normalized_percentile": {
+    "value": 0.99822787,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "120",
+    "issue": "3",
+    "first_page": "303",
+    "last_page": "313"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10881",
+    "display_name": "Blood Coagulation and Thrombosis Mechanisms",
+    "score": 1.0,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2720",
+      "display_name": "Hematology"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/27",
+      "display_name": "Medicine"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/4",
+      "display_name": "Health Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10881",
+      "display_name": "Blood Coagulation and Thrombosis Mechanisms",
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2720",
+        "display_name": "Hematology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/27",
+        "display_name": "Medicine"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/4",
+        "display_name": "Health Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10620",
+      "display_name": "Protease and Inhibitor Mechanisms",
+      "score": 0.9993000030517578,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1306",
+        "display_name": "Cancer Research"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11917",
+      "display_name": "Coagulation, Bradykinin, Polyphosphates, and Angioedema",
+      "score": 0.9905999898910522,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2716",
+        "display_name": "Genetics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/27",
+        "display_name": "Medicine"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/4",
+        "display_name": "Health Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/biology",
+      "display_name": "Biology",
+      "score": 0.8192379474639893
+    },
+    {
+      "id": "https://openalex.org/keywords/stromal-cell",
+      "display_name": "Stromal cell",
+      "score": 0.6169229745864868
+    },
+    {
+      "id": "https://openalex.org/keywords/cancer-research",
+      "display_name": "Cancer research",
+      "score": 0.5944153666496277
+    },
+    {
+      "id": "https://openalex.org/keywords/receptor",
+      "display_name": "Receptor",
+      "score": 0.5837125778198242
+    },
+    {
+      "id": "https://openalex.org/keywords/matrix-metalloproteinase",
+      "display_name": "Matrix metalloproteinase",
+      "score": 0.5623260140419006
+    },
+    {
+      "id": "https://openalex.org/keywords/carcinogenesis",
+      "display_name": "Carcinogenesis",
+      "score": 0.5283975005149841
+    },
+    {
+      "id": "https://openalex.org/keywords/cancer-cell",
+      "display_name": "Cancer cell",
+      "score": 0.5110667943954468
+    },
+    {
+      "id": "https://openalex.org/keywords/cell-biology",
+      "display_name": "Cell biology",
+      "score": 0.5050609707832336
+    },
+    {
+      "id": "https://openalex.org/keywords/cell-migration",
+      "display_name": "Cell migration",
+      "score": 0.48708248138427734
+    },
+    {
+      "id": "https://openalex.org/keywords/metalloproteinase",
+      "display_name": "Metalloproteinase",
+      "score": 0.4760289490222931
+    },
+    {
+      "id": "https://openalex.org/keywords/protease",
+      "display_name": "Protease",
+      "score": 0.45886892080307007
+    },
+    {
+      "id": "https://openalex.org/keywords/metastasis",
+      "display_name": "Metastasis",
+      "score": 0.44332176446914673
+    },
+    {
+      "id": "https://openalex.org/keywords/g-protein-coupled-receptor",
+      "display_name": "G protein-coupled receptor",
+      "score": 0.42104285955429077
+    },
+    {
+      "id": "https://openalex.org/keywords/breast-cancer",
+      "display_name": "Breast cancer",
+      "score": 0.41471782326698303
+    },
+    {
+      "id": "https://openalex.org/keywords/cancer",
+      "display_name": "Cancer",
+      "score": 0.38421785831451416
+    },
+    {
+      "id": "https://openalex.org/keywords/cell",
+      "display_name": "Cell",
+      "score": 0.32035747170448303
+    },
+    {
+      "id": "https://openalex.org/keywords/signal-transduction",
+      "display_name": "Signal transduction",
+      "score": 0.28377965092658997
+    },
+    {
+      "id": "https://openalex.org/keywords/enzyme",
+      "display_name": "Enzyme",
+      "score": 0.10014992952346802
+    },
+    {
+      "id": "https://openalex.org/keywords/biochemistry",
+      "display_name": "Biochemistry",
+      "score": 0.09787401556968689
+    },
+    {
+      "id": "https://openalex.org/keywords/genetics",
+      "display_name": "Genetics",
+      "score": 0.06222006678581238
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C86803240",
+      "wikidata": "https://www.wikidata.org/wiki/Q420",
+      "display_name": "Biology",
+      "level": 0,
+      "score": 0.8192379474639893
+    },
+    {
+      "id": "https://openalex.org/C16930146",
+      "wikidata": "https://www.wikidata.org/wiki/Q4381253",
+      "display_name": "Stromal cell",
+      "level": 2,
+      "score": 0.6169229745864868
+    },
+    {
+      "id": "https://openalex.org/C502942594",
+      "wikidata": "https://www.wikidata.org/wiki/Q3421914",
+      "display_name": "Cancer research",
+      "level": 1,
+      "score": 0.5944153666496277
+    },
+    {
+      "id": "https://openalex.org/C170493617",
+      "wikidata": "https://www.wikidata.org/wiki/Q208467",
+      "display_name": "Receptor",
+      "level": 2,
+      "score": 0.5837125778198242
+    },
+    {
+      "id": "https://openalex.org/C109523444",
+      "wikidata": "https://www.wikidata.org/wiki/Q424216",
+      "display_name": "Matrix metalloproteinase",
+      "level": 2,
+      "score": 0.5623260140419006
+    },
+    {
+      "id": "https://openalex.org/C555283112",
+      "wikidata": "https://www.wikidata.org/wiki/Q1637543",
+      "display_name": "Carcinogenesis",
+      "level": 3,
+      "score": 0.5283975005149841
+    },
+    {
+      "id": "https://openalex.org/C96232424",
+      "wikidata": "https://www.wikidata.org/wiki/Q4118072",
+      "display_name": "Cancer cell",
+      "level": 3,
+      "score": 0.5110667943954468
+    },
+    {
+      "id": "https://openalex.org/C95444343",
+      "wikidata": "https://www.wikidata.org/wiki/Q7141",
+      "display_name": "Cell biology",
+      "level": 1,
+      "score": 0.5050609707832336
+    },
+    {
+      "id": "https://openalex.org/C137738243",
+      "wikidata": "https://www.wikidata.org/wiki/Q189092",
+      "display_name": "Cell migration",
+      "level": 3,
+      "score": 0.48708248138427734
+    },
+    {
+      "id": "https://openalex.org/C55728118",
+      "wikidata": "https://www.wikidata.org/wiki/Q425402",
+      "display_name": "Metalloproteinase",
+      "level": 3,
+      "score": 0.4760289490222931
+    },
+    {
+      "id": "https://openalex.org/C2776714187",
+      "wikidata": "https://www.wikidata.org/wiki/Q212410",
+      "display_name": "Protease",
+      "level": 3,
+      "score": 0.45886892080307007
+    },
+    {
+      "id": "https://openalex.org/C2779013556",
+      "wikidata": "https://www.wikidata.org/wiki/Q181876",
+      "display_name": "Metastasis",
+      "level": 3,
+      "score": 0.44332176446914673
+    },
+    {
+      "id": "https://openalex.org/C135285700",
+      "wikidata": "https://www.wikidata.org/wiki/Q38173",
+      "display_name": "G protein-coupled receptor",
+      "level": 3,
+      "score": 0.42104285955429077
+    },
+    {
+      "id": "https://openalex.org/C530470458",
+      "wikidata": "https://www.wikidata.org/wiki/Q128581",
+      "display_name": "Breast cancer",
+      "level": 3,
+      "score": 0.41471782326698303
+    },
+    {
+      "id": "https://openalex.org/C121608353",
+      "wikidata": "https://www.wikidata.org/wiki/Q12078",
+      "display_name": "Cancer",
+      "level": 2,
+      "score": 0.38421785831451416
+    },
+    {
+      "id": "https://openalex.org/C1491633281",
+      "wikidata": "https://www.wikidata.org/wiki/Q7868",
+      "display_name": "Cell",
+      "level": 2,
+      "score": 0.32035747170448303
+    },
+    {
+      "id": "https://openalex.org/C62478195",
+      "wikidata": "https://www.wikidata.org/wiki/Q828130",
+      "display_name": "Signal transduction",
+      "level": 2,
+      "score": 0.28377965092658997
+    },
+    {
+      "id": "https://openalex.org/C181199279",
+      "wikidata": "https://www.wikidata.org/wiki/Q8047",
+      "display_name": "Enzyme",
+      "level": 2,
+      "score": 0.10014992952346802
+    },
+    {
+      "id": "https://openalex.org/C55493867",
+      "wikidata": "https://www.wikidata.org/wiki/Q7094",
+      "display_name": "Biochemistry",
+      "level": 1,
+      "score": 0.09787401556968689
+    },
+    {
+      "id": "https://openalex.org/C54355233",
+      "wikidata": "https://www.wikidata.org/wiki/Q7162",
+      "display_name": "Genetics",
+      "level": 1,
+      "score": 0.06222006678581238
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001665",
+      "descriptor_name": "Binding Sites",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001665",
+      "descriptor_name": "Binding Sites",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001665",
+      "descriptor_name": "Binding Sites",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001943",
+      "descriptor_name": "Breast Neoplasms",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001943",
+      "descriptor_name": "Breast Neoplasms",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001943",
+      "descriptor_name": "Breast Neoplasms",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001943",
+      "descriptor_name": "Breast Neoplasms",
+      "qualifier_ui": "Q000503",
+      "qualifier_name": "physiopathology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001943",
+      "descriptor_name": "Breast Neoplasms",
+      "qualifier_ui": "Q000503",
+      "qualifier_name": "physiopathology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001943",
+      "descriptor_name": "Breast Neoplasms",
+      "qualifier_ui": "Q000503",
+      "qualifier_name": "physiopathology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002277",
+      "descriptor_name": "Carcinoma",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002277",
+      "descriptor_name": "Carcinoma",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002277",
+      "descriptor_name": "Carcinoma",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002277",
+      "descriptor_name": "Carcinoma",
+      "qualifier_ui": "Q000503",
+      "qualifier_name": "physiopathology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002277",
+      "descriptor_name": "Carcinoma",
+      "qualifier_ui": "Q000503",
+      "qualifier_name": "physiopathology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002277",
+      "descriptor_name": "Carcinoma",
+      "qualifier_ui": "Q000503",
+      "qualifier_name": "physiopathology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002465",
+      "descriptor_name": "Cell Movement",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002465",
+      "descriptor_name": "Cell Movement",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002465",
+      "descriptor_name": "Cell Movement",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002471",
+      "descriptor_name": "Cell Transformation, Neoplastic",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002471",
+      "descriptor_name": "Cell Transformation, Neoplastic",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002471",
+      "descriptor_name": "Cell Transformation, Neoplastic",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004195",
+      "descriptor_name": "Disease Models, Animal",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004195",
+      "descriptor_name": "Disease Models, Animal",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004195",
+      "descriptor_name": "Disease Models, Animal",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005109",
+      "descriptor_name": "Extracellular Matrix",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005109",
+      "descriptor_name": "Extracellular Matrix",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005109",
+      "descriptor_name": "Extracellular Matrix",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005260",
+      "descriptor_name": "Female",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005260",
+      "descriptor_name": "Female",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005260",
+      "descriptor_name": "Female",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008819",
+      "descriptor_name": "Mice, Nude",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008819",
+      "descriptor_name": "Mice, Nude",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008819",
+      "descriptor_name": "Mice, Nude",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009361",
+      "descriptor_name": "Neoplasm Invasiveness",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009361",
+      "descriptor_name": "Neoplasm Invasiveness",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009361",
+      "descriptor_name": "Neoplasm Invasiveness",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D014183",
+      "descriptor_name": "Transplantation, Heterologous",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D014183",
+      "descriptor_name": "Transplantation, Heterologous",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D014183",
+      "descriptor_name": "Transplantation, Heterologous",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020013",
+      "descriptor_name": "Calcium Signaling",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020013",
+      "descriptor_name": "Calcium Signaling",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020013",
+      "descriptor_name": "Calcium Signaling",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020781",
+      "descriptor_name": "Matrix Metalloproteinase 1",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020781",
+      "descriptor_name": "Matrix Metalloproteinase 1",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020781",
+      "descriptor_name": "Matrix Metalloproteinase 1",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D041681",
+      "descriptor_name": "NIH 3T3 Cells",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D041681",
+      "descriptor_name": "NIH 3T3 Cells",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D041681",
+      "descriptor_name": "NIH 3T3 Cells",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D044463",
+      "descriptor_name": "Receptor, PAR-1",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D044463",
+      "descriptor_name": "Receptor, PAR-1",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D044463",
+      "descriptor_name": "Receptor, PAR-1",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D045744",
+      "descriptor_name": "Cell Line, Tumor",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D045744",
+      "descriptor_name": "Cell Line, Tumor",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D045744",
+      "descriptor_name": "Cell Line, Tumor",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D051379",
+      "descriptor_name": "Mice",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D051379",
+      "descriptor_name": "Mice",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D051379",
+      "descriptor_name": "Mice",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    }
+  ],
+  "locations_count": 2,
+  "locations": [
+    {
+      "id": "doi:10.1016/j.cell.2004.12.018",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.1016/j.cell.2004.12.018",
+      "pdf_url": "http://www.cell.com/article/S0092867404012103/pdf",
+      "source": {
+        "id": "https://openalex.org/S110447773",
+        "display_name": "Cell",
+        "issn_l": "0092-8674",
+        "issn": [
+          "0092-8674",
+          "1097-4172"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310315673",
+        "host_organization_name": "Cell Press",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310315673",
+          "https://openalex.org/P4310320990"
+        ],
+        "host_organization_lineage_names": [
+          "Cell Press",
+          "Elsevier BV"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Cell",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:15707890",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/15707890",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Cell",
+      "raw_type": null
+    }
+  ],
+  "best_oa_location": {
+    "id": "doi:10.1016/j.cell.2004.12.018",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1016/j.cell.2004.12.018",
+    "pdf_url": "http://www.cell.com/article/S0092867404012103/pdf",
+    "source": {
+      "id": "https://openalex.org/S110447773",
+      "display_name": "Cell",
+      "issn_l": "0092-8674",
+      "issn": [
+        "0092-8674",
+        "1097-4172"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310315673",
+      "host_organization_name": "Cell Press",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310315673",
+        "https://openalex.org/P4310320990"
+      ],
+      "host_organization_lineage_names": [
+        "Cell Press",
+        "Elsevier BV"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Cell",
+    "raw_type": "journal-article"
+  },
+  "sustainable_development_goals": [
+    {
+      "id": "https://metadata.un.org/sdg/3",
+      "score": 0.75,
+      "display_name": "Good health and well-being"
+    }
+  ],
+  "awards": [],
+  "funders": [
+    {
+      "id": "https://openalex.org/F4320306080",
+      "display_name": "Foundation for the National Institutes of Health",
+      "ror": "https://ror.org/00k86s890"
+    },
+    {
+      "id": "https://openalex.org/F4320306141",
+      "display_name": "Susan G. Komen for the Cure",
+      "ror": "https://ror.org/02nadbe75"
+    },
+    {
+      "id": "https://openalex.org/F4320311413",
+      "display_name": "Susan G. Komen",
+      "ror": "https://ror.org/02nadbe75"
+    },
+    {
+      "id": "https://openalex.org/F4320332194",
+      "display_name": "Johnson and Johnson",
+      "ror": "https://ror.org/03qd7mz70"
+    }
+  ],
+  "has_content": {
+    "pdf": true,
+    "grobid_xml": true
+  },
+  "content_urls": {
+    "pdf": "https://content.openalex.org/works/W2042082129.pdf",
+    "grobid_xml": "https://content.openalex.org/works/W2042082129.grobid-xml"
+  },
+  "referenced_works_count": 46,
+  "referenced_works": [
+    "https://openalex.org/W18911010",
+    "https://openalex.org/W1485692762",
+    "https://openalex.org/W1502723858",
+    "https://openalex.org/W1530505052",
+    "https://openalex.org/W1619005270",
+    "https://openalex.org/W1811402656",
+    "https://openalex.org/W1886431664",
+    "https://openalex.org/W1966756337",
+    "https://openalex.org/W1980518691",
+    "https://openalex.org/W1986471913",
+    "https://openalex.org/W1989076816",
+    "https://openalex.org/W1989941487",
+    "https://openalex.org/W1990191742",
+    "https://openalex.org/W2000985786",
+    "https://openalex.org/W2002157826",
+    "https://openalex.org/W2003500892",
+    "https://openalex.org/W2007781471",
+    "https://openalex.org/W2010739774",
+    "https://openalex.org/W2015267043",
+    "https://openalex.org/W2028160158",
+    "https://openalex.org/W2029539300",
+    "https://openalex.org/W2036015954",
+    "https://openalex.org/W2038780185",
+    "https://openalex.org/W2047352816",
+    "https://openalex.org/W2047655212",
+    "https://openalex.org/W2050221835",
+    "https://openalex.org/W2053634523",
+    "https://openalex.org/W2058468432",
+    "https://openalex.org/W2063504313",
+    "https://openalex.org/W2063742002",
+    "https://openalex.org/W2065493263",
+    "https://openalex.org/W2066540510",
+    "https://openalex.org/W2081753893",
+    "https://openalex.org/W2091705825",
+    "https://openalex.org/W2094221768",
+    "https://openalex.org/W2128049766",
+    "https://openalex.org/W2128985829",
+    "https://openalex.org/W2133835604",
+    "https://openalex.org/W2156323704",
+    "https://openalex.org/W2226530887",
+    "https://openalex.org/W2245801462",
+    "https://openalex.org/W2318959008",
+    "https://openalex.org/W2334208508",
+    "https://openalex.org/W3113181238",
+    "https://openalex.org/W3113348859",
+    "https://openalex.org/W6629929945"
+  ],
+  "related_works": [
+    "https://openalex.org/W2043521546",
+    "https://openalex.org/W3195380942",
+    "https://openalex.org/W1936396226",
+    "https://openalex.org/W4241582355",
+    "https://openalex.org/W1156698136",
+    "https://openalex.org/W3015815503",
+    "https://openalex.org/W4396719729",
+    "https://openalex.org/W2046329404",
+    "https://openalex.org/W1993786592",
+    "https://openalex.org/W2139825188"
+  ],
+  "abstract_inverted_index": null,
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 3
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 19
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 17
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 40
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 27
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 46
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 40
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 32
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 44
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 48
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 42
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 42
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 45
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 50
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 54
+    }
+  ],
+  "updated_date": "2026-04-21T08:09:41.155169",
+  "created_date": "2025-10-10T00:00:00"
+}
