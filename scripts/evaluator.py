@@ -16,7 +16,7 @@ import numpy as np
 # ─── PATHS ────────────────────────────────────────────────────────────────────
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR      = os.path.join(BASE_DIR, "data")
-MAQUINA_DIR   = os.path.join(DATA_DIR, "output")
+MAQUINA_DIR   = os.path.join(DATA_DIR, "output", "csv")
 WEB_DIR       = os.path.join(DATA_DIR, "output_web")
 ASSETS_DIR    = os.path.join(BASE_DIR, "assets")
 GRAFICAS_DIR  = os.path.join(ASSETS_DIR, "figures")

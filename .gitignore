@@ -4,8 +4,9 @@ __pycache__/
 *$py.class
 *.so
 
-# Environments
+# Environments - NEVER commit API keys
 .env
+.env.*
 .venv
 env/
 venv/
@@ -16,3 +17,14 @@ venv.bak/
 # Project specifics
 temp*.txt
 .DS_Store
+
+# Helper/debug scripts (local only)
+check_*.py
+
+# Per-DOI machine output files (auto-generated)
+data/output/csv/*_maquina.csv
+data/output_web/
+
+# Evaluation outputs
+data/evaluation_summary.csv
+data/field_completeness_detail.csv
