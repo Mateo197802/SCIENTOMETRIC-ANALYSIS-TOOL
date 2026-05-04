@@ -15,7 +15,7 @@ from utils.id_compressor import compress_authors
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-def run_pipeline(input_csv, output_csv):
+def run_pipeline(input_csv, output_csv, output_json):
     """
     Orchestrates the entire data extraction pipeline.
     """
@@ -86,7 +86,7 @@ def run_pipeline(input_csv, output_csv):
         time.sleep(1)
         
     # 3. Export Master Table
-    logger.info(f"Pipeline finished. Saving {len(master_table)} author records to {output_csv}")
+    logger.info(f"Pipeline finished. Saving {len(master_table)} author records to {output_csv} and {output_json}")
     final_df = pd.DataFrame(master_table)
     
     if final_df.empty:
@@ -98,7 +98,8 @@ def run_pipeline(input_csv, output_csv):
         "PAPER_TITLE", "DOI", "YEAR", "OPEN_ACCESS_OA", "FUNDING_OA",
         "AUTHOR_NAME", "AUTHOR_POS_OA", "IS_CORRESPONDING_OA", "AFFILIATION_OA",
         "GEO_COUNTRY_OA", "AUTHOR_ID_OA", "ORCID", "WORKS_COUNT_OA", "CITATIONS_OA",
-        "HINDEX_OA", "I10INDEX_OA", "2YR_MEAN_OA", "KEYWORDS_OA", "PMID_PM",
+        "HINDEX_OA", "I10INDEX_OA", "2YR_MEAN_OA", "TOPICS_OA", "PRIMARY_TOPIC_OA",
+        "KEYWORDS_OA", "PMID_PM",
         "MESH_PM", "FUNDING_PM", "AUTHOR_NAME_PM", "AFFILIATION_PM", "AUTHOR_ID_SC",
         "AUTHOR_NAME_SC", "AFFILIATION_SC", "FUNDING_SC", "INFLUENTIAL_CITATIONS_SS",
         "CITATION_CONTEXTS_SS", "AUTHOR_ID_SS", "AUTHOR_NAME_SS", "ORCID_SS",
@@ -114,17 +115,25 @@ def run_pipeline(input_csv, output_csv):
                 
     final_df = final_df[expected_columns]
     
-    # Create the output directory if it doesn't exist
+    # Create the output directories if they don't exist
     os.makedirs(os.path.dirname(output_csv), exist_ok=True)
+    os.makedirs(os.path.dirname(output_json), exist_ok=True)
+    
+    # Export to CSV
     final_df.to_csv(output_csv, index=False)
-    logger.info("Export completed successfully.")
+    
+    # Export to JSON (orient='records' is best for web/API consumption)
+    final_df.to_json(output_json, orient='records', indent=4)
+    
+    logger.info("Export to CSV and JSON completed successfully.")
 
 if __name__ == "__main__":
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     input_file = os.path.join(base_dir, "data", "input", "input_dois.csv")
-    output_file = os.path.join(base_dir, "data", "output", "MASTER_AUTHOR_TABLE.csv")
+    output_csv = os.path.join(base_dir, "data", "output", "csv", "MASTER_AUTHOR_TABLE.csv")
+    output_json = os.path.join(base_dir, "data", "output", "json", "MASTER_AUTHOR_TABLE.json")
     
     # Ensure input directory exists to prevent errors on first run
     os.makedirs(os.path.dirname(input_file), exist_ok=True)
     
-    run_pipeline(input_file, output_file)
+    run_pipeline(input_file, output_csv, output_json)

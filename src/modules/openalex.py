@@ -45,7 +45,11 @@ def process_openalex(doi, config):
             if funders:
                 funding_oa = ", ".join(funders)
                 
-        # Extract Keywords
+        # Extract Primary Topic
+        primary_topic_data = data.get("primary_topic", {})
+        primary_topic_oa = primary_topic_data.get("display_name", "No data") if primary_topic_data else "No data"
+                
+        # Extract Keywords (Concepts)
         keywords_list = data.get("concepts", [])
         # Get top 5 concepts as keywords
         keywords_oa = ", ".join([k.get("display_name") for k in keywords_list[:5] if k.get("display_name")]) or "No data"
@@ -130,6 +134,7 @@ def process_openalex(doi, config):
                 "I10INDEX_OA": i10index_oa,
                 "2YR_MEAN_OA": yr2_mean_oa,
                 "TOPICS_OA": topics_oa,
+                "PRIMARY_TOPIC_OA": primary_topic_oa,
                 "KEYWORDS_OA": keywords_oa
             }
             authors_meta.append(author_dict)

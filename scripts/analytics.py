@@ -11,7 +11,7 @@ def generate_analytics():
     
     # Define paths
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    input_csv = os.path.join(base_dir, "data", "output", "MASTER_AUTHOR_TABLE.csv")
+    input_csv = os.path.join(base_dir, "data", "output", "csv", "MASTER_AUTHOR_TABLE.csv")
     output_dir = os.path.join(base_dir, "assets", "figures", "analytics")
     
     os.makedirs(output_dir, exist_ok=True)
