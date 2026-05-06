@@ -79,6 +79,13 @@ def process_pubmed(doi, current_authors, config):
                     if affil_info is not None and affil_info.text:
                         affil = affil_info.text
                         
+                    pm_orcid = None
+                    identifiers = a.findall(".//Identifier")
+                    for ident in identifiers:
+                        if ident.get("Source") == "ORCID":
+                            pm_orcid = ident.text
+                            break
+                            
                     pos = "middle"
                     if idx == 0: pos = "first"
                     elif idx == len(author_list) - 1: pos = "last"
@@ -86,19 +93,22 @@ def process_pubmed(doi, current_authors, config):
                     authors_pm.append({
                         "name": name_lower,
                         "rawName": raw_name,
+                        "orcid": pm_orcid,
                         "affiliation": affil,
                         "pos": pos
                     })
     except Exception as e:
         logger.error(f"[PubMed] Error: {e}")
         
+    from utils.author_matcher import is_same_author
+    
     final_rows = []
+    
     # Match existing authors
     for oa in current_authors:
-        oa_name_lower = oa.get("AUTHOR_NAME", "").lower()
         match_pm = None
         for pm in authors_pm:
-            if pm["name"] in oa_name_lower or oa_name_lower in pm["name"]:
+            if is_same_author(oa, pm, api_type="pubmed"):
                 match_pm = pm
                 break
                 
@@ -117,8 +127,7 @@ def process_pubmed(doi, current_authors, config):
         if not pm["name"]: continue
         exists = False
         for oa in current_authors:
-            oa_name_lower = oa.get("AUTHOR_NAME", "").lower()
-            if oa_name_lower in pm["name"] or pm["name"] in oa_name_lower:
+            if is_same_author(oa, pm, api_type="pubmed"):
                 exists = True
                 break
                 

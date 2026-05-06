@@ -85,6 +85,7 @@ def process_openalex(doi, config):
             i10index_oa = 0
             yr2_mean_oa = 0.0
             topics_oa = "No data"
+            raw_scopus_id_oa = "No data"
             
             if auth_id != "No data":
                 try:
@@ -105,6 +106,20 @@ def process_openalex(doi, config):
                         topics = a_data.get("topics", [])
                         if topics:
                             topics_oa = " | ".join([t.get("display_name", "") for t in topics[:5]])
+                            
+                        # Extract Raw Scopus ID from OpenAlex 'ids' block
+                        oa_ids = a_data.get("ids", {})
+                        scopus_url = oa_ids.get("scopus", "")
+                        if "authorID=" in scopus_url:
+                            # e.g., http://www.scopus.com/inward/authorDetails.url?authorID=55871590100&partnerID=MN8TOARS
+                            try:
+                                import urllib.parse as urlparse
+                                parsed = urlparse.urlparse(scopus_url)
+                                qs = urlparse.parse_qs(parsed.query)
+                                if "authorID" in qs:
+                                    raw_scopus_id_oa = qs["authorID"][0]
+                            except:
+                                pass
                         
                 except Exception as e:
                     logger.debug(f"[OpenAlex] Could not fetch deep profile for {auth_id}: {e}")
@@ -128,6 +143,7 @@ def process_openalex(doi, config):
                 "GEO_COUNTRY_OA": geo_country_oa,
                 "AUTHOR_ID_OA": clean_auth_id,
                 "ORCID": clean_orcid,
+                "RAW_SCOPUS_ID_OA": raw_scopus_id_oa,
                 "WORKS_COUNT_OA": works_count_oa,
                 "CITATIONS_OA": citations_oa,
                 "HINDEX_OA": hindex_oa,

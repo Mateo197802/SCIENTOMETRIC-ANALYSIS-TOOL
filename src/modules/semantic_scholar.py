@@ -52,20 +52,16 @@ def process_semantic_scholar(doi, current_authors, config):
     except Exception as e:
         logger.debug(f"[SemanticScholar] Search Error: {e}")
 
+    from utils.author_matcher import is_same_author
+
     # Match authors found in previous steps against Semantic Scholar records
     final_rows = []
     for auth in current_authors:
-        author_name_norm = normalize_name(auth.get("AUTHOR_NAME", ""))
-        
         match_ss = None
-        if author_name_norm:
-            for ss in ss_authors:
-                ss_name_norm = normalize_name(ss.get("name", ""))
-                if not ss_name_norm: continue
-                # Checking for inclusion (e.g. "John Doe" in "John Doe Smith")
-                if ss_name_norm in author_name_norm or author_name_norm in ss_name_norm:
-                    match_ss = ss
-                    break
+        for ss in ss_authors:
+            if is_same_author(auth, ss, api_type="semantic_scholar"):
+                match_ss = ss
+                break
         
         orcid_ss = "NO_ORCID_SS"
         if match_ss and match_ss.get("externalIds") and match_ss["externalIds"].get("ORCID"):
@@ -86,13 +82,10 @@ def process_semantic_scholar(doi, current_authors, config):
     base_data = current_authors[0] if current_authors else {}
     for ss in ss_authors:
         if not ss.get("name") or not ss["name"].strip(): continue
-        ss_name_norm = normalize_name(ss["name"])
         
         exists = False
         for auth in current_authors:
-            auth_name_norm = normalize_name(auth.get("AUTHOR_NAME", ""))
-            if not auth_name_norm: continue
-            if auth_name_norm in ss_name_norm or ss_name_norm in auth_name_norm:
+            if is_same_author(auth, ss, api_type="semantic_scholar"):
                 exists = True
                 break
                 

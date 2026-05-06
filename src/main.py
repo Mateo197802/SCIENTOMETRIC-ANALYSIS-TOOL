@@ -97,7 +97,7 @@ def run_pipeline(input_csv, output_csv, output_json):
     expected_columns = [
         "PAPER_TITLE", "DOI", "YEAR", "OPEN_ACCESS_OA", "FUNDING_OA",
         "AUTHOR_NAME", "AUTHOR_POS_OA", "IS_CORRESPONDING_OA", "AFFILIATION_OA",
-        "GEO_COUNTRY_OA", "AUTHOR_ID_OA", "ORCID", "WORKS_COUNT_OA", "CITATIONS_OA",
+        "GEO_COUNTRY_OA", "AUTHOR_ID_OA", "WORKS_COUNT_OA", "CITATIONS_OA",
         "HINDEX_OA", "I10INDEX_OA", "2YR_MEAN_OA", "TOPICS_OA", "PRIMARY_TOPIC_OA",
         "KEYWORDS_OA", "PMID_PM",
         "MESH_PM", "FUNDING_PM", "AUTHOR_NAME_PM", "AFFILIATION_PM", "AUTHOR_ID_SC",
@@ -105,7 +105,7 @@ def run_pipeline(input_csv, output_csv, output_json):
         "CITATION_CONTEXTS_SS", "AUTHOR_ID_SS", "AUTHOR_NAME_SS", "ORCID_SS",
         "HINDEX_SS", "CITATIONS_SS", "HINDEX_SC", "CITATIONS_SC", "DOC_COUNT_SC",
         "SUBJECT_AREAS_SC", "SENIORITY_SC", "AUTHOR_ID_GS", "INTERESTS_GS", 
-        "ORCID_EMPLOYMENT", "GENDER", "PROFILE_CLASSIFICATION"
+        "ORCID", "ORCID_EMPLOYMENT", "GENDER", "PROFILE_CLASSIFICATION"
     ]
         
     # Ensure all columns exist, fill missing ones with 'No data'

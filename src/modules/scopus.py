@@ -60,6 +60,7 @@ def process_scopus(doi, current_authors, config):
                 name_lower = raw_name.lower()
                 
                 authid = a.get("authid", "NO_ID_SC")
+                sc_orcid = a.get("orcid")
                 
                 afid = a.get("afid", [])
                 if isinstance(afid, list) and len(afid) > 0:
@@ -73,18 +74,21 @@ def process_scopus(doi, current_authors, config):
                     "name": name_lower,
                     "rawName": raw_name,
                     "scopusId": authid,
+                    "orcid": sc_orcid,
                     "affiliation": affil
                 })
     except Exception as e:
         logger.error(f"[Scopus] Search Error: {e}")
 
     final_rows = []
+    
+    from utils.author_matcher import is_same_author
+    
     # Match authors
     for auth in current_authors:
-        auth_name_lower = auth.get("AUTHOR_NAME", "").lower()
         match_sc = None
         for sc in scopus_authors:
-            if sc["name"] in auth_name_lower or auth_name_lower in sc["name"]:
+            if is_same_author(auth, sc, api_type="scopus"):
                 match_sc = sc
                 break
                 
