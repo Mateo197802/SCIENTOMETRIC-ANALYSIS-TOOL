@@ -6,6 +6,21 @@ logger = logging.getLogger(__name__)
 
 OPENALEX_WORKS_URL = "https://api.openalex.org/works"
 
+
+def _affiliation_metadata(authorship):
+    """Return primary institution and evidenced country for one authorship."""
+    institutions = authorship.get("institutions", [])
+    if institutions:
+        institution = institutions[0]
+        return (
+            institution.get("display_name") or "No data",
+            institution.get("country_code") or "UNKNOWN",
+        )
+
+    countries = authorship.get("countries", [])
+    return "No data", countries[0] if countries else "UNKNOWN"
+
+
 def process_openalex(doi, config):
     """
     Fetches OpenAlex metadata for a DOI and extracts authors with their deep metrics.
@@ -69,14 +84,7 @@ def process_openalex(doi, config):
             orcid = author_info.get("orcid", "No data")
             
             # Affiliations
-            affiliations = auth.get("institutions", [])
-            affiliation_oa = "No data"
-            geo_country_oa = "IN" # Default fallback
-            
-            if affiliations:
-                # Top affiliation
-                affiliation_oa = affiliations[0].get("display_name", "No data")
-                geo_country_oa = affiliations[0].get("country_code", "No data")
+            affiliation_oa, geo_country_oa = _affiliation_metadata(auth)
                 
             # Author Deep Metrics (Requires separate API call per author)
             works_count_oa = 0

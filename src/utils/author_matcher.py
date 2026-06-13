@@ -31,7 +31,8 @@ def is_same_author(auth_oa, api_author, api_type="scopus"):
         return False
 
     elif api_type == "semantic_scholar":
-        api_orcid = api_author.get("externalIds", {}).get("ORCID")
+        external_ids = api_author.get("externalIds") or {}
+        api_orcid = external_ids.get("ORCID")
         if api_orcid and oa_orcid != "No data":
             api_orcid = api_orcid.replace("https://orcid.org/", "").strip()
             if api_orcid == oa_orcid:
@@ -39,7 +40,7 @@ def is_same_author(auth_oa, api_author, api_type="scopus"):
                 
         # SS might return a Scopus ID as well, though usually we just match ORCID
         # Just in case:
-        ss_scopus = api_author.get("externalIds", {}).get("Scopus")
+        ss_scopus = external_ids.get("Scopus")
         if ss_scopus and oa_scopus != "No data":
             if str(ss_scopus) == str(oa_scopus):
                 return True
