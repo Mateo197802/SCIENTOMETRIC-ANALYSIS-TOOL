@@ -68,6 +68,8 @@ data/analysis/
   impact_summary.csv
   profile_summary.csv
   country_summary.csv
+  country_impact_summary.csv
+  mixed_country_leadership.csv
   gender_role_summary.csv
   field_coverage.csv
   doi_reconciliation.csv
@@ -85,13 +87,16 @@ assets/figures/
     validation_legacy/
 ```
 
-The five current analytical figures are:
+The seven current analytical figures are:
 
 1. corpus overview and metadata coverage;
 2. DOI-level collaboration composition;
 3. leadership affiliation in mixed collaborations;
 4. OpenAlex H-index distributions by affiliation region;
-5. inferred research-profile composition by affiliation region.
+5. inferred research-profile composition by affiliation region;
+6. OpenAlex H-index medians and interquartile ranges by affiliation country;
+7. African-country first, last, and corresponding authorship participation in
+   mixed collaborations.
 
 ## Methodological Boundaries
 
