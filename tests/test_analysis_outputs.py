@@ -83,6 +83,8 @@ def test_run_analysis_writes_tables_and_figures(tmp_path):
         "impact_summary.csv",
         "profile_summary.csv",
         "country_summary.csv",
+        "country_impact_summary.csv",
+        "mixed_country_leadership.csv",
         "field_coverage.csv",
         "doi_reconciliation.csv",
     }
@@ -105,6 +107,8 @@ def test_run_analysis_writes_tables_and_figures(tmp_path):
         "03_mixed_collaboration_leadership",
         "04_bibliometric_impact_gap",
         "05_research_profile_composition",
+        "06_country_hindex_distribution",
+        "07_mixed_collaboration_country_leadership",
     }
     first_svg_bytes = {}
     for name in figure_names:

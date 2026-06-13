@@ -19,11 +19,13 @@ from src.analysis.metrics import (
     add_analysis_columns,
     analysis_summary,
     collaboration_summary,
+    country_impact_summary,
     country_summary,
     field_coverage,
     gender_role_summary,
     impact_observations,
     impact_summary,
+    mixed_country_leadership_summary,
     mixed_leadership_summary,
     paper_collaboration_types,
     profile_summary,
@@ -65,6 +67,8 @@ def run_analysis(
     impact = impact_summary(data)
     profiles = profile_summary(data)
     countries = country_summary(data)
+    country_impact = country_impact_summary(data)
+    country_leadership = mixed_country_leadership_summary(data)
     coverage = field_coverage(data)
     gender_roles = gender_role_summary(data)
     summary = analysis_summary(input_df, data)
@@ -82,6 +86,8 @@ def run_analysis(
         "impact_summary.csv": impact,
         "profile_summary.csv": profiles,
         "country_summary.csv": countries,
+        "country_impact_summary.csv": country_impact,
+        "mixed_country_leadership.csv": country_leadership,
         "field_coverage.csv": coverage,
         "gender_role_summary.csv": gender_roles,
         "doi_reconciliation.csv": reconciliation,
@@ -105,6 +111,8 @@ def run_analysis(
         profiles=profiles,
         coverage=coverage,
         reconciliation=reconciliation,
+        country_impact=country_impact,
+        country_leadership=country_leadership,
         figure_root=figure_root,
     )
     return summary

@@ -11,6 +11,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from matplotlib.colors import LinearSegmentedColormap
 from matplotlib.ticker import MaxNLocator
 
 NAVY = "#102A43"
@@ -491,6 +492,193 @@ def render_profile_composition(
     )
 
 
+def render_country_hindex_distribution(
+    country_impact: pd.DataFrame,
+    briefing_dir: Path,
+    manuscript_dir: Path,
+) -> None:
+    selected = country_impact.loc[
+        country_impact["SELECTED_FOR_FIGURE"].eq(True)
+    ].copy()
+    fig, axes = plt.subplots(1, 2, figsize=(14.2, 7.3), sharex=True)
+    regions = [
+        ("Africa", "African affiliations", TEAL),
+        ("Outside Africa", "Outside-African affiliations", NAVY),
+    ]
+    maximum = max(float(selected["HINDEX_Q3"].max()) if len(selected) else 0, 1)
+    for axis, (region, title, color) in zip(axes, regions):
+        data = selected[selected["AFFILIATION_REGION"].eq(region)].sort_values(
+            ["HINDEX_MEDIAN", "COUNTRY"]
+        )
+        if data.empty:
+            axis.text(
+                0.5,
+                0.5,
+                "Insufficient eligible countries",
+                ha="center",
+                va="center",
+                transform=axis.transAxes,
+                color=SLATE,
+            )
+            axis.set_yticks([])
+        else:
+            positions = np.arange(len(data))
+            axis.hlines(
+                positions,
+                data["HINDEX_Q1"],
+                data["HINDEX_Q3"],
+                color=color,
+                linewidth=4,
+                alpha=0.48,
+            )
+            axis.scatter(
+                data["HINDEX_MEDIAN"],
+                positions,
+                s=72,
+                color=color,
+                edgecolor="white",
+                linewidth=1.2,
+                zorder=3,
+            )
+            axis.set_yticks(
+                positions,
+                [
+                    f"{row.COUNTRY}  (N={int(row.AUTHORS):,})"
+                    for row in data.itertuples()
+                ],
+            )
+            for position, row in zip(positions, data.itertuples()):
+                axis.text(
+                    row.HINDEX_Q3 + maximum * 0.025,
+                    position,
+                    f"{row.HINDEX_MEDIAN:.1f}",
+                    va="center",
+                    color=NAVY,
+                    fontsize=9,
+                    fontweight="bold",
+                )
+        axis.set_title(title, loc="left", fontsize=14, color=NAVY)
+        axis.set_xlim(0, maximum * 1.2)
+        axis.grid(axis="x", color=LIGHT, linewidth=0.8)
+        axis.spines[["top", "right", "left"]].set_visible(False)
+        axis.tick_params(axis="y", length=0)
+        axis.set_xlabel("OpenAlex H-index")
+
+    fig.suptitle(
+        "OpenAlex H-index distribution by affiliation country",
+        x=0.07,
+        y=0.98,
+        ha="left",
+        fontsize=19,
+        fontweight="bold",
+        color=NAVY,
+    )
+    fig.text(
+        0.07,
+        0.025,
+        (
+            "Point = median; line = interquartile range. One observation per author-country pair. "
+            "Country denotes publication-time affiliation, not origin or nationality."
+        ),
+        color=SLATE,
+        fontsize=9,
+    )
+    fig.tight_layout(rect=(0, 0.07, 1, 0.94), w_pad=4)
+    _save(
+        fig,
+        "06_country_hindex_distribution",
+        briefing_dir,
+        manuscript_dir,
+    )
+
+
+def render_mixed_country_leadership(
+    country_leadership: pd.DataFrame,
+    briefing_dir: Path,
+    manuscript_dir: Path,
+) -> None:
+    data = country_leadership.loc[
+        country_leadership["SELECTED_FOR_FIGURE"].eq(True)
+    ].sort_values(["MIXED_PAPERS", "COUNTRY"], ascending=[False, True])
+    fig, axis = plt.subplots(figsize=(11.8, 7.2))
+    if data.empty:
+        axis.text(
+            0.5,
+            0.5,
+            "Insufficient eligible countries",
+            ha="center",
+            va="center",
+            transform=axis.transAxes,
+            color=SLATE,
+        )
+        axis.set_axis_off()
+    else:
+        columns = [
+            "FIRST_AUTHOR_PERCENT",
+            "LAST_AUTHOR_PERCENT",
+            "CORRESPONDING_AUTHOR_PERCENT",
+        ]
+        matrix = data[columns].to_numpy(dtype=float)
+        cmap = LinearSegmentedColormap.from_list(
+            "leadership",
+            [PALE, "#A8DADC", TEAL, NAVY],
+        )
+        image = axis.imshow(matrix, cmap=cmap, vmin=0, vmax=100, aspect="auto")
+        axis.set_xticks(
+            np.arange(3),
+            ["First author", "Last author", "Corresponding author"],
+        )
+        axis.set_yticks(
+            np.arange(len(data)),
+            [
+                f"{row.COUNTRY}  (N={int(row.MIXED_PAPERS):,})"
+                for row in data.itertuples()
+            ],
+        )
+        axis.tick_params(axis="both", length=0)
+        for row_index in range(matrix.shape[0]):
+            for column_index in range(matrix.shape[1]):
+                value = matrix[row_index, column_index]
+                axis.text(
+                    column_index,
+                    row_index,
+                    f"{value:.1f}%",
+                    ha="center",
+                    va="center",
+                    color="white" if value >= 45 else NAVY,
+                    fontsize=10,
+                    fontweight="bold",
+                )
+        colorbar = fig.colorbar(image, ax=axis, pad=0.025, fraction=0.04)
+        colorbar.set_label("Country-participating mixed papers (%)")
+        colorbar.outline.set_visible(False)
+        axis.spines[["top", "right", "bottom", "left"]].set_visible(False)
+
+    axis.set_title(
+        "African-country leadership participation in mixed collaborations",
+        loc="left",
+        color=NAVY,
+        pad=18,
+    )
+    fig.text(
+        0.10,
+        0.025,
+        (
+            "Denominator: mixed-collaboration papers with at least one author affiliated with the country. "
+            "Role percentages are independent and may overlap."
+        ),
+        color=SLATE,
+        fontsize=9,
+    )
+    fig.tight_layout(rect=(0, 0.07, 1, 1))
+    _save(
+        fig,
+        "07_mixed_collaboration_country_leadership",
+        briefing_dir,
+        manuscript_dir,
+    )
+
+
 def render_doi_reconciliation(
     reconciliation: pd.DataFrame,
     validation_dir: Path,
@@ -536,6 +724,8 @@ def render_all_figures(
     profiles: pd.DataFrame,
     coverage: pd.DataFrame,
     reconciliation: pd.DataFrame,
+    country_impact: pd.DataFrame,
+    country_leadership: pd.DataFrame,
     figure_root: Path,
 ) -> None:
     """Render all briefing, manuscript, and validation figures."""
@@ -549,4 +739,10 @@ def render_all_figures(
     render_mixed_leadership(leadership, briefing_dir, manuscript_dir)
     render_impact_gap(observations, impact, briefing_dir, manuscript_dir)
     render_profile_composition(profiles, briefing_dir, manuscript_dir)
+    render_country_hindex_distribution(
+        country_impact, briefing_dir, manuscript_dir
+    )
+    render_mixed_country_leadership(
+        country_leadership, briefing_dir, manuscript_dir
+    )
     render_doi_reconciliation(reconciliation, figure_root / "validation")
