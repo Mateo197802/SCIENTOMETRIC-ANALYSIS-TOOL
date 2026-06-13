@@ -4,27 +4,32 @@ __pycache__/
 *$py.class
 *.so
 
-# Environments - NEVER commit API keys
+# Virtual environments
 .env
 .env.*
-.venv
+.venv/
 env/
 venv/
 ENV/
-env.bak/
-venv.bak/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
 
 # Project specifics
 temp*.txt
-.DS_Store
+data/output/csv/evaluator_temp/
+data/output/csv/pipeline_checkpoint.json
+data/output_web/
 
 # Helper/debug scripts (local only)
 check_*.py
+extract_dois.py
 
-# Per-DOI machine output files (auto-generated)
-data/output/csv/*_maquina.csv
-data/output_web/
-
-# Evaluation outputs
+# Evaluation intermediate outputs
 data/evaluation_summary.csv
 data/field_completeness_detail.csv

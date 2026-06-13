@@ -30,6 +30,17 @@ def load_config():
         "scholarActive": os.getenv("SCHOLAR_ACTIVE", "true").lower() == "true",
         
         "azureKey": os.getenv("AZURE_OPENAI_KEY", ""),
-        "azureEndpoint": os.getenv("AZURE_OPENAI_ENDPOINT", "")
+        "azureEndpoint": os.getenv("AZURE_OPENAI_ENDPOINT", ""),
+        
+        # Genderize.io API keys (round-robin rotation)
+        "genderizeKeys": [
+            k for k in [
+                os.getenv("GENDERIZE_KEY_1", ""),
+                os.getenv("GENDERIZE_KEY_2", ""),
+                os.getenv("GENDERIZE_KEY_3", ""),
+                os.getenv("GENDERIZE_KEY_4", ""),
+                os.getenv("GENDERIZE_KEY_5", ""),
+            ] if k
+        ],
     }    
     return config

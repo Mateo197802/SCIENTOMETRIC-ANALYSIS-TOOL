@@ -42,26 +42,27 @@ def compress_authors(authors_list):
             
         existing = merged_authors[match_idx]
         
-        # Merge metrics safely keeping the best/found ones
+        # Merge Scopus paper-level IDs (kept)
         if item.get("AUTHOR_ID_SC") and item.get("AUTHOR_ID_SC") not in ["N/A", "NOT_FOUND_IN_SC"]:
             existing["AUTHOR_ID_SC"] = item["AUTHOR_ID_SC"]
-            existing["HINDEX_SC"] = max(existing.get("HINDEX_SC", 0), item.get("HINDEX_SC", 0))
-            existing["CITATIONS_SC"] = max(existing.get("CITATIONS_SC", 0), item.get("CITATIONS_SC", 0))
-            if not existing.get("SUBJECT_AREAS_SC") or existing.get("SUBJECT_AREAS_SC") == "No data":
-                existing["SUBJECT_AREAS_SC"] = item.get("SUBJECT_AREAS_SC")
-            if not existing.get("SENIORITY_SC") or existing.get("SENIORITY_SC") == "Unknown":
-                existing["SENIORITY_SC"] = item.get("SENIORITY_SC")
-                
+        
+        # Merge Semantic Scholar IDs and metrics
         if item.get("AUTHOR_ID_SS") and item.get("AUTHOR_ID_SS") not in ["N/A", "NOT_FOUND_IN_SS"]:
             existing["AUTHOR_ID_SS"] = item["AUTHOR_ID_SS"]
             existing["HINDEX_SS"] = max(existing.get("HINDEX_SS", 0), item.get("HINDEX_SS", 0))
             existing["CITATIONS_SS"] = max(existing.get("CITATIONS_SS", 0), item.get("CITATIONS_SS", 0))
             
-        if item.get("AUTHOR_ID_GS") and item.get("AUTHOR_ID_GS") not in ["N/A", "N/A (Disabled)", "NOT_FOUND"]:
-            existing["AUTHOR_ID_GS"] = item["AUTHOR_ID_GS"]
-            existing["INTERESTS_GS"] = item.get("INTERESTS_GS", "N/A")
+            # Carry over Name and ORCID if existing is missing them
+            if existing.get("AUTHOR_NAME_SS") in ["NOT_FOUND_IN_SS", "SKIP", "", None]:
+                existing["AUTHOR_NAME_SS"] = item.get("AUTHOR_NAME_SS", "NOT_FOUND_IN_SS")
+            if existing.get("ORCID_SS") in ["NO_ORCID_SS", "", None]:
+                existing["ORCID_SS"] = item.get("ORCID_SS", "NO_ORCID_SS")
             
-        if existing.get("ORCID") == "NO_ORCID" and item.get("ORCID") and item.get("ORCID") != "NO_ORCID":
-            existing["ORCID"] = item["ORCID"]
+        # Update primary ORCID if missing
+        if existing.get("ORCID") in ["NO_ORCID", "", None]:
+            if item.get("ORCID") and item.get("ORCID") != "NO_ORCID":
+                existing["ORCID"] = item["ORCID"]
+            elif item.get("ORCID_SS") and item.get("ORCID_SS") != "NO_ORCID_SS":
+                existing["ORCID"] = item["ORCID_SS"]
             
     return merged_authors

@@ -25,8 +25,8 @@ def generate_analytics():
 
     # Data Cleaning and Preparation
     # 1. Clean H-Index and Citations
-    df['HINDEX_SC'] = pd.to_numeric(df['HINDEX_SC'], errors='coerce').fillna(0)
-    df['CITATIONS_SC'] = pd.to_numeric(df['CITATIONS_SC'], errors='coerce').fillna(0)
+    df['HINDEX_OA'] = pd.to_numeric(df['HINDEX_OA'], errors='coerce').fillna(0)
+    df['CITATIONS_OA'] = pd.to_numeric(df['CITATIONS_OA'], errors='coerce').fillna(0)
     
     # 2. Clean Profiles
     def extract_base_profile(prof):
@@ -43,20 +43,26 @@ def generate_analytics():
     # ==========================================
     # FIGURE 1: GLOBAL H-INDEX DISPARITY
     # ==========================================
-    plt.figure(figsize=(10, 6))
+    # Limit to top 25 countries by number of authors for readability
+    top_countries = df_country['GEO_COUNTRY_OA'].value_counts().head(25).index.tolist()
+    df_country_top = df_country[df_country['GEO_COUNTRY_OA'].isin(top_countries)].copy()
     
-    # Sort countries by median H-Index for better visualization
-    order = df_country.groupby('GEO_COUNTRY_OA')['HINDEX_SC'].median().sort_values(ascending=False).index
+    # Sort by median H-Index
+    order = df_country_top.groupby('GEO_COUNTRY_OA')['HINDEX_OA'].median().sort_values(ascending=False).index
     
-    ax1 = sns.boxplot(x='GEO_COUNTRY_OA', y='HINDEX_SC', data=df_country, order=order, palette="viridis")
-    sns.stripplot(x='GEO_COUNTRY_OA', y='HINDEX_SC', data=df_country, order=order, color="black", alpha=0.5, jitter=True)
+    fig1, ax1 = plt.subplots(figsize=(16, 7))
     
-    plt.title('Global H-Index Disparity by Country of Origin\n(Scientometric Impact Gap)', fontsize=14, fontweight='bold', pad=15)
-    plt.xlabel('Country (ISO Code)', fontsize=12, fontweight='bold')
-    plt.ylabel('Scopus H-Index', fontsize=12, fontweight='bold')
-    plt.xticks(rotation=45)
+    sns.boxplot(x='GEO_COUNTRY_OA', y='HINDEX_OA', data=df_country_top, order=order,
+                palette="viridis", ax=ax1, fliersize=3)
+    
+    ax1.set_title('Global H-Index Disparity by Country of Origin\n(Scientometric Impact Gap — Top 25 Countries by Author Count)',
+                  fontsize=14, fontweight='bold', pad=15)
+    ax1.set_xlabel('Country (ISO Code)', fontsize=12, fontweight='bold')
+    ax1.set_ylabel('H-Index (OpenAlex)', fontsize=12, fontweight='bold')
+    plt.xticks(rotation=90, ha='center', fontsize=10)
+    
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, "01_global_hindex_disparity.png"), dpi=300)
+    plt.savefig(os.path.join(output_dir, "01_global_hindex_disparity.png"), dpi=300, bbox_inches='tight')
     plt.close()
     
     print("Generating Figure 2: Clinical vs. Technical Impact Matrix...")
@@ -69,12 +75,13 @@ def generate_analytics():
     df_profile = df[df['BASE_PROFILE'] != 'UNKNOWN'].copy()
     
     # Use violin plot to show distribution density
-    ax2 = sns.violinplot(x='BASE_PROFILE', y='HINDEX_SC', data=df_profile, palette="mako", inner="quartile")
-    sns.swarmplot(x='BASE_PROFILE', y='HINDEX_SC', data=df_profile, color="white", edgecolor="gray", linewidth=1, size=4)
+    ax2 = sns.violinplot(x='BASE_PROFILE', y='HINDEX_OA', data=df_profile, palette="mako", inner="quartile")
+    # Use stripplot instead of swarmplot — swarmplot hangs with 7k+ points
+    sns.stripplot(x='BASE_PROFILE', y='HINDEX_OA', data=df_profile, color="black", alpha=0.15, jitter=True, size=2)
     
     plt.title('Clinical vs. Technical Representation and Impact\n(H-Index Distribution by LLM-Classified Role)', fontsize=14, fontweight='bold', pad=15)
     plt.xlabel('Research Profile Classification', fontsize=12, fontweight='bold')
-    plt.ylabel('Scopus H-Index', fontsize=12, fontweight='bold')
+    plt.ylabel('H-Index (OpenAlex)', fontsize=12, fontweight='bold')
     plt.xticks(rotation=15)
     plt.tight_layout()
     plt.savefig(os.path.join(output_dir, "02_clinical_vs_technical_impact.png"), dpi=300)

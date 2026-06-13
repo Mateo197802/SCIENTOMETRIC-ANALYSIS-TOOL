@@ -1,13 +1,14 @@
 import requests
 import time
 import logging
-import datetime
 
 logger = logging.getLogger(__name__)
 
 def process_scopus(doi, current_authors, config):
     """
-    Fetches Scopus metadata and author profiles for deep metrics like H-index and seniority.
+    Fetches Scopus paper-level metadata: author IDs, names, affiliations, and funding.
+    NOTE: Deep metrics (H-index, citations, seniority) removed — requires institutional
+    API subscription tier (view=ENHANCED) which is not available with standard access.
     """
     if not config.get("scopusActive"):
         for auth in current_authors:
@@ -16,11 +17,6 @@ def process_scopus(doi, current_authors, config):
                 "AUTHOR_NAME_SC": "SKIP",
                 "AFFILIATION_SC": "N/A",
                 "FUNDING_SC": "No data",
-                "HINDEX_SC": 0,
-                "CITATIONS_SC": 0,
-                "DOC_COUNT_SC": 0,
-                "SUBJECT_AREAS_SC": "No data",
-                "SENIORITY_SC": "Unknown"
             })
         return current_authors
 
@@ -42,6 +38,19 @@ def process_scopus(doi, current_authors, config):
             "view": "COMPLETE"
         }
         res = requests.get(url, params=params, headers=headers, timeout=10)
+        
+        # --- VPN GUARD: Detect institutional access issues ---
+        if res.status_code == 400:
+            logger.error("=" * 60)
+            logger.error("[Scopus] HTTP 400 — VPN/Institutional access error!")
+            logger.error("[Scopus] Please reconnect the Yachay Tech VPN and restart.")
+            logger.error("=" * 60)
+            raise ConnectionError("SCOPUS_VPN_ERROR: HTTP 400 — VPN is disconnected or institutional access denied. Reconnect VPN and retry.")
+        
+        if res.status_code == 401 or res.status_code == 403:
+            logger.error(f"[Scopus] HTTP {res.status_code} — API key or access issue.")
+            raise ConnectionError(f"SCOPUS_AUTH_ERROR: HTTP {res.status_code} — Check API key and VPN.")
+        
         res.raise_for_status()
         data = res.json()
         
@@ -77,6 +86,9 @@ def process_scopus(doi, current_authors, config):
                     "orcid": sc_orcid,
                     "affiliation": affil
                 })
+    except ConnectionError:
+        # Re-raise VPN/auth errors so main.py can handle them
+        raise
     except Exception as e:
         logger.error(f"[Scopus] Search Error: {e}")
 
@@ -143,56 +155,4 @@ def process_scopus(doi, current_authors, config):
             }
             final_rows.append(ghost)
 
-    # Author-level profile lookup
-    for auth in final_rows:
-        auth_id_sc = auth.get("AUTHOR_ID_SC")
-        auth["HINDEX_SC"] = 0
-        auth["CITATIONS_SC"] = 0
-        auth["DOC_COUNT_SC"] = 0
-        auth["SUBJECT_AREAS_SC"] = "No data"
-        auth["SENIORITY_SC"] = "Unknown"
-        
-        if auth_id_sc and auth_id_sc not in ["NOT_FOUND_IN_SC", "SKIP", "N/A", "NO_ID_SC"]:
-            try:
-                time.sleep(config.get("scopusDelay", 0.5))
-                url = f"https://api.elsevier.com/content/author/author_id/{auth_id_sc}"
-                params = {"view": "ENHANCED"}
-                
-                res = requests.get(url, params=params, headers=headers, timeout=10)
-                res.raise_for_status()
-                profile_data = res.json().get("author-retrieval-response", [])
-                
-                if isinstance(profile_data, list) and len(profile_data) > 0:
-                    profile_data = profile_data[0]
-                elif not isinstance(profile_data, dict):
-                    profile_data = {}
-                    
-                core = profile_data.get("coredata", {})
-                auth["CITATIONS_SC"] = int(core.get("citation-count", 0))
-                auth["DOC_COUNT_SC"] = int(core.get("document-count", 0))
-                
-                h_data = profile_data.get("h-index", 0)
-                if isinstance(h_data, dict):
-                    auth["HINDEX_SC"] = int(h_data.get("$", h_data.get("value", 0)))
-                else:
-                    auth["HINDEX_SC"] = int(h_data) if h_data else 0
-                    
-                subjects = profile_data.get("subject-areas", {}).get("subject-area", [])
-                if isinstance(subjects, dict): subjects = [subjects]
-                if isinstance(subjects, list):
-                    subj_names = [s.get("$", s.get("@abbrev", "")) for s in subjects if isinstance(s, dict)]
-                    if subj_names:
-                        auth["SUBJECT_AREAS_SC"] = " | ".join(filter(bool, subj_names))
-                        
-                pub_range = profile_data.get("author-profile", {}).get("publication-range", {})
-                first_year = pub_range.get("@start")
-                if first_year:
-                    career_length = datetime.datetime.now().year - int(first_year)
-                    if career_length >= 15: auth["SENIORITY_SC"] = f"Senior ({career_length} yrs)"
-                    elif career_length >= 5: auth["SENIORITY_SC"] = f"Mid-level ({career_length} yrs)"
-                    else: auth["SENIORITY_SC"] = f"Early-career ({career_length} yrs)"
-                    
-            except Exception as e:
-                logger.debug(f"[Scopus] Author Profile Error for {auth_id_sc}: {e}")
-                
     return final_rows

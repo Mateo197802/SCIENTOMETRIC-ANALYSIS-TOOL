@@ -37,13 +37,13 @@ def process_openalex(doi, config):
         year = data.get("publication_year", "No data")
         open_access_oa = data.get("open_access", {}).get("is_oa", False)
         
-        # Extract Funding (from crossref grants if available)
+        # Extract Funding 
         funding_oa = "No data"
-        grants = data.get("grants", [])
-        if grants:
-            funders = [g.get("funder_display_name") for g in grants if g.get("funder_display_name")]
+        funders_data = data.get("funders", [])
+        if funders_data:
+            funders = [g.get("display_name") for g in funders_data if g.get("display_name")]
             if funders:
-                funding_oa = ", ".join(funders)
+                funding_oa = " | ".join(funders)
                 
         # Extract Primary Topic
         primary_topic_data = data.get("primary_topic", {})

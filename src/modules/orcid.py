@@ -14,7 +14,7 @@ def process_orcid(current_authors, config):
     for author in current_authors:
         orcid = author.get("ORCID", "NO_ORCID")
         
-        if orcid in ["NO_ORCID", "ORCID_SS", "", None, "No data"]:
+        if orcid in ["NO_ORCID", "NO_ORCID_SS", "ORCID_SS", "", None, "No data"]:
             author["ORCID_EMPLOYMENT"] = "No ORCID ID"
             continue
             
@@ -25,13 +25,15 @@ def process_orcid(current_authors, config):
             res.raise_for_status()
             data = res.json()
             
-            employments = data.get("employment-summary", [])
+            affil_groups = data.get("affiliation-group", [])
             # Read the latest employment record
-            if employments and len(employments) > 0:
-                latest = employments[0]
-                org_name = latest.get("organization", {}).get("name", "Unknown organization")
-                dept_name = latest.get("department-name", "No department")
-                if not dept_name: dept_name = "No department"
+            if affil_groups and len(affil_groups) > 0:
+                summaries = affil_groups[0].get("summaries", [])
+                if summaries and len(summaries) > 0:
+                    latest = summaries[0].get("employment-summary", {})
+                    org_name = latest.get("organization", {}).get("name", "Unknown organization")
+                    dept_name = latest.get("department-name")
+                    if not dept_name: dept_name = "No department"
                 employment = f"{org_name} ({dept_name})"
                 
         except Exception as e:

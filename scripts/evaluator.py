@@ -117,13 +117,15 @@ def main():
         "WORKS_COUNT_OA", "CITATIONS_OA", "HINDEX_OA",
         "PMID_PM", "MESH_PM", "AUTHOR_ID_SC",
         "INFLUENTIAL_CITATIONS_SS", "AUTHOR_ID_SS",
-        "INTERESTS_GS", "ORCID_EMPLOYMENT", "GENDER", "PROFILE_CLASSIFICATION"
+        "ORCID_EMPLOYMENT", "GENDER", "PROFILE_CLASSIFICATION"
     ]
 
     for doi in dois:
         doi_safe = str(doi).replace("/", "_")
         doi_df = df[df["DOI"] == doi].copy()
-        doi_df.to_csv(os.path.join(MAQUINA_DIR, f"{doi_safe}_maquina.csv"), index=False)
+        eval_temp_dir = os.path.join(MAQUINA_DIR, "evaluator_temp")
+        os.makedirs(eval_temp_dir, exist_ok=True)
+        doi_df.to_csv(os.path.join(eval_temp_dir, f"{doi_safe}_maquina.csv"), index=False)
 
         # Fetch web
         web_data = fetch_openalex(doi)
@@ -244,7 +246,6 @@ def main():
         "PubMed":           ["PMID_PM", "MESH_PM"],
         "Scopus":           ["AUTHOR_ID_SC"],
         "Semantic Scholar": ["INFLUENTIAL_CITATIONS_SS", "AUTHOR_ID_SS"],
-        "Google Scholar":   ["INTERESTS_GS"],
         "ORCID":            ["ORCID_EMPLOYMENT"],
         "Azure GPT-4o":     ["GENDER", "PROFILE_CLASSIFICATION"],
     }
