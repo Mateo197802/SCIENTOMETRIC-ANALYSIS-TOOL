@@ -1,0 +1,138 @@
+{
+  "input_dois": 1158,
+  "output_dois": 1158,
+  "author_paper_records": 7361,
+  "distinct_openalex_author_ids": 5675,
+  "collaboration_composition": [
+    {
+      "CATEGORY": "Africa-only known affiliations",
+      "PAPERS": 533,
+      "PERCENT": 46.1
+    },
+    {
+      "CATEGORY": "Mixed Africa + outside",
+      "PAPERS": 499,
+      "PERCENT": 43.1
+    },
+    {
+      "CATEGORY": "No African affiliation detected",
+      "PAPERS": 93,
+      "PERCENT": 8.0
+    },
+    {
+      "CATEGORY": "Unknown affiliations only",
+      "PAPERS": 33,
+      "PERCENT": 2.8
+    }
+  ],
+  "impact_by_affiliation_region": [
+    {
+      "AFFILIATION_REGION": "Outside Africa",
+      "AUTHORS": 2658,
+      "HINDEX_MEDIAN": 13.0,
+      "HINDEX_Q1": 5.0,
+      "HINDEX_Q3": 29.0,
+      "CITATIONS_MEDIAN": 721.0,
+      "WORKS_MEDIAN": 53.0
+    },
+    {
+      "AFFILIATION_REGION": "Africa",
+      "AUTHORS": 2663,
+      "HINDEX_MEDIAN": 5.0,
+      "HINDEX_Q1": 2.0,
+      "HINDEX_Q3": 11.0,
+      "CITATIONS_MEDIAN": 100.0,
+      "WORKS_MEDIAN": 16.0
+    }
+  ],
+  "doi_reconciliation": {
+    "present": 1158,
+    "missing": 0
+  },
+  "mixed_collaboration_leadership": [
+    {
+      "ROLE": "First author",
+      "LEADERSHIP_REGION": "Africa only",
+      "PAPERS": 204,
+      "PERCENT": 40.9,
+      "MIXED_PAPERS": 499
+    },
+    {
+      "ROLE": "First author",
+      "LEADERSHIP_REGION": "Outside Africa only",
+      "PAPERS": 271,
+      "PERCENT": 54.3,
+      "MIXED_PAPERS": 499
+    },
+    {
+      "ROLE": "First author",
+      "LEADERSHIP_REGION": "Both regions",
+      "PAPERS": 0,
+      "PERCENT": 0.0,
+      "MIXED_PAPERS": 499
+    },
+    {
+      "ROLE": "First author",
+      "LEADERSHIP_REGION": "Unknown only",
+      "PAPERS": 24,
+      "PERCENT": 4.8,
+      "MIXED_PAPERS": 499
+    },
+    {
+      "ROLE": "Last author",
+      "LEADERSHIP_REGION": "Africa only",
+      "PAPERS": 249,
+      "PERCENT": 49.9,
+      "MIXED_PAPERS": 499
+    },
+    {
+      "ROLE": "Last author",
+      "LEADERSHIP_REGION": "Outside Africa only",
+      "PAPERS": 232,
+      "PERCENT": 46.5,
+      "MIXED_PAPERS": 499
+    },
+    {
+      "ROLE": "Last author",
+      "LEADERSHIP_REGION": "Both regions",
+      "PAPERS": 0,
+      "PERCENT": 0.0,
+      "MIXED_PAPERS": 499
+    },
+    {
+      "ROLE": "Last author",
+      "LEADERSHIP_REGION": "Unknown only",
+      "PAPERS": 18,
+      "PERCENT": 3.6,
+      "MIXED_PAPERS": 499
+    },
+    {
+      "ROLE": "Corresponding author",
+      "LEADERSHIP_REGION": "Africa only",
+      "PAPERS": 189,
+      "PERCENT": 37.9,
+      "MIXED_PAPERS": 499
+    },
+    {
+      "ROLE": "Corresponding author",
+      "LEADERSHIP_REGION": "Outside Africa only",
+      "PAPERS": 259,
+      "PERCENT": 51.9,
+      "MIXED_PAPERS": 499
+    },
+    {
+      "ROLE": "Corresponding author",
+      "LEADERSHIP_REGION": "Both regions",
+      "PAPERS": 34,
+      "PERCENT": 6.8,
+      "MIXED_PAPERS": 499
+    },
+    {
+      "ROLE": "Corresponding author",
+      "LEADERSHIP_REGION": "Unknown only",
+      "PAPERS": 17,
+      "PERCENT": 3.4,
+      "MIXED_PAPERS": 499
+    }
+  ]
+}

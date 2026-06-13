@@ -1,0 +1,13 @@
+ROLE,LEADERSHIP_REGION,PAPERS,PERCENT,MIXED_PAPERS
+First author,Africa only,204,40.9,499
+First author,Outside Africa only,271,54.3,499
+First author,Both regions,0,0.0,499
+First author,Unknown only,24,4.8,499
+Last author,Africa only,249,49.9,499
+Last author,Outside Africa only,232,46.5,499
+Last author,Both regions,0,0.0,499
+Last author,Unknown only,18,3.6,499
+Corresponding author,Africa only,189,37.9,499
+Corresponding author,Outside Africa only,259,51.9,499
+Corresponding author,Both regions,34,6.8,499
+Corresponding author,Unknown only,17,3.4,499
