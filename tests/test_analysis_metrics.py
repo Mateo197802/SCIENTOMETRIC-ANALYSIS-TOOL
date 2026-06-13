@@ -6,10 +6,12 @@ from src.analysis.metrics import (
     build_author_key,
     classify_affiliation_region,
     collaboration_summary,
+    country_impact_summary,
     country_summary,
     field_coverage,
     gender_role_summary,
     impact_summary,
+    mixed_country_leadership_summary,
     mixed_leadership_summary,
     profile_summary,
 )
@@ -242,3 +244,100 @@ def test_analysis_summary_uses_doi_and_valid_openalex_id_counts():
     assert summary["output_dois"] == 2
     assert summary["author_paper_records"] == 3
     assert summary["distinct_openalex_author_ids"] == 2
+
+
+def test_country_impact_summary_deduplicates_author_country_observations():
+    raw = pd.DataFrame(
+        [
+            _row("10.1/a", "Ada", "NG", "first", author_id="A1", hindex=4),
+            _row("10.1/b", "Ada", "NG", "last", author_id="A1", hindex=7),
+            _row("10.1/c", "Bola", "NG", "first", author_id="A2", hindex=11),
+        ]
+    )
+
+    summary = country_impact_summary(
+        add_analysis_columns(raw),
+        countries_per_region=1,
+        min_authors=1,
+    ).iloc[0]
+
+    assert summary["COUNTRY"] == "NG"
+    assert summary["AUTHORS"] == 2
+    assert summary["HINDEX_MEDIAN"] == 9.0
+    assert bool(summary["SELECTED_FOR_FIGURE"])
+
+
+def test_country_impact_summary_selects_by_sample_size_within_region():
+    raw = pd.DataFrame(
+        [
+            _row("10.1/a", "A", "NG", "first", author_id="NG1", hindex=4),
+            _row("10.1/b", "B", "NG", "last", author_id="NG2", hindex=6),
+            _row("10.1/c", "C", "GH", "first", author_id="GH1", hindex=80),
+            _row("10.1/d", "D", "US", "first", author_id="US1", hindex=10),
+            _row("10.1/e", "E", "US", "last", author_id="US2", hindex=12),
+            _row("10.1/f", "F", "GB", "first", author_id="GB1", hindex=90),
+        ]
+    )
+
+    summary = country_impact_summary(
+        add_analysis_columns(raw),
+        countries_per_region=1,
+        min_authors=1,
+    )
+    selected = set(summary.loc[summary["SELECTED_FOR_FIGURE"], "COUNTRY"])
+
+    assert selected == {"NG", "US"}
+
+
+def test_mixed_country_leadership_uses_country_specific_doi_denominators():
+    raw = pd.DataFrame(
+        [
+            _row("10.1/one", "A", "NG", "first", True, author_id="A1"),
+            _row("10.1/one", "B", "US", "last", author_id="B1"),
+            _row("10.1/two", "C", "NG", "middle", author_id="C1"),
+            _row("10.1/two", "D", "US", "first", True, author_id="D1"),
+            _row("10.1/two", "E", "US", "last", author_id="E1"),
+            _row("10.1/three", "F", "GH", "first", True, author_id="F1"),
+            _row("10.1/three", "G", "GH", "last", author_id="G1"),
+            _row("10.1/three", "H", "US", "middle", author_id="H1"),
+        ]
+    )
+
+    summary = mixed_country_leadership_summary(
+        add_analysis_columns(raw),
+        country_limit=2,
+        min_mixed_papers=1,
+    ).set_index("COUNTRY")
+
+    assert summary.loc["NG", "MIXED_PAPERS"] == 2
+    assert summary.loc["NG", "FIRST_AUTHOR_PAPERS"] == 1
+    assert summary.loc["NG", "FIRST_AUTHOR_PERCENT"] == 50.0
+    assert summary.loc["NG", "LAST_AUTHOR_PERCENT"] == 0.0
+    assert summary.loc["NG", "CORRESPONDING_AUTHOR_PERCENT"] == 50.0
+
+
+def test_mixed_country_leadership_selects_by_mixed_paper_volume():
+    raw = pd.DataFrame(
+        [
+            _row("10.1/one", "A", "NG", "middle", author_id="A1"),
+            _row("10.1/one", "B", "US", "first", True, author_id="B1"),
+            _row("10.1/one", "C", "US", "last", author_id="C1"),
+            _row("10.1/two", "D", "NG", "middle", author_id="D1"),
+            _row("10.1/two", "E", "US", "first", True, author_id="E1"),
+            _row("10.1/two", "F", "US", "last", author_id="F1"),
+            _row("10.1/three", "G", "GH", "first", True, author_id="G1"),
+            _row("10.1/three", "H", "GH", "last", author_id="H1"),
+            _row("10.1/three", "I", "US", "middle", author_id="I1"),
+        ]
+    )
+
+    summary = mixed_country_leadership_summary(
+        add_analysis_columns(raw),
+        country_limit=1,
+        min_mixed_papers=1,
+    )
+    selected = summary.loc[summary["SELECTED_FOR_FIGURE"]].iloc[0]
+
+    assert selected["COUNTRY"] == "NG"
+    assert selected["MIXED_PAPERS"] == 2
+    assert selected["FIRST_AUTHOR_PERCENT"] == 0.0

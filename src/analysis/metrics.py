@@ -381,6 +381,130 @@ def country_summary(df: pd.DataFrame, min_papers: int = 5) -> pd.DataFrame:
     )
 
 
+def country_impact_summary(
+    df: pd.DataFrame,
+    countries_per_region: int = 8,
+    min_authors: int = 20,
+) -> pd.DataFrame:
+    """Summarize deduplicated author-country H-index distributions."""
+    columns = [
+        "COUNTRY",
+        "AFFILIATION_REGION",
+        "AUTHORS",
+        "HINDEX_MEDIAN",
+        "HINDEX_Q1",
+        "HINDEX_Q3",
+        "SELECTED_FOR_FIGURE",
+    ]
+    known = df[
+        df["AFFILIATION_REGION"].ne("Unknown") & df["HINDEX_OA"].notna()
+    ].copy()
+    people = (
+        known.sort_values("HINDEX_OA", ascending=False)
+        .drop_duplicates(["AUTHOR_KEY", "AFFILIATION_COUNTRY"])
+    )
+    if people.empty:
+        return pd.DataFrame(columns=columns)
+
+    summary = (
+        people.groupby(
+            ["AFFILIATION_COUNTRY", "AFFILIATION_REGION"], as_index=False
+        )
+        .agg(
+            AUTHORS=("AUTHOR_KEY", "nunique"),
+            HINDEX_MEDIAN=("HINDEX_OA", "median"),
+            HINDEX_Q1=("HINDEX_OA", lambda values: values.quantile(0.25)),
+            HINDEX_Q3=("HINDEX_OA", lambda values: values.quantile(0.75)),
+        )
+        .rename(columns={"AFFILIATION_COUNTRY": "COUNTRY"})
+    )
+    summary = summary[summary["AUTHORS"].ge(min_authors)].copy()
+    summary["SELECTED_FOR_FIGURE"] = False
+    for region in ("Africa", "Outside Africa"):
+        selected = (
+            summary[summary["AFFILIATION_REGION"].eq(region)]
+            .sort_values(["AUTHORS", "COUNTRY"], ascending=[False, True])
+            .head(countries_per_region)
+            .index
+        )
+        summary.loc[selected, "SELECTED_FOR_FIGURE"] = True
+    return summary.loc[:, columns].sort_values(
+        ["AFFILIATION_REGION", "AUTHORS", "COUNTRY"],
+        ascending=[True, False, True],
+    )
+
+
+def mixed_country_leadership_summary(
+    df: pd.DataFrame,
+    country_limit: int = 10,
+    min_mixed_papers: int = 10,
+) -> pd.DataFrame:
+    """Calculate African-country role participation in mixed papers."""
+    columns = [
+        "COUNTRY",
+        "MIXED_PAPERS",
+        "FIRST_AUTHOR_PAPERS",
+        "FIRST_AUTHOR_PERCENT",
+        "LAST_AUTHOR_PAPERS",
+        "LAST_AUTHOR_PERCENT",
+        "CORRESPONDING_AUTHOR_PAPERS",
+        "CORRESPONDING_AUTHOR_PERCENT",
+        "SELECTED_FOR_FIGURE",
+    ]
+    paper_types = paper_collaboration_types(df)
+    mixed_dois = set(
+        paper_types.loc[
+            paper_types["CATEGORY"].eq("Mixed Africa + outside"), "DOI"
+        ]
+    )
+    african = df[
+        df["DOI_NORMALIZED"].isin(mixed_dois)
+        & df["AFFILIATION_REGION"].eq("Africa")
+    ]
+    records = []
+    for country, group in african.groupby("AFFILIATION_COUNTRY"):
+        mixed_papers = int(group["DOI_NORMALIZED"].nunique())
+        if mixed_papers < min_mixed_papers:
+            continue
+        first = int(
+            group.loc[
+                group["AUTHOR_POSITION"].eq("first"), "DOI_NORMALIZED"
+            ].nunique()
+        )
+        last = int(
+            group.loc[
+                group["AUTHOR_POSITION"].eq("last"), "DOI_NORMALIZED"
+            ].nunique()
+        )
+        corresponding = int(
+            group.loc[group["IS_CORRESPONDING"], "DOI_NORMALIZED"].nunique()
+        )
+        records.append(
+            {
+                "COUNTRY": country,
+                "MIXED_PAPERS": mixed_papers,
+                "FIRST_AUTHOR_PAPERS": first,
+                "FIRST_AUTHOR_PERCENT": round(first / mixed_papers * 100, 1),
+                "LAST_AUTHOR_PAPERS": last,
+                "LAST_AUTHOR_PERCENT": round(last / mixed_papers * 100, 1),
+                "CORRESPONDING_AUTHOR_PAPERS": corresponding,
+                "CORRESPONDING_AUTHOR_PERCENT": round(
+                    corresponding / mixed_papers * 100, 1
+                ),
+                "SELECTED_FOR_FIGURE": False,
+            }
+        )
+    if not records:
+        return pd.DataFrame(columns=columns)
+
+    summary = pd.DataFrame(records, columns=columns).sort_values(
+        ["MIXED_PAPERS", "COUNTRY"], ascending=[False, True]
+    )
+    selected = summary.head(country_limit).index
+    summary.loc[selected, "SELECTED_FOR_FIGURE"] = True
+    return summary
+
+
 def field_coverage(df: pd.DataFrame) -> pd.DataFrame:
     """Calculate populated-record coverage for every source field."""
     derived_columns = {
