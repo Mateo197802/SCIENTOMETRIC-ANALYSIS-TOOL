@@ -36,6 +36,7 @@ def _configure_style() -> None:
             "axes.grid": False,
             "figure.facecolor": "white",
             "savefig.facecolor": "white",
+            "svg.hashsalt": "scientometric-analysis-tool",
         }
     )
 
@@ -60,11 +61,18 @@ def _save(
         bbox_inches="tight",
         facecolor="white",
     )
+    svg_path = manuscript_dir / f"{name}.svg"
     fig.savefig(
-        manuscript_dir / f"{name}.svg",
+        svg_path,
         bbox_inches="tight",
         facecolor="white",
         metadata={"Date": None},
+    )
+    svg_text = svg_path.read_text(encoding="utf-8")
+    svg_path.write_text(
+        "\n".join(line.rstrip() for line in svg_text.splitlines()) + "\n",
+        encoding="utf-8",
+        newline="\n",
     )
     plt.close(fig)
 

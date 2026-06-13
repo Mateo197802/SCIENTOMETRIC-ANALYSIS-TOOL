@@ -106,12 +106,28 @@ def test_run_analysis_writes_tables_and_figures(tmp_path):
         "04_bibliometric_impact_gap",
         "05_research_profile_composition",
     }
+    first_svg_bytes = {}
     for name in figure_names:
         assert (figure_root / "briefing" / f"{name}.png").stat().st_size > 0
         assert (figure_root / "manuscript" / f"{name}.png").stat().st_size > 0
         svg_path = figure_root / "manuscript" / f"{name}.svg"
         assert svg_path.stat().st_size > 0
-        assert "<dc:date>" not in svg_path.read_text(encoding="utf-8")
+        svg_text = svg_path.read_text(encoding="utf-8")
+        assert "<dc:date>" not in svg_text
+        assert all(line == line.rstrip() for line in svg_text.splitlines())
+        first_svg_bytes[name] = svg_path.read_bytes()
+
+    run_analysis(
+        input_path=input_path,
+        csv_path=csv_path,
+        json_path=json_path,
+        data_dir=data_dir,
+        figure_root=figure_root,
+    )
+    for name in figure_names:
+        assert (
+            figure_root / "manuscript" / f"{name}.svg"
+        ).read_bytes() == first_svg_bytes[name]
 
     assert (
         figure_root / "validation" / "01_doi_reconciliation.png"
