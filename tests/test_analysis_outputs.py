@@ -109,7 +109,9 @@ def test_run_analysis_writes_tables_and_figures(tmp_path):
     for name in figure_names:
         assert (figure_root / "briefing" / f"{name}.png").stat().st_size > 0
         assert (figure_root / "manuscript" / f"{name}.png").stat().st_size > 0
-        assert (figure_root / "manuscript" / f"{name}.svg").stat().st_size > 0
+        svg_path = figure_root / "manuscript" / f"{name}.svg"
+        assert svg_path.stat().st_size > 0
+        assert "<dc:date>" not in svg_path.read_text(encoding="utf-8")
 
     assert (
         figure_root / "validation" / "01_doi_reconciliation.png"

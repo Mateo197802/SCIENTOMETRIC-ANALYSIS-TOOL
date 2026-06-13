@@ -64,6 +64,7 @@ def _save(
         manuscript_dir / f"{name}.svg",
         bbox_inches="tight",
         facecolor="white",
+        metadata={"Date": None},
     )
     plt.close(fig)
 
