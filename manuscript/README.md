@@ -40,7 +40,10 @@ python scripts/manuscript/validate_manuscript.py
 
 ## Online working copy
 
-[To be recorded after verified SharePoint upload.]
+- SharePoint Word document: [Document 1.docx](https://yachaytecheduec-my.sharepoint.com/:w:/g/personal/isaac_gavilanes_yachaytech_edu_ec/IQAFGcgvbx2sRrCU2eU-G8twAcUS48ke__qhpcVP54cteWc?e=eR2jFJ)
+- Upload verified on 2026-06-14: title, references, 11 tables, and 5 figures are present.
+- Downloaded working-copy SHA256: `BE8BA5B81BEA956250147F84BFB103FE3FD32C2E0400E2036C78C57A51FFDDE5`.
+- The anonymous edit permission does not allow renaming the SharePoint file; the owner must rename `Document 1.docx` from an authenticated session.
 
 ## Validated artifacts
 
