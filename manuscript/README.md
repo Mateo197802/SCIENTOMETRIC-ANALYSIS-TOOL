@@ -41,3 +41,11 @@ python scripts/manuscript/validate_manuscript.py
 ## Online working copy
 
 [To be recorded after verified SharePoint upload.]
+
+## Validated artifacts
+
+- Word SHA256: `455D5DE2ECFBD79436EE1CC1D09F1A1404C60986DC7A9C7E99B941873421C768`
+- PDF SHA256: `8A5653DD7750F9DD03A229A5EC2F29A2D3A4C1FF98B5C2956387C065A4339373`
+- Automated verification: 36 tests passed.
+- Scientific consistency validator: passed.
+- Visual review: 27 PDF pages inspected.
