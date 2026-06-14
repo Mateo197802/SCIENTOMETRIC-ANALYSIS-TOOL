@@ -1,10 +1,10 @@
 # Geographic Patterns of Scientific Leadership and Bibliometric Impact in the ML4Africa Research Corpus
 
-**Authors:** [Editorial completion required: confirm the full author list, order, degrees, and group authorship.]
+**Authors:**
 
-**Affiliations:** [Editorial completion required: confirm institutional affiliations for all authors.]
+**Affiliations:**
 
-**Corresponding author:** [Editorial completion required: confirm corresponding author name, postal address, and email.]
+**Corresponding author:**
 
 ## Abstract
 

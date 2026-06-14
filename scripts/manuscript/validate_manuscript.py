@@ -141,6 +141,11 @@ def validate_manuscript() -> None:
     supplement = SUPPLEMENT_PATH.read_text(encoding="utf-8")
 
     assert manuscript.startswith(f"# {APPROVED_TITLE}")
+    front_matter = manuscript.split("## Abstract", maxsplit=1)[0]
+    assert "**Authors:**" in front_matter
+    assert "**Affiliations:**" in front_matter
+    assert "**Corresponding author:**" in front_matter
+    assert "Editorial completion required" not in front_matter
     _validate_numeric_traceability(manuscript)
     _validate_references(manuscript)
 
