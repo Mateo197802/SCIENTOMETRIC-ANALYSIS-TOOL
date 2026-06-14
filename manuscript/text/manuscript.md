@@ -80,7 +80,7 @@ After source retrieval, within-paper consolidation normalized names by removing 
 
 For each OpenAlex authorship, the tool retained the first listed institution and its country code. If no institution was listed, the first country in the OpenAlex authorship-level country array was used. Country codes in a predefined African-country set were classified as **Africa**; other known codes were classified as **outside Africa**; missing or sentinel values were classified as **unknown**.
 
-These categories represent publication-time institutional affiliation evidence. They do not measure nationality, ethnicity, country of origin, residence, study site, data source, or the location where the research was conducted. Multi-affiliated authors were represented by the first retained OpenAlex institution in the completed output.
+These categories represent publication-time institutional affiliation evidence. They do not measure nationality, ethnicity, origin, residence, study site, data source, or the location where the research was conducted. Multi-affiliated authors were represented by the first retained OpenAlex institution in the completed output.
 
 ### Collaboration and leadership outcomes
 
