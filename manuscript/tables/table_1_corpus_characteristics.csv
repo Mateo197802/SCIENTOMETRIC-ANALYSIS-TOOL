@@ -1,0 +1,16 @@
+SECTION,MEASURE,VALUE,DENOMINATOR,PERCENT
+Corpus,Input DOI values,1158,,
+Corpus,Output DOI values,1158,,
+Corpus,Author-paper records,7361,,
+Corpus,Distinct OpenAlex author IDs,5675,,
+Corpus,Observed minimum publication year,1974,,
+Corpus,Observed maximum publication year,2025,,
+Metadata coverage,Paper title populated,7361,7361,100.0
+Metadata coverage,Publication year populated,7361,7361,100.0
+Metadata coverage,Authorship position populated,7213,7361,98.0
+Metadata coverage,Affiliation populated,6664,7361,90.5
+Metadata coverage,Affiliation country populated,6353,7361,86.3
+Metadata coverage,OpenAlex author ID populated,7121,7361,96.7
+Metadata coverage,ORCID populated,4928,7361,66.9
+Metadata coverage,Name-inferred gender populated,6341,7361,86.1
+Metadata coverage,LLM profile classification populated,7361,7361,100.0
