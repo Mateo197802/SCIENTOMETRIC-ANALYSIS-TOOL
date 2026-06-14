@@ -1,0 +1,45 @@
+COUNTRY,AFFILIATION_REGION,AUTHORS,HINDEX_MEDIAN,HINDEX_Q1,HINDEX_Q3,SELECTED_FOR_FIGURE
+EG,Africa,751,5.0,2.0,12.0,True
+MA,Africa,316,5.0,2.0,12.0,True
+NG,Africa,268,3.5,1.0,7.0,True
+TN,Africa,220,5.0,2.0,12.0,True
+ET,Africa,211,4.0,1.5,8.5,True
+DZ,Africa,189,3.0,1.0,7.0,True
+ZA,Africa,188,10.0,4.0,23.2,True
+GH,Africa,112,5.0,1.0,10.0,True
+UG,Africa,89,6.0,2.0,12.0,False
+KE,Africa,77,3.0,1.0,7.0,False
+ZM,Africa,28,7.5,2.0,16.5,False
+RW,Africa,27,4.0,2.0,8.0,False
+SO,Africa,23,3.0,1.0,4.0,False
+CM,Africa,22,5.0,2.2,10.0,False
+TZ,Africa,22,9.0,2.2,15.0,False
+ZW,Africa,21,5.0,2.0,9.0,False
+US,Outside Africa,479,12.0,4.0,33.0,True
+SA,Outside Africa,352,12.0,6.0,19.2,True
+IN,Outside Africa,327,7.0,2.0,16.0,True
+GB,Outside Africa,165,15.0,6.0,36.0,True
+CN,Outside Africa,153,16.0,6.0,29.0,True
+NL,Outside Africa,83,29.0,11.0,53.5,True
+ES,Outside Africa,77,26.0,5.0,47.0,True
+DE,Outside Africa,72,28.0,9.2,47.5,True
+FR,Outside Africa,68,14.0,7.0,24.0,False
+JP,Outside Africa,62,11.5,6.2,31.2,False
+PK,Outside Africa,60,12.0,4.0,21.0,False
+AU,Outside Africa,55,36.0,20.0,65.5,False
+AE,Outside Africa,50,17.0,4.0,27.8,False
+CA,Outside Africa,49,24.0,8.0,41.0,False
+IT,Outside Africa,41,23.0,12.0,39.0,False
+JO,Outside Africa,41,6.0,2.0,15.0,False
+KR,Outside Africa,41,17.0,8.0,32.0,False
+BR,Outside Africa,35,16.0,4.5,32.5,False
+MY,Outside Africa,35,7.0,1.0,15.5,False
+HK,Outside Africa,30,16.0,1.2,36.5,False
+BE,Outside Africa,29,17.0,5.0,31.0,False
+NO,Outside Africa,29,21.0,6.0,34.0,False
+CH,Outside Africa,24,17.5,8.8,40.8,False
+SE,Outside Africa,23,18.0,8.0,34.5,False
+BD,Outside Africa,22,8.0,4.5,19.2,False
+PT,Outside Africa,22,19.5,8.2,32.8,False
+IQ,Outside Africa,21,7.0,2.0,14.0,False
+ID,Outside Africa,20,10.0,5.0,16.2,False
