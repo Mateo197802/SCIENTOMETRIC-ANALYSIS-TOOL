@@ -23,6 +23,8 @@ Thumbs.db
 
 # Project specifics
 temp*.txt
+.superpowers/
+tmp/
 data/output/csv/evaluator_temp/
 data/output/csv/pipeline_checkpoint.json
 data/output_web/
