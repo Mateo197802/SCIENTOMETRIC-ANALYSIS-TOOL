@@ -1,10 +1,15 @@
 from pathlib import Path
 
 from PIL import Image
+from docx import Document
 
 from scripts.manuscript.build_manuscript_assets import (
     build_figures,
     build_variable_dictionary,
+)
+from scripts.manuscript.build_manuscript_docx import (
+    APPROVED_TITLE,
+    build_document,
 )
 from src.analysis.constants import EXPECTED_MASTER_COLUMNS
 
@@ -53,3 +58,17 @@ def test_variable_dictionary_covers_exact_master_schema():
         "Primary",
         "Supplementary",
     }
+
+
+def test_word_manuscript_contains_required_structural_elements(tmp_path: Path):
+    output = tmp_path / "manuscript.docx"
+
+    build_document(output)
+
+    document = Document(output)
+    text = "\n".join(paragraph.text for paragraph in document.paragraphs)
+    assert document.paragraphs[0].text == APPROVED_TITLE
+    assert len(document.inline_shapes) == 5
+    assert len(document.tables) >= 11
+    assert "References" in text
+    assert "Supplementary Material" in text
