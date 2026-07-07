@@ -40,7 +40,7 @@ The validation target is not perfect numerical identity. Bibliographic databases
 
 [[FIGURE_1_VALIDATION_WORKFLOW]]
 
-Figure 1. Validation-first workflow for the Scientometric Analysis Tool. Published benchmark studies define the corpus; the tool reconstructs and enriches the corpus, builds the author-paper table, and compares outputs against external reference results through a mismatch ledger.
+Figure 1. Validation-first workflow for the Scientometric Analysis Tool. Published benchmark studies define the corpus; the tool reconstructs and enriches the corpus, builds the author-paper table, and compares outputs against external reference results through a structured mismatch ledger. Orthogonal connectors emphasize that each stage has a defined audit path.
 
 ### Benchmark Selection
 
@@ -58,7 +58,7 @@ Mejia et al. (2021) will be used as methodological support for citation-network 
 
 [[FIGURE_2_BENCHMARK_MATRIX]]
 
-Figure 2. Candidate benchmark matrix for the first validation phase. Published document counts are treated as external denominators; reproduced counts will be reported after reruns and source-specific mismatch analysis.
+Figure 2. Candidate benchmark matrix for the first validation phase. Published denominators are treated as external reference targets. Reproduced counts and rank-overlap results will be reported after benchmark reruns and source-specific mismatch analysis.
 
 ### Corpus Reconstruction and DOI Normalization
 
@@ -110,6 +110,10 @@ The tool has completed a closed-corpus stress test with 1,158 DOI values. The pr
 
 These values should be interpreted as engineering and workflow evidence only. They do not establish external validity because the stress-test corpus is not itself a published benchmark with peer-reviewed reference outputs.
 
+[[FIGURE_4_PRELIMINARY_RESULTS_SUMMARY]]
+
+Figure 4. Preliminary stress-test output inventory. The current closed-corpus run supports feasibility reporting, schema stabilization, and methods documentation; it does not yet support final claims about benchmark reproduction accuracy, country or institutional patterns, or inferred author-level variables.
+
 ### Benchmark Readiness
 
 Three benchmark studies have been identified for the first validation phase. Yan and Wang (2023) is the recommended first benchmark because its corpus size is moderate and its reported outputs align closely with the current tool: countries, institutions, productive authors, and cited papers. Baminiwatta and Solangaarachchi (2021) adds a larger collaboration-network benchmark. Basilio et al. (2022) provides a larger multi-source benchmark that will test the tool's capacity to handle Scopus-linked corpus reconstruction and country/institution summaries.
@@ -117,6 +121,10 @@ Three benchmark studies have been identified for the first validation phase. Yan
 ### Current Output Boundary
 
 At this stage, the manuscript can report the tool architecture, variable dictionary, validation strategy, benchmark-selection rationale, and stress-test feasibility. It should not yet report final benchmark reproduction results. Those results require the second metadata run, benchmark-specific corpus reconstruction, comparison tables, and manual audit.
+
+[[FIGURE_5_VALIDATION_READINESS_STATUS]]
+
+Figure 5. Preliminary validation readiness dashboard. Completed components support the methods draft, while Scopus enrichment, Google Scholar/SerpAPI checks, benchmark reruns, and manual audit remain gating tasks before the final results section can be locked.
 
 ## Discussion
 
