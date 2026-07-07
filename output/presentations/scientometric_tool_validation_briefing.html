@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scientometric Analysis Tool Validation Briefing</title>
+  <style>
+    :root {
+      --navy: #102a43;
+      --blue: #315f95;
+      --teal: #0f8b8d;
+      --gold: #e9b44c;
+      --slate: #627d98;
+      --light: #eef4f8;
+      --paper: #fbfdff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #d9e5ef;
+      color: var(--navy);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    main {
+      width: min(1180px, 96vw);
+      margin: 28px auto;
+      display: grid;
+      gap: 22px;
+    }
+    section.slide {
+      min-height: 660px;
+      background: linear-gradient(135deg, #ffffff 0%, var(--paper) 72%, #eef7f7 100%);
+      border: 1px solid #cbd7e3;
+      border-radius: 24px;
+      padding: 54px 64px;
+      box-shadow: 0 18px 48px rgba(16, 42, 67, 0.12);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      page-break-after: always;
+    }
+    .kicker {
+      color: var(--teal);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    h1, h2 {
+      margin: 0;
+      letter-spacing: -0.03em;
+      line-height: 1.03;
+    }
+    h1 {
+      max-width: 920px;
+      font-size: 58px;
+    }
+    h2 {
+      max-width: 940px;
+      font-size: 44px;
+    }
+    p {
+      font-size: 24px;
+      line-height: 1.35;
+      color: #263f5d;
+      margin: 22px 0 0;
+    }
+    .claim {
+      border-left: 7px solid var(--teal);
+      padding: 22px 28px;
+      background: rgba(15, 139, 141, 0.08);
+      border-radius: 12px;
+      font-size: 26px;
+      line-height: 1.32;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 30px;
+    }
+    .card {
+      background: white;
+      border: 1px solid #d7e2ec;
+      border-radius: 18px;
+      padding: 24px;
+      min-height: 150px;
+    }
+    .card strong {
+      display: block;
+      color: var(--navy);
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+    .card span, li {
+      color: #334e68;
+      font-size: 21px;
+      line-height: 1.35;
+    }
+    .metric {
+      color: var(--teal);
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    ul {
+      margin: 28px 0 0;
+      padding-left: 28px;
+      display: grid;
+      gap: 13px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 28px;
+      overflow: hidden;
+      border-radius: 16px;
+      font-size: 19px;
+      background: white;
+    }
+    th {
+      background: var(--navy);
+      color: white;
+      text-align: left;
+      padding: 16px 18px;
+    }
+    td {
+      border-bottom: 1px solid #e2e8f0;
+      padding: 15px 18px;
+      color: #243b53;
+      vertical-align: top;
+    }
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 34px;
+      align-items: stretch;
+    }
+    .step {
+      background: white;
+      border: 2px solid #d7e2ec;
+      border-radius: 18px;
+      padding: 20px 16px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 122px;
+    }
+    .arrow {
+      color: var(--teal);
+      font-size: 30px;
+      text-align: center;
+      margin-top: 10px;
+    }
+    footer {
+      margin-top: 34px;
+      color: var(--slate);
+      font-size: 15px;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    @media print {
+      body { background: white; }
+      main { width: 100%; margin: 0; gap: 0; }
+      section.slide {
+        width: 13.333in;
+        height: 7.5in;
+        min-height: 7.5in;
+        border-radius: 0;
+        box-shadow: none;
+        border: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <section class="slide">
+    <div>
+      <div class="kicker">Scientometric Analysis Tool</div>
+      <h1>Validation-first publication strategy</h1>
+      <p class="claim">The project is now framed as a methodological validation study of the tool, not as a standalone corpus-specific analysis.</p>
+    </div>
+    <footer><span>Prepared for strategy discussion</span><span>Validation briefing</span></footer>
+  </section>
+
+  <section class="slide">
+    <div>
+      <div class="kicker">Scope decision</div>
+      <h2>Why the manuscript needs external benchmarks</h2>
+      <div class="grid">
+        <div class="card"><strong>Problem</strong><span>A single unpublished corpus cannot prove general tool validity.</span></div>
+        <div class="card"><strong>Solution</strong><span>Replicate published scientometric studies with reported methods and results.</span></div>
+        <div class="card"><strong>Claim</strong><span>The tool is credible if its outputs match peer-reviewed benchmarks within explainable source differences.</span></div>
+      </div>
+    </div>
+    <footer><span>ML4Africa remains a stress-test reference only</span><span>Slide 2</span></footer>
+  </section>
+
+  <section class="slide">
+    <div>
+      <div class="kicker">Central claim</div>
+      <h2>What the validation must demonstrate</h2>
+      <p class="claim">Given the same corpus-construction rules, the tool should reproduce comparable document counts, affiliation patterns, authorship-position signals, country distributions, and bibliometric indicators.</p>
+      <ul>
+        <li>Differences are acceptable only when traced to database coverage, API access, deduplication, or metadata availability.</li>
+        <li>The validation output must include a mismatch log, not only summary figures.</li>
+      </ul>
+    </div>
+    <footer><span>Methodological validation, not descriptive-only analysis</span><span>Slide 3</span></footer>
+  </section>
+
+  <section class="slide">
+    <div>
+      <div class="kicker">Benchmark candidates</div>
+      <h2>Three published studies can anchor the first validation phase</h2>
+      <table>
+        <thead>
+          <tr><th>Study</th><th>Count</th><th>Primary validation targets</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Yan & Wang, 2023</td><td>2,217</td><td>Institutions, countries, productive authors, cited articles</td></tr>
+          <tr><td>Baminiwatta & Solangaarachchi, 2021</td><td>16,581</td><td>Country collaboration, co-authorship, citation bursts</td></tr>
+          <tr><td>Basilio et al., 2022</td><td>23,494 analyzed</td><td>Authors, countries, institutions, multi-source corpus reconstruction</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <footer><span>Source: benchmark-selection draft from ow.pdf</span><span>Slide 4</span></footer>
+  </section>
+
+  <section class="slide">
+    <div>
+      <div class="kicker">Tool workflow</div>
+      <h2>Validation run architecture</h2>
+      <div class="flow">
+        <div class="step">Benchmark query or DOI set</div>
+        <div class="step">DOI-first input table</div>
+        <div class="step">API enrichment</div>
+        <div class="step">Master author-paper table</div>
+        <div class="step">Benchmark comparison</div>
+      </div>
+      <p>Executed layers include OpenAlex, PubMed, Semantic Scholar, ORCID, Genderize, Azure OpenAI, CSV/JSON parity checks, and DOI reconciliation. Scopus and Scholar/SerpAPI are optional validation expansions when access is confirmed.</p>
+    </div>
+    <footer><span>Workflow should be described explicitly in Methods</span><span>Slide 5</span></footer>
+  </section>
+
+  <section class="slide">
+    <div>
+      <div class="kicker">Comparison endpoints</div>
+      <h2>The output is a reproducibility audit</h2>
+      <div class="grid">
+        <div class="card"><div class="metric">1</div><strong>Corpus</strong><span>Final document count and DOI reconciliation.</span></div>
+        <div class="card"><div class="metric">2</div><strong>Authorship</strong><span>Author counts, productive authors, authorship positions, corresponding authors.</span></div>
+        <div class="card"><div class="metric">3</div><strong>Geography</strong><span>Country and institutional distributions with rank-overlap checks.</span></div>
+      </div>
+    </div>
+    <footer><span>Citation indicators added where source coverage permits</span><span>Slide 6</span></footer>
+  </section>
+
+  <section class="slide">
+    <div>
+      <div class="kicker">Prior corpus role</div>
+      <h2>How to use the prior closed DOI corpus without overstating it</h2>
+      <ul>
+        <li>Use it for runtime, scale, reconciliation, and figure-design stress testing.</li>
+        <li>Do not use it as the main scientific validation benchmark.</li>
+        <li>Describe it as an engineering case study only after the benchmark validation logic is established.</li>
+      </ul>
+    </div>
+    <footer><span>Prevents a corpus-specific manuscript from becoming the main claim</span><span>Slide 7</span></footer>
+  </section>
+
+  <section class="slide">
+    <div>
+      <div class="kicker">Meeting decisions</div>
+      <h2>What we need to decide next</h2>
+      <ul>
+        <li>Confirm the first benchmark to reproduce.</li>
+        <li>Confirm the minimum metadata sources required for the first run.</li>
+        <li>Define the comparison table needed for a manuscript draft.</li>
+        <li>Assign benchmark extraction, API execution, manual audit, and writing tasks.</li>
+      </ul>
+    </div>
+    <footer><span>Recommended first benchmark: Yan & Wang, 2023</span><span>Slide 8</span></footer>
+  </section>
+</main>
+</body>
+</html>

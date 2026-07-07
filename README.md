@@ -1,30 +1,48 @@
 # Scientometric Analysis Tool
 
-A DOI-driven pipeline for author-level scientometric profiling and analysis of
-research collaboration, leadership, bibliometric impact, and disciplinary
-composition.
+A DOI-driven pipeline for reproducible author-level scientometric profiling,
+metadata enrichment, and validation against published bibliometric studies.
 
-The current ML4Africa corpus is fully reconciled:
+## Current Direction
 
-| Metric | Final value |
-|---|---:|
-| Unique input DOI values | 1,158 |
-| DOI values present in final output | 1,158 |
-| Author-paper records | 7,361 |
-| Distinct valid OpenAlex author IDs | 5,675 |
-| Output columns | 35 |
+The manuscript strategy has shifted from reporting a new standalone analysis of
+a single research corpus to validating the tool itself. The central claim is:
 
-Author-paper records are not unique researchers.
+> A closed-corpus, author-level scientometric workflow can reproduce the
+> document counts, affiliation patterns, authorship-position signals, country
+> distributions, and bibliometric indicators reported in peer-reviewed
+> scientometric studies when the same corpus-construction rules are supplied.
+
+The previous ML4Africa DOI corpus is retained only as an internal stress-test
+and case-study reference for pipeline scale, reconciliation, and figure design.
+It is not the central publication claim.
+
+## Validation Benchmarks
+
+The first validation set uses published studies with reproducible corpus
+construction, time windows, inclusion filters, and reported bibliometric
+outputs.
+
+| Benchmark | Corpus strategy | Time range | Final count | Validation targets |
+|---|---|---:|---:|---|
+| Yan & Wang, 2023, SAGE Open, DOI `10.1177/21582440231158562` | Web of Science query for academic-publishing terms | 1970-2020 | 2,217 documents | institutions, countries, productive authors, cited articles |
+| Basilio et al., 2022, Electronics, DOI `10.3390/electronics11111720` | WoS + Scopus Boolean query for MCDA methods | 1977-Apr 2022 | 23,494 analyzed records | authors, countries, institutions, citation patterns |
+| Baminiwatta & Solangaarachchi, 2021, Mindfulness, DOI `10.1007/s12671-021-01681-x` | WoS topic query for mindfulness | 1966-2021 | 16,581 publications | country collaboration, co-authorship, citation bursts |
+
+Mejia et al. 2021, DOI `10.3389/frma.2021.742311`, is used as
+methodological support for bibliometric topic and citation-network analysis, not
+as a direct replication target.
 
 ## Pipeline
 
 The primary workflow processes a closed DOI list through OpenAlex, PubMed,
 Semantic Scholar, ORCID, Genderize, and deterministic LLM-based profile
-classification. Scopus and Google Scholar integrations exist but were disabled
-for the completed run.
+classification. Scopus and Google Scholar/SerpAPI modules exist for richer
+metadata validation and should be enabled only when access is confirmed.
 
 ```text
-input_dois.csv
+benchmark corpus definition
+    -> DOI/query-derived input table
     -> OpenAlex
     -> PubMed
     -> Semantic Scholar
@@ -32,6 +50,7 @@ input_dois.csv
     -> Genderize
     -> profile classification
     -> MASTER_AUTHOR_TABLE.csv + MASTER_AUTHOR_TABLE.json
+    -> benchmark comparison tables
 ```
 
 The master table contains paper metadata, authorship position, corresponding
@@ -41,7 +60,7 @@ employment, name-based gender inference, and inferred research profile.
 
 ## Analysis Package
 
-Run the complete audited analysis from the repository root:
+Run the audited analysis package from the repository root:
 
 ```powershell
 .\.venv\Scripts\python.exe scripts\run_analysis.py
@@ -53,7 +72,7 @@ The command:
 2. requires complete input/output DOI reconciliation;
 3. exports source tables to `data/analysis/`;
 4. generates briefing PNG files;
-5. generates manuscript PNG and SVG files;
+5. generates neutral analysis PNG and SVG files;
 6. generates a separate DOI validation figure.
 
 Key machine-readable outputs:
@@ -79,39 +98,38 @@ data/analysis/
 
 ```text
 assets/figures/
-  briefing/       # Five presentation-ready PNG figures
-  manuscript/     # Matching high-resolution PNG and SVG figures
+  briefing/       # Presentation-ready PNG figures
+  analysis/       # High-resolution PNG and SVG figures
   validation/     # Pipeline validation only
   archive/
-    analytics_legacy/
-    validation_legacy/
 ```
 
-The seven current analytical figures are:
+## Validation Outputs To Build Next
 
-1. corpus overview and metadata coverage;
-2. DOI-level collaboration composition;
-3. leadership affiliation in mixed collaborations;
-4. OpenAlex H-index distributions by affiliation region;
-5. inferred research-profile composition by affiliation region;
-6. OpenAlex H-index medians and interquartile ranges by affiliation country;
-7. African-country first, last, and corresponding authorship participation in
-   mixed collaborations.
+For each benchmark study, the validation layer should report:
+
+1. source corpus definition, search query, time range, and filters;
+2. reproduced document count and DOI/resolution losses;
+3. country and institutional distributions compared with the source paper;
+4. authorship-position and corresponding-author patterns where available;
+5. citation and author-impact indicators from available APIs;
+6. mismatch log explaining database coverage, API access, and deduplication
+   differences.
 
 ## Methodological Boundaries
 
-- African affiliation is based on publication-time affiliation country. It is
-  not nationality, ethnicity, residence, or origin.
-- Collaboration and leadership percentages use DOI-level denominators.
+- Affiliation country is publication-time affiliation, not nationality,
+  ethnicity, residence, or origin.
+- Collaboration and leadership percentages use DOI-level denominators unless a
+  table explicitly states author-level denominators.
 - Distinct-person estimates use valid OpenAlex author IDs, with normalized
   names only for documented fallback records.
-- The impact comparison is descriptive. It does not establish a causal effect
-  of geography or affiliation.
+- Impact comparisons are descriptive and API-dependent; they do not establish
+  causal effects.
 - `GENDER` is inferred from names and is not self-identified gender.
 - `PROFILE_CLASSIFICATION` is LLM-inferred and requires manual validation.
-- Authorship position alone is not evidence of "parachute research."
-- Legacy evaluator charts based on five manually checked papers are retained
-  for provenance but are not corpus-wide accuracy estimates.
+- Authorship position alone is not evidence of extractive or parachute
+  research.
 
 ## Repository Map
 
@@ -130,6 +148,8 @@ SCIENTOMETRIC-ANALYSIS-TOOL/
     repair_missing_dois.py
     analytics.py
     evaluator.py
+  docs/
+    validation/
   data/
     input/
     output/
@@ -171,6 +191,7 @@ Run tests:
 - [ORCID](https://orcid.org/)
 - [Genderize.io](https://genderize.io/)
 - Azure OpenAI Service
+- Optional validation expansions: Scopus API and Google Scholar via SerpAPI
 
-This repository supports academic research on global research collaboration
-and equity in biomedical and computational science.
+This repository supports reproducible scientometric validation for global
+research collaboration and biomedical data-science studies.

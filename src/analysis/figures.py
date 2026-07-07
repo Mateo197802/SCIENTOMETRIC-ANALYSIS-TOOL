@@ -46,10 +46,10 @@ def _save(
     fig: plt.Figure,
     name: str,
     briefing_dir: Path,
-    manuscript_dir: Path,
+    analysis_dir: Path,
 ) -> None:
     briefing_dir.mkdir(parents=True, exist_ok=True)
-    manuscript_dir.mkdir(parents=True, exist_ok=True)
+    analysis_dir.mkdir(parents=True, exist_ok=True)
     fig.savefig(
         briefing_dir / f"{name}.png",
         dpi=220,
@@ -57,12 +57,12 @@ def _save(
         facecolor="white",
     )
     fig.savefig(
-        manuscript_dir / f"{name}.png",
+        analysis_dir / f"{name}.png",
         dpi=300,
         bbox_inches="tight",
         facecolor="white",
     )
-    svg_path = manuscript_dir / f"{name}.svg"
+    svg_path = analysis_dir / f"{name}.svg"
     fig.savefig(
         svg_path,
         bbox_inches="tight",
@@ -92,7 +92,7 @@ def render_corpus_overview(
     summary: dict[str, object],
     coverage: pd.DataFrame,
     briefing_dir: Path,
-    manuscript_dir: Path,
+    analysis_dir: Path,
 ) -> None:
     fig = plt.figure(figsize=(13.2, 7.4))
     grid = fig.add_gridspec(2, 4, height_ratios=[0.9, 1.4], hspace=0.42)
@@ -178,7 +178,7 @@ def render_corpus_overview(
         )
 
     fig.suptitle(
-        "ML4Africa scientometric corpus: complete DOI reconciliation",
+        "Closed DOI stress-test corpus: complete DOI reconciliation",
         x=0.06,
         y=0.98,
         ha="left",
@@ -193,13 +193,13 @@ def render_corpus_overview(
         color=SLATE,
         fontsize=9,
     )
-    _save(fig, "01_corpus_overview", briefing_dir, manuscript_dir)
+    _save(fig, "01_corpus_overview", briefing_dir, analysis_dir)
 
 
 def render_collaboration_composition(
     collaboration: pd.DataFrame,
     briefing_dir: Path,
-    manuscript_dir: Path,
+    analysis_dir: Path,
 ) -> None:
     data = collaboration.sort_values("PAPERS")
     fig, axis = plt.subplots(figsize=(11.8, 6.8))
@@ -239,13 +239,13 @@ def render_collaboration_composition(
         fontsize=9,
     )
     fig.tight_layout(rect=(0, 0.07, 1, 1))
-    _save(fig, "02_collaboration_composition", briefing_dir, manuscript_dir)
+    _save(fig, "02_collaboration_composition", briefing_dir, analysis_dir)
 
 
 def render_mixed_leadership(
     leadership: pd.DataFrame,
     briefing_dir: Path,
-    manuscript_dir: Path,
+    analysis_dir: Path,
 ) -> None:
     pivot = leadership.pivot(
         index="ROLE", columns="LEADERSHIP_REGION", values="PERCENT"
@@ -306,7 +306,7 @@ def render_mixed_leadership(
         fig,
         "03_mixed_collaboration_leadership",
         briefing_dir,
-        manuscript_dir,
+        analysis_dir,
     )
 
 
@@ -314,7 +314,7 @@ def render_impact_gap(
     observations: pd.DataFrame,
     impact: pd.DataFrame,
     briefing_dir: Path,
-    manuscript_dir: Path,
+    analysis_dir: Path,
 ) -> None:
     region_order = ["Africa", "Outside Africa"]
     values = [
@@ -391,13 +391,13 @@ def render_impact_gap(
         fontsize=9,
     )
     fig.tight_layout(rect=(0, 0.07, 1, 1))
-    _save(fig, "04_bibliometric_impact_gap", briefing_dir, manuscript_dir)
+    _save(fig, "04_bibliometric_impact_gap", briefing_dir, analysis_dir)
 
 
 def render_profile_composition(
     profiles: pd.DataFrame,
     briefing_dir: Path,
-    manuscript_dir: Path,
+    analysis_dir: Path,
 ) -> None:
     totals = profiles.groupby("BASE_PROFILE")["AUTHORS"].sum().sort_values(
         ascending=False
@@ -488,14 +488,14 @@ def render_profile_composition(
         fig,
         "05_research_profile_composition",
         briefing_dir,
-        manuscript_dir,
+        analysis_dir,
     )
 
 
 def render_country_hindex_distribution(
     country_impact: pd.DataFrame,
     briefing_dir: Path,
-    manuscript_dir: Path,
+    analysis_dir: Path,
 ) -> None:
     selected = country_impact.loc[
         country_impact["SELECTED_FOR_FIGURE"].eq(True)
@@ -588,14 +588,14 @@ def render_country_hindex_distribution(
         fig,
         "06_country_hindex_distribution",
         briefing_dir,
-        manuscript_dir,
+        analysis_dir,
     )
 
 
 def render_mixed_country_leadership(
     country_leadership: pd.DataFrame,
     briefing_dir: Path,
-    manuscript_dir: Path,
+    analysis_dir: Path,
 ) -> None:
     data = country_leadership.loc[
         country_leadership["SELECTED_FOR_FIGURE"].eq(True)
@@ -675,7 +675,7 @@ def render_mixed_country_leadership(
         fig,
         "07_mixed_collaboration_country_leadership",
         briefing_dir,
-        manuscript_dir,
+        analysis_dir,
     )
 
 
@@ -728,21 +728,21 @@ def render_all_figures(
     country_leadership: pd.DataFrame,
     figure_root: Path,
 ) -> None:
-    """Render all briefing, manuscript, and validation figures."""
+    """Render all briefing, analysis, and validation figures."""
     _configure_style()
     briefing_dir = figure_root / "briefing"
-    manuscript_dir = figure_root / "manuscript"
-    render_corpus_overview(summary, coverage, briefing_dir, manuscript_dir)
+    analysis_dir = figure_root / "analysis"
+    render_corpus_overview(summary, coverage, briefing_dir, analysis_dir)
     render_collaboration_composition(
-        collaboration, briefing_dir, manuscript_dir
+        collaboration, briefing_dir, analysis_dir
     )
-    render_mixed_leadership(leadership, briefing_dir, manuscript_dir)
-    render_impact_gap(observations, impact, briefing_dir, manuscript_dir)
-    render_profile_composition(profiles, briefing_dir, manuscript_dir)
+    render_mixed_leadership(leadership, briefing_dir, analysis_dir)
+    render_impact_gap(observations, impact, briefing_dir, analysis_dir)
+    render_profile_composition(profiles, briefing_dir, analysis_dir)
     render_country_hindex_distribution(
-        country_impact, briefing_dir, manuscript_dir
+        country_impact, briefing_dir, analysis_dir
     )
     render_mixed_country_leadership(
-        country_leadership, briefing_dir, manuscript_dir
+        country_leadership, briefing_dir, analysis_dir
     )
     render_doi_reconciliation(reconciliation, figure_root / "validation")
